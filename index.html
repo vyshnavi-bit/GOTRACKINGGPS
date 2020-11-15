@@ -1,0 +1,2966 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="Images/GoTrackingLogo.jpg" type="image/x-icon">
+    <title>GoTracking | Liveview</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css?v=1600">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+ 
+    <link href="CustomCSS/font-awesome.css?v=1600" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.css?v=1002">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css?v=1002">
+    <link href="plugins/iCheck/all.css?v=1002" rel="stylesheet" />
+    <link href="plugins/iCheck/minimal/_all.css?v=1002" rel="stylesheet" />
+
+   <!-- <link href="CustomCSS/rangeslider.css" rel="stylesheet" type="text/css" />
+    <script src="CustomCSS/rangeslider.js" type="text/javascript"></script>-->
+    <script src="CustomCSS/pace.min.js" type="text/javascript"></script>
+   <!-- <script src="CustomCSS/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="CustomCSS/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="CustomCSS/jquery.touchSwipe.min.js" type="text/javascript"></script>
+    <script src="CustomCSS/bootbox.min.js" type="text/javascript"></script>
+    <script src="CustomCSS/framework7.js" type="text/javascript"></script>
+    <link href="CustomCSS/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .img-msg {
+    border-radius: 50%;
+    color: #FFFFFF;
+    height: 25px;
+    left: -17px;
+    position: relative;
+    top: 0;
+    width: 25px;
+}
+.noft-red {
+       background: none repeat scroll 0 0 #EA3F3F;
+    border-radius: 26px;
+    color: #FFFFFF;
+    font-size: 10px;
+    left: 25px;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 20px;
+    }
+    .noft-green {
+       background: none repeat scroll 0 0 #4AC4BC;
+    border-radius: 26px;
+    color: #FFFFFF;
+    font-size: 10px;
+    left: 25px;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 20px;
+    }
+        .dropdownckecklist {
+            top: 0%;
+            width: 298px;
+            margin-bottom: 0px;
+        }
+
+            .dropdownckecklist dd,
+            .dropdownckecklist dt {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .dropdownckecklist ul {
+                margin: -1px 0 0 0;
+            }
+
+            .dropdownckecklist dd {
+                position: relative;
+            }
+
+            .dropdownckecklist a,
+            .dropdownckecklist a:visited {
+                color: #fff;
+                text-decoration: none;
+                outline: none;
+                font-size: 12px;
+            }
+
+            .dropdownckecklist dt a {
+                background-color: #2f496c;
+                display: block;
+                padding: 8px 20px 5px 10px;
+                height: 35px;
+                line-height: 24px;
+                overflow: hidden;
+                border: 0;
+                width: 298px;
+            }
+
+                .dropdownckecklist dt a span,
+                .multiSel span {
+                    cursor: pointer;
+                    display: inline-block;
+                    padding: 0 3px 2px 0;
+                }
+
+            .dropdownckecklist dd ul {
+                background-color: #2f496c;
+                border: 0;
+                color: #fff;
+                display: none;
+                left: 0px;
+                padding: 2px 15px 2px 5px;
+                position: absolute;
+                top: 2px;
+                width: 298px;
+                list-style: none;
+                max-height: 200px;
+                overflow: auto;
+                z-index: 99999;
+            }
+
+            .dropdownckecklist dd li {
+                padding: 2px;
+            }
+
+            .dropdownckecklist span.value {
+                display: none;
+            }
+
+            .dropdownckecklist dd ul li a {
+                padding: 5px;
+                display: block;
+            }
+
+                .dropdownckecklist dd ul li a:hover {
+                    background-color: #fff;
+                }
+
+        .loader,
+        .loader:before,
+        .loader:after {
+            border-radius: 50%;
+        }
+
+            .loader:before,
+            .loader:after {
+                position: absolute;
+                content: '';
+            }
+
+            .loader:before {
+                width: 5.2em;
+                height: 10.2em;
+                background: #0dc5c1;
+                border-radius: 10.2em 0 0 10.2em;
+                top: -0.1em;
+                left: -0.1em;
+                -webkit-transform-origin: 5.2em 5.1em;
+                transform-origin: 5.2em 5.1em;
+                -webkit-animation: load2 2s infinite ease 1.5s;
+                animation: load2 2s infinite ease 1.5s;
+            }
+
+        .loader {
+            font-size: 5px;
+            text-indent: -99999em;
+            margin: 55px auto;
+            position: relative;
+            width: 10em;
+            height: 10em;
+            box-shadow: inset 0 0 0 1em #ffffff;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+            .loader:after {
+                width: 5.2em;
+                height: 10.2em;
+                background: #0dc5c1;
+                border-radius: 0 10.2em 10.2em 0;
+                top: -0.1em;
+                left: 5.1em;
+                -webkit-transform-origin: 0px 5.1em;
+                transform-origin: 0px 5.1em;
+                -webkit-animation: load2 2s infinite ease;
+                animation: load2 2s infinite ease;
+            }
+
+        @-webkit-keyframes load2 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes load2 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <style type="text/css">
+        element.style
+        {
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: block;
+            height: 15px;
+            position: absolute;
+            padding-bottom: 31px;
+            top: 9.5%;
+            left: 17%;
+        }
+    </style>
+    <script type="text/javascript">
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('spntime').innerHTML =  h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <div class="container" style="width: 100%;">
+                    <div class="navbar-header" style="width: 21%;">
+                        <a class="navbar-brand"><span style="font-size: 40px;">GoTracking</span></a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a style="background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); border-radius: 30px;
+                            color: rgba(255, 255, 255, 0.8); cursor: pointer; display: block; height: 15px;
+                            position: absolute; padding-bottom: 31px; top: 15.5%; left: 17%;" class="sidebar-toggle"
+                            data-toggle="control-sidebar" role="button"><span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </div>
+                       <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav" style="padding-left: 50px;">
+                             <li><a style="cursor: pointer;" onclick="changepage(this);">Liveview</a></li>
+                            <li class="dropdown">
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tasks" aria-hidden="true"></i>&nbspManage <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                   <li><a style="cursor: pointer;" href="Locations.html">
+                                        <img alt="" class="img-msg img-circle" src="img/location.png">My Locations</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="VehicleGrouping.html">
+                                        <img alt="" class="img-msg img-circle" src="img/vehicle2.jpg">Vehicle Groups</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="PersonDetails.html">
+                                        <img alt="" class="img-msg img-circle" src="img/person.png">Person Details</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="AlertGroups.html">
+                                        <img alt="" class="img-msg img-circle" src="img/alerts.jpg">Alert Groups</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="AssignAlerts.html">
+                                        <img alt="" class="img-msg img-circle" src="img/alerts.jpg">Assign Alerts</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="ChangePassword.html">
+                                        <div>
+                                            Change Password</div>
+                                    </a></li>
+                                </ul>
+                            </li>
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-tasks"
+                                    aria-hidden="true"></i>&nbsp Reports <span class="caret"></span></a>
+                                    <ul style="margin: 11px 0px 0px 9px; position: absolute; left: 0px; top: 46px;" role="menu"
+                                        class="dropdown-menu dropdown-wrap">
+                                        <li style="height: 28px; width: 233px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/report2.jpg" />
+                                                </div>
+                                                <div style="width: 85%; float: right;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">General Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/stop.png">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">Stopage Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/overspeed.png">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">OverSpeed Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/daily.jpg">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">Daily Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/timetostop.jpg">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">Location HaltingHours Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/location.png">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">Location to Location Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li style="height: 30px;">
+                                            <div style="width: 100%;">
+                                                <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                    <img alt="" class="img-msg img-circle" src="img/reports.jpg">
+                                                </div>
+                                                <div style="width: 85%; float: right; padding-top: 5px;">
+                                                    <a style="cursor: pointer;" onclick="changepage(this);">Ignition Report</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a style="cursor: pointer;" href="Nearbyvehicles.html"><i class="fa fa-map-marker"
+                                    aria-hidden="true"></i>&nbsp Get Nearest Vehicles</a></li>
+                                <li><a style="cursor: pointer; padding-left:125px;" href="#"></a></li>
+                               
+                                <!--    alerts total vehicle count-->
+                                <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"><i
+                                    style="font-size: 20px;" class="fa fa-comments" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Total Vehicles"></i>
+                                    <div class="noft-red">
+                                        <span id="lblvehscount">0</span></div>
+                                </a>
+                                    <ul style="margin: 11px 0px 0px 9px; position: absolute; left: 0px; top: 48px;" role="menu"
+                                        class="dropdown-menu dropdown-wrap" id="ul_showallvehs">
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-exclamation-triangle"
+                                    style="font-size: 19px;" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Not Working Vehicles"></i>
+                                    <div class="noft-green">
+                                        <span id="icon_notworkingvehicles">0</span></div>
+                                </a>
+                                    <ul style="margin: 12px 0px 0px; position: absolute; left: 0px; top: 48px;" role="menu"
+                                        class="dropdown-menu dropdown-wrap" id="ul_shownonworkingvehs">
+                                    </ul>
+                                </li>
+                                <li><a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="fa fa-check-square-o"
+                                    style="font-size: 19px;" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Working Vehicles"></i>
+                                    <div class="noft-green">
+                                        <span id="icon_workingvehicles">0</span></div>
+                                </a>
+                                    <ul style="margin: 12px 0px 0px; position: absolute; left: 0px; top: 48px;" role="menu"
+                                        class="dropdown-menu dropdown-wrap" id="ul_showworkingvehs">
+                                    </ul>
+                                </li>
+                                <!-- /.total vehicle count -->
+                                 <!--<li><a style="cursor: pointer;" href="#">TIME : <label id="spntime"></label></a></li>-->
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <!-- Messages: style can be found in dropdown.less-->
+                                <li class="dropdown messages-menu" style="display: none;">
+                                    <!-- Menu toggle button -->
+                                    <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-taxi">
+                                    </i><span class="label label-default" id="lblvehscount">0</span> </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">Total Vehicles <span class="label label-default" id="lblvehscount1">
+                                        </span></li>
+                                        <li>
+                                            <!-- inner menu: contains the messages -->
+                                            <ul class="menu" id="ul_showallvehs">
+                                            </ul>
+                                            <!-- /.menu -->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- /.messages-menu -->
+                                <!-- Notifications Menu -->
+                                <li class="dropdown messages-menu" style="display: none;">
+                                    <!-- Menu toggle button -->
+                                    <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-check-square-o">
+                                    </i><span class="label label-success" id="icon_workingvehicles">0</span> </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">Working Vehicles <span class="label label-success" id="icon_workingvehicles1">
+                                        </span></li>
+                                        <li>
+                                            <!-- inner menu: contains the messages -->
+                                            <ul class="menu" id="ul_showworkingvehs">
+                                            </ul>
+                                            <!-- /.menu -->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- Tasks Menu -->
+                                <li class="dropdown messages-menu" style="display: none;">
+                                    <!-- Menu Toggle Button -->
+                                    <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ban">
+                                    </i><span class="label label-danger" id="icon_notworkingvehicles">0</span> </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">Not Working Vehicles <span class="label label-danger" id="icon_notworkingvehicles1">
+                                        </span></li>
+                                        <li>
+                                            <!-- inner menu: contains the messages -->
+                                            <ul class="menu" id="ul_shownonworkingvehs">
+                                            </ul>
+                                            <!-- /.menu -->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- User Account Menu -->
+                                <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="Images/GoTrackingLogo.jpg" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs" id="lbl_username" style="text-transform: capitalize;" >Guest</span>
+                                </a>
+                            </li>
+                            <li id="logout_click" style="cursor:pointer;"><a>Sign out</a></li>
+                                </ul>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-custom-menu -->
+                    </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </header>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark control-sidebar-open" style="height: 100%;
+            opacity: 0.9; width: 300px; background-color: #f9fafc; color: black; border-right: 1px solid #d5d5d5;">
+            <!-- Tab panes -->
+            <div class="tab-content" style="padding: 0px; padding-top: 20px;">
+                <!-- Home tab content -->
+                <dl class="dropdownckecklist">
+                    <dt><a style="cursor: pointer;">
+                        <p class="multiSel" id="div_vehmutliSel">
+                            <span class="hida">All Vehicle Groups</span>
+                        </p>
+                    </a></dt>
+                    <dd>
+                        <div class="mutliSelect" id="div_vehmutliSelect">
+                        </div>
+                    </dd>
+                </dl>
+
+                <input type="text" id="txt_search" placeholder="Search Vehicle Number" class="form-control" style="border-top-width: 2px;">
+             <!--   <div class="loader" id="veh_loader">
+                    Loading...</div>-->
+
+                     <div class="col-md-12" style="padding:3px 0px;border-bottom: 1px solid #d5d5d5; background-color:beige;">
+                    <div class="col-md-6" style="padding-left: 4px;">
+                        <input type="checkbox" value="SelectAll" id="ckballveh" class="minimal" />
+                        <span style="height: 15px;vertical-align: sub;">Select All</span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" class="btn btn-block btn-primary btn-xs" id="btn_selectmap" onclick="btn_selectmap_click(this)" value="Openstreet Map" />
+                    </div>
+                </div>
+                <div class="loader" id="veh_loader">Loading...</div>
+                <div>
+                    <div id="divvehicles" style="top: 165px; bottom: 0px; overflow: auto; position: absolute; width: 100%;">
+                        <div id="divAllvehicles" class="slimScrollDiv">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Full Width Column -->
+        <div class="content-wrapper">
+            <div class="container" style="width: 100%; padding: 0;">
+                <div style="width: 100%; height: 100%;">
+                    <div style="width: 100%;">
+                        <div id="mapcontent">
+                            <div id="div_liveview">
+                                <div id="googleMap" style="top:69px; bottom: 0px; left: 0px; right: 0px; position: absolute;
+                                    display: block; background-color: rgb(229, 227, 223); display: none;">
+                                </div>
+                                <div id="openstreetmap" style="top: 59px; bottom: 0px; left: 0px; right: 0px; position: absolute;
+                                    display: block; background-color: rgb(229, 227, 223); display: none;">
+                                </div>
+                                <div id="expiredmsg" style="top: 50px; bottom: 0px; left: 0px; right: 0px; position: absolute;
+                                    display: block; background-color: rgb(229, 227, 223); display: none;">
+                                    <table style="width: 100%; height: 100%;">
+                                        <tr>
+                                            <td style="width: 20%;">
+                                            </td>
+                                            <td style="width: 60%; text-align: center;">
+                                                <img src="Images/expired.png" />
+                                                <br />
+                                                <span style="font-size: 20px; font-weight: bold; color: Red;">YOUR ACCOUNT HAS BEEN
+                                                    EXPIRED. </span>
+                                                <br />
+                                                <br />
+                                                <span style="font-size: 20px; font-weight: bold; color: Red;">PLEASE MAKE PAYMENT TO
+                                                    RETRIEVE YOUR SERVICES. </span>
+                                                <br />
+                                                <br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">Account Details :-</span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">A/C NUMBER : ,</span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">
+                                                    A/C NAME : Sri Vyshnavi Dairy Spl Pvt Ltd,
+                                                </span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">BANK NAME : HDFC,</span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">BRANCH : Chennai,</span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">IFSC CODE : IFCBD565,</span><br />
+                                                <span style="font-size: 15px; font-weight: bold; color: Navy;">
+                                                    FOR PAYMENT INFO CALL
+                                                    : 9840025389.
+                                                </span>
+                                            </td>
+                                            <td style="width: 20%;">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="div_reports" style="top: 52px; bottom: 0px; left: 0px; right: 0px; position: absolute;
+                                display: block; background-color: rgb(229, 227, 223); display: none;">
+                                <div class="col-md-12" style="top: 0px; bottom: 0px; overflow: auto; position: absolute;
+                                    width: 100%;">
+                                    <div class="box box-primary">
+                                        <div class="box-header">
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="col-md-3">
+                                            </div>
+                                            <!-- Date range -->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        From Date:</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="datetime-local" class="form-control pull-right" id="txt_startdate">
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+                                            <!-- /.form group -->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>
+                                                        To Date:</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="datetime-local" class="form-control pull-right" id="txt_enddate">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" id="div_Reports_TimeGap">
+                                                <div class="form-group">
+                                                    <label id="lbl_timegap">
+                                                        Interval</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-filter"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control pull-right" id="txt_Reports_TimeGap">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input id="btn_generate" value="Get Data" type="button" class="btn btn-block btn-primary"
+                                                        onclick="btn_generate_Click()" />
+                                                    <label style="cursor: pointer; float: right;">
+                                                    <a href="exporttoxl_utility.ashx">Export to XL</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="loader" id="loader_report">
+                                                Loading...</div>
+                                            <div>
+                                                <table id="tbl_report" class="table table-bordered">
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="div_drawroute" style="top: 52px; bottom: 0px; left: 0px; right: 0px; position: absolute;
+                                display: block; background-color: rgb(229, 227, 223); display: none;">
+                            </div>
+                        </div>
+                        <div id="displaydiv" class="bpmouseover">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/iCheck/icheck.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <link href="leaflet/dist/MarkerCluster.css?v=1002" rel="stylesheet" type="text/css" />
+    <link href="leaflet/dist/MarkerCluster.Default.css?v=1002" rel="stylesheet" type="text/css" />
+    <script src="leaflet/dist/leaflet.markercluster.js?v=1002" type="text/javascript"></script>
+    <script src="leaflet/realworld.388.js?v=1002" type="text/javascript"></script>
+    <link href="leaflet/screen.css?v=1002" rel="stylesheet" type="text/css" />
+    <script src="leaflet/leaflet.geocoding.js?v=1002" type="text/javascript"></script>
+    <script src="js/JTemplate.js?v=1002" type="text/javascript"></script>
+    <script src="customapp.js?v=1002" type="text/javascript"></script>
+    <script src="Newjs/markerclusterer_GZ.js?v=1002" type="text/javascript"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyATBBBchlRuWQYBgWfaLWPFq0NtxG7FvE0&sensor=false"></script>
+     <script src="Newjs/markerclusterer.js?v=1002" type="text/javascript"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+    <script src="Newjs/infobox.js?v=1002" type="text/javascript"></script>
+    <script type="text/javascript">
+        var currentpage = 'Liveview';
+        function changepage(pge) {
+            redirectpage($(pge).html());
+        }
+        function redirectpage(pge) {
+            currentpage = pge;
+            setCookie("currentpage", currentpage, 1);
+            if (currentpage == 'Liveview') {
+                $('#div_reports').css('display', 'none');
+                $('#div_liveview').css('display', 'block');
+                $('#btn_selectmap').css('display', 'block');
+                intializemaps();
+            }
+            else {
+                $('#btn_selectmap').css('display', 'none');
+                $("#tbl_report").html('');
+                var lbltext = document.getElementById("lbl_timegap");
+                $("#txt_Reports_TimeGap").val("");
+                if (currentpage == "Stopage Report") {
+                    $("#lbl_timegap").html("Time Gap (Min)");
+                    $("#lbl_timegap").css("display", "block");
+                    $("#div_Reports_TimeGap").css("display", "block");
+                }
+                else if (currentpage == "OverSpeed Report") {
+                    $("#lbl_timegap").html("Speed Limit");
+                    $("#lbl_timegap").css("display", "block");
+                    $("#div_Reports_TimeGap").css("display", "block");
+                }
+                else {
+                    $("#lbl_timegap").html("");
+                    $("#lbl_timegap").css("display", "none");
+                    $("#div_Reports_TimeGap").css("display", "none");
+                }
+                $('#loader_report').hide();
+                $('#div_reports').css('display', 'block');
+                $('#div_liveview').css('display', 'none');
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                var hrs = today.getHours();
+                if (hrs < 10) {
+                    hrs = '0' + hrs
+                }
+                var mnts = today.getMinutes();
+                if (mnts < 10) {
+                    mnts = '0' + mnts
+                }
+                $('#txt_enddate').val(yyyy + '-' + mm + '-' + dd + 'T' + hrs + ':' + mnts);
+                dd = dd - 1;
+                if (dd < 10) {
+                    dd = '0' + dd;
+                }
+                $('#txt_startdate').val(yyyy + '-' + mm + '-' + dd + 'T' + hrs + ':' + mnts);
+            }
+        }
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+        $(function () {
+            var user = getCookie("currentpage");
+            if (user != "") {
+                currentpage = user;
+                redirectpage(currentpage);
+            } else {
+                setCookie("currentpage", currentpage, 1);
+            }
+           
+            //$(window).unload(function () {
+            //    document.cookie = "currentpage=;expires=Wed; 01 Jan 1970";
+            //});
+        });
+       
+    </script>
+    <script type="text/javascript">
+        var slctdmap = "Google Map";
+        function btn_selectmap_click(mapslct) {
+            if (mapslct.value == "Openstreet Map") {
+                document.getElementById("googleMap").style.display = "none";
+                document.getElementById("openstreetmap").style.display = "block";
+                slctdmap = "Openstreet Map";
+                $("#btn_selectmap").val("Google Map");
+                showlocations = true;
+                $('#locationsbtn').html("<b>Show Locations<b>");
+                deleteLocationOverlaysOSM();
+                intializemaps();
+                liveupdate();
+            }
+            else {
+                document.getElementById("openstreetmap").style.display = "none";
+                document.getElementById("googleMap").style.display = "block";
+                slctdmap = "Google Map";
+                $("#btn_selectmap").val("Openstreet Map");
+                $('#locationsbtn').html("<b>Show Locations<b>");
+                deleteLocationOverlaysOSM();
+                showlocations = true;
+                intializemaps();
+                liveupdate();
+            }
+        }
+        var clusteredview = true;
+        var showtags = false;
+        function intializemaps() {
+            if (slctdmap == "Openstreet Map") {
+                var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }),
+                  latlng = L.latLng(17.497535, 78.408622);
+                openstreetmap = L.map('openstreetmap', { zoomControl: false, center: latlng, zoom: 5, layers: [tiles] });
+                L.control.zoom({
+                    position: 'topright'
+                }).addTo(openstreetmap);
+                ClusterControl = function (theClusterFunction) {
+
+                    var Clustercontrol = new (L.Control.extend({
+                        options: { position: 'topright' },
+                        onAdd: function (openstreetmap) {
+                            ClustercontrolDiv = L.DomUtil.create('div', 'Cluster-button');
+                            ClustercontrolDiv.id = 'clusteredbtn1';
+                            L.DomEvent
+                .addListener(ClustercontrolDiv, 'click', L.DomEvent.stopPropagation)
+                .addListener(ClustercontrolDiv, 'click', L.DomEvent.preventDefault)
+                .addListener(ClustercontrolDiv, 'click', this.ClusterFunction);
+
+                            // Set CSS for the control border
+                            var ClustercontrolUI = L.DomUtil.create('div', 'Cluster-button-border', ClustercontrolDiv);
+                            ClustercontrolUI.title = 'Clustering';
+                            ClustercontrolUI.style.backgroundColor = '#2f496c';
+                            ClustercontrolUI.style.border = '1px solid rgb(113, 123, 135)';
+                            ClustercontrolUI.style.cursor = 'pointer';
+                            ClustercontrolUI.style.textAlign = 'center';
+                            ClustercontrolUI.style.width = '120px';
+                            ClustercontrolUI.style.height = '20px';
+                            ClustercontrolUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+                            ClustercontrolUI.style.marginRight = "170px";
+                            ClustercontrolUI.style.marginTop = "-60px";
+                            // Set CSS for the control interior
+                            var ClustercontrolText = L.DomUtil.create('div', 'Cluster-button-interior', ClustercontrolUI);
+                            ClustercontrolText.id = 'clusteredbtn';
+                            ClustercontrolText.innerHTML = '<b>NonClustered View<b>';
+                            ClustercontrolText.style.fontFamily = 'Arial,sans-serif';
+                            ClustercontrolText.style.fontSize = '12px';
+                            ClustercontrolText.style.paddingLeft = '4px';
+                            ClustercontrolText.style.paddingRight = '4px';
+                            ClustercontrolText.style.height = '20px';
+                            ClustercontrolText.style.color = '#FFFFFF';
+                            ClustercontrolText.style.paddingTop = '1px';
+
+                            return ClustercontrolDiv;
+                        }
+                    }));
+                    Clustercontrol.ClusterFunction = theClusterFunction;
+                    return Clustercontrol;
+                };
+                ClusterFunction = function () {
+                    if (OSMClusterview == true) {
+                        OSMClusterview = false;
+                        update();
+                        $('#clusteredbtn').html("<b>Clustered View<b>");
+                    }
+                    else {
+                        OSMClusterview = true;
+                        update();
+                        $('#clusteredbtn').html("<b>NonClustered View<b>");
+                    }
+                };
+                openstreetmap.addControl(ClusterControl(ClusterFunction));
+                LocationsControl = function (theLocationsFunction) {
+
+                    var control = new (L.Control.extend({
+                        options: { position: 'topright' },
+                        onAdd: function (openstreetmap) {
+                            controlDiv = L.DomUtil.create('div', 'Locations-button');
+                            controlDiv.id = 'locationsbtn1';
+                            L.DomEvent
+                .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
+                .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
+                .addListener(controlDiv, 'click', this.LocationsFunction);
+
+                            // Set CSS for the control border
+                            var controlUI = L.DomUtil.create('div', 'Locations-button-border', controlDiv);
+                            controlUI.title = 'Locations';
+                            controlUI.style.backgroundColor = '#2f496c';
+                            controlUI.style.border = '1px solid rgb(113, 123, 135)';
+                            controlUI.style.cursor = 'pointer';
+                            controlUI.style.textAlign = 'center';
+                            controlUI.style.width = '110px';
+                            controlUI.style.height = '20px';
+                            controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+                            controlUI.style.marginRight = "50px";
+                            controlUI.style.marginTop = "-70px";
+                            // Set CSS for the control interior
+                            var controlText = L.DomUtil.create('div', 'Locations-button-interior', controlUI);
+                            controlText.id = 'locationsbtn';
+                            controlText.innerHTML = '<b>Show Locations<b>';
+                            controlText.style.fontFamily = 'Arial,sans-serif';
+                            controlText.style.fontSize = '12px';
+                            controlText.style.paddingLeft = '4px';
+                            controlText.style.paddingRight = '4px';
+                            controlText.style.color = '#FFFFFF';
+                            controlText.style.height = '20px';
+                            controlText.style.paddingTop = '1px';
+
+                            return controlDiv;
+                        }
+                    }));
+                    control.LocationsFunction = theLocationsFunction;
+                    return control;
+                };
+                LocationsFunction = function () { locationsfnctn(this); };
+                openstreetmap.addControl(LocationsControl(LocationsFunction));
+                var custom_geocoding_provider = function (arg) {
+                    var that = this
+                , query = arg.query
+                , cb = arg.cb;
+
+                    $.ajax({
+                        url: 'http://nominatim.openstreetmap.org/search'
+                , dataType: 'jsonp'
+                , jsonp: 'json_callback'
+                , data: {
+                    'q': query
+                    , 'format': 'json'
+                }
+                    })
+            .done(function (data) {
+                if (data.length > 0) {
+                    var res = data[0];
+                    cb({
+                        query: query
+                        , content: res.display_name
+                        , latlng: new L.LatLng(res.lat, res.lon)
+                        , bounds: new L.LatLngBounds([res.boundingbox[0], res.boundingbox[2]], [res.boundingbox[1], res.boundingbox[3]])
+                    });
+                }
+            });
+                }
+                geocoding = new L.Geocoding({
+                    apikeys: {
+                        'bing': 'Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5'
+              , 'mapquest': 'Kmjtd%7Cluua2qu7n9%2C7a%3Do5-lzbgq'
+              , 'nokia': 'HGHGJHgdbndbmbsdf7675wefdvvdsnb'
+                    }
+            , providers: {
+                'custom': custom_geocoding_provider
+            }
+                });
+                openstreetmap.addControl(geocoding);
+            }
+            else {
+                var myCenter = new google.maps.LatLng(17.497535, 78.408622);
+                // Add a Home control that returns the user to London
+                function HomeControl(controlDiv, googlemap) {
+                    controlDiv.style.padding = '5px 1px 0px 0px';
+                    var controlUI = document.createElement('div');
+                    controlUI.style.backgroundColor = '#2f496c';
+                    controlUI.style.color = '#ffffff';
+                    controlUI.style.cursor = 'pointer';
+                    controlUI.style.textAlign = 'center';
+                    controlUI.style.width = '120px';
+                    controlUI.title = 'NonClustered View';
+                    controlUI.style.boxShadow = "#607D8B 0px 1px 1px";
+                    controlUI.style.borderRadius = '.25em';
+                    controlDiv.appendChild(controlUI);
+                    var controlText = document.createElement('div');
+                    controlText.style.fontFamily = 'Arial,sans-serif';
+                    controlText.style.fontSize = '12px';
+                    controlText.style.paddingLeft = '4px';
+                    controlText.style.paddingRight = '4px';
+                    controlText.style.height = '20px';
+                    controlText.style.paddingTop = '3px';
+                    controlText.innerHTML = '<b>NonClustered View<b>'
+                    controlUI.appendChild(controlText);
+
+                    // Setup click-event listener: simply set the googlemap to London
+                    google.maps.event.addDomListener(controlUI, 'click', function () {
+                        if (clusteredview) {
+                            clusteredview = false;
+                            update();
+                            closeinfowindow();
+                            controlText.innerHTML = '<b>Clustered View<b>'
+                            controlUI.title = 'Clustered View';
+                        }
+                        else {
+                            clusteredview = true;
+                            controlUI.title = 'NonClustered View';
+                            controlText.innerHTML = '<b>NonClustered View<b>'
+                            closeinfowindow();
+                            update();
+                        }
+                    });
+                }
+
+                function TagsControl(TagcontrolDiv, googlemap) {
+                    TagcontrolDiv.style.padding = '5px 1px 0px 0px';
+                    var TagcontrolUI = document.createElement('div');
+                    TagcontrolUI.style.backgroundColor = '#2f496c';
+                    TagcontrolUI.style.color = '#ffffff';
+                    TagcontrolUI.style.cursor = 'pointer';
+                    TagcontrolUI.style.textAlign = 'center';
+                    TagcontrolUI.style.width = '80px';
+                    TagcontrolUI.title = 'Show Tags';
+                    TagcontrolUI.style.boxShadow = "#607D8B 0px 1px 1px";
+                    TagcontrolUI.style.borderRadius = '.25em';
+                    TagcontrolDiv.appendChild(TagcontrolUI);
+                    var TagcontrolText = document.createElement('div');
+                    TagcontrolText.style.fontFamily = 'Arial,sans-serif';
+                    TagcontrolText.style.fontSize = '12px';
+                    TagcontrolText.style.paddingLeft = '4px';
+                    TagcontrolText.style.paddingRight = '4px';
+                    TagcontrolText.style.height = '20px';
+                    TagcontrolText.style.paddingTop = '3px';
+                    TagcontrolText.innerHTML = '<b>Show Tags<b>'
+                    TagcontrolUI.appendChild(TagcontrolText);
+
+                    // Setup click-event listener: simply set the googlemap to London
+                    google.maps.event.addDomListener(TagcontrolUI, 'click', function () {
+                        if (showtags) {
+                            for (var i = infowindows.length - 1; i >= 0; i--) {
+                                infowindows[i].close();
+                                infowindows.splice(i, 1);
+                            }
+                            showtags = false;
+                            TagcontrolUI.title = 'Show Tags';
+                            TagcontrolText.innerHTML = '<b>Show Tags<b>'
+                        }
+                        else {
+                            update();
+                            showtags = true;
+                            TagcontrolText.innerHTML = '<b>Hide Tags<b>'
+                            TagcontrolUI.title = 'Hide Tags';
+                        }
+                    });
+                }
+
+                // Add a Locations control that returns the user to London
+                function LocationsControl(locationcontrolDiv, googlemap) {
+                    locationcontrolDiv.style.padding = '5px 1px 0px 0px';
+                    var locationcontrolUI = document.createElement('div');
+                    locationcontrolUI.style.backgroundColor = '#2f496c';
+                    locationcontrolUI.style.color = '#ffffff';
+                    locationcontrolUI.style.cursor = 'pointer';
+                    locationcontrolUI.style.textAlign = 'center';
+                    locationcontrolUI.style.width = '110px';
+                    locationcontrolUI.title = 'Show Locations';
+                    locationcontrolUI.style.boxShadow = "#607D8B 0px 1px 1px";
+                    locationcontrolUI.style.borderRadius = '.25em';
+                    locationcontrolDiv.appendChild(locationcontrolUI);
+                    var locationcontrolText = document.createElement('div');
+                    locationcontrolText.style.fontFamily = 'Arial,sans-serif';
+                    locationcontrolText.style.fontSize = '12px';
+                    locationcontrolText.style.paddingLeft = '4px';
+                    locationcontrolText.style.paddingRight = '4px';
+                    locationcontrolText.style.height = '20px';
+                    locationcontrolText.style.paddingTop = '3px';
+                    locationcontrolText.innerHTML = '<b>Show Locations<b>'
+                    locationcontrolUI.appendChild(locationcontrolText);
+
+                    // Setup click-event listener: simply set the map to London
+                    google.maps.event.addDomListener(locationcontrolUI, 'click', function () {
+                        if (showlocations) {
+                            showlocations = false;
+                            locationcontrolText.innerHTML = '<b>Hide Locations<b>'
+                            locationcontrolUI.title = "Hide Locations";
+                            if (Locationsdata.length > 0) {
+                                for (var vehicledata in Locationsdata) {
+                                    var myCenter;
+                                    if (slctdmap == "Openstreet Map") {
+                                        myCenter = [[Locationsdata[vehicledata].latitude, Locationsdata[vehicledata].longitude]];
+                                    }
+                                    else {
+                                        myCenter = new google.maps.LatLng(Locationsdata[vehicledata].latitude, Locationsdata[vehicledata].longitude);
+                                    }
+                                    placeMarkerlocations(myCenter, Locationsdata[vehicledata].locacationname, Locationsdata[vehicledata].Image, Locationsdata[vehicledata].Description);
+                                }
+                                $(this).val("Hide Locations");
+                            }
+                            else {
+                                var data = { 'op': 'get_locations' };
+                                var s = function (msg) {
+                                    if (msg) {
+                                        Bindlocations(msg);
+                                    }
+                                    else {
+                                    }
+                                };
+                                var e = function (x, h, e) {
+                                    // $('#BookingDetails').html(x);
+                                };
+                                callHandler(data, s, e);
+                                $(this).val("Hide Locations");
+                            }
+                            function Bindlocations(data) {
+                                Locationsdata = data;
+                                for (var vehicledata in data) {
+                                    var myCenter;
+                                    if (slctdmap == "Openstreet Map") {
+                                        myCenter = [[data[vehicledata].latitude, data[vehicledata].longitude]];
+                                    }
+                                    else {
+                                        myCenter = new google.maps.LatLng(data[vehicledata].latitude, data[vehicledata].longitude);
+                                    }
+                                    placeMarkerlocations(myCenter, data[vehicledata].locacationname, data[vehicledata].Image, data[vehicledata].Description);
+                                }
+                            }
+                        }
+                        else {
+                            showlocations = true;
+                            locationcontrolText.innerHTML = '<b>Show Locations<b>'
+                            locationcontrolUI.title = "Show Locations";
+                            deletelocationOverlays();
+                        }
+                    });
+                }
+
+                // Add a range slider control 
+//////                function RangesliderControl(rangesliderDiv, googlemap) {
+//////                    rangesliderDiv.style.padding = '10px 5px 0px 0px';
+//////                    var rangesliderUI = document.createElement('div');
+//////                    rangesliderUI.style.cursor = 'pointer';
+//////                    rangesliderUI.style.textAlign = 'center';
+//////                    rangesliderUI.style.width = '200px';
+//////                    rangesliderDiv.appendChild(rangesliderUI);
+//////                    var SubrangesliderUI = document.createElement('input');
+//////                    SubrangesliderUI.setAttribute('id', 'range_stpdtime');
+//////                    SubrangesliderUI.setAttribute('type', 'range');
+//////                    SubrangesliderUI.setAttribute('min', '0');
+//////                    SubrangesliderUI.setAttribute('max', '300');
+//////                    SubrangesliderUI.setAttribute('step', '10');
+//////                    SubrangesliderUI.setAttribute('value', '0');
+//////                    SubrangesliderUI.setAttribute('data-rangeslider', '');
+//////                    SubrangesliderUI.style.width = '210px';
+//////                    SubrangesliderUI.style.height = '20px';
+//////                    rangesliderUI.appendChild(SubrangesliderUI);
+//////                }
+
+                // Add a range count for slider control 
+////////                function RangeCountControl(RangeCountDiv, googlemap) {
+////////                    RangeCountDiv.style.padding = '5px 5px 0px 0px';
+////////                    var RangeCountUI = document.createElement('div');
+////////                    RangeCountUI.style.cursor = 'pointer';
+////////                    RangeCountUI.style.textAlign = 'center';
+////////                    RangeCountUI.style.backgroundColor = '#607D8B';
+////////                    RangeCountUI.style.height = '20px';
+////////                    RangeCountUI.style.boxShadow = "#607D8B 0px 1px 1px";
+////////                    RangeCountUI.style.padding = '0px 6px 0px 6px';
+////////                    RangeCountUI.style.borderRadius = '.25em';
+////////                    RangeCountDiv.appendChild(RangeCountUI);
+////////                    var RangeCountText = document.createElement('div');
+////////                    RangeCountText.setAttribute('id', 'lbl_range_count');
+////////                    RangeCountText.style.fontFamily = 'Arial,sans-serif';
+////////                    RangeCountText.style.fontSize = '12px';
+////////                    RangeCountText.style.fontWeight = 'bold';
+////////                    RangeCountText.style.color = '#FFEB3B';
+////////                    RangeCountText.style.float = 'left';
+////////                    RangeCountText.style.paddingRight = '5px';
+////////                    RangeCountText.style.marginTop = '3px';
+////////                    RangeCountText.innerHTML = '0';
+////////                    RangeCountUI.appendChild(RangeCountText);
+////////                    var RangeCountText = document.createElement('div');
+////////                    RangeCountText.style.fontFamily = 'Arial,sans-serif';
+////////                    RangeCountText.style.fontSize = '12px';
+////////                    RangeCountText.style.fontWeight = 'bold';
+////////                    RangeCountText.style.color = '#ffeb3b';
+////////                    RangeCountText.style.float = 'right';
+////////                    RangeCountText.style.marginTop = '3px';
+////////                    RangeCountText.innerHTML = 'Min';
+////////                    RangeCountUI.appendChild(RangeCountText);
+////////                }
+
+                function initialize() {
+                    var mapProp = {
+                        center: myCenter,
+                        zoom: 5,
+                        panControl: true,
+                        panControlOptions: {
+                            position: google.maps.ControlPosition.RIGHT_TOP
+                        },
+                        zoomControl: true,
+                        zoomControlOptions: {
+                            style: google.maps.ZoomControlStyle.LARGE,
+                            position: google.maps.ControlPosition.RIGHT_TOP
+                        },
+                        mapTypeControlOptions: {
+                            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                            position: google.maps.ControlPosition.RIGHT_BOTTOM
+                        },
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+
+                    googlemap = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                    markerClusterer = new MarkerClusterer(googlemap);
+
+                    var homeControlDiv = document.createElement('div');
+                    var homeControl = new HomeControl(homeControlDiv, googlemap);
+                    googlemap.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+                    var TagsControlDiv = document.createElement('div');
+                    var tagscontrol = new TagsControl(TagsControlDiv, googlemap);
+                    googlemap.controls[google.maps.ControlPosition.TOP_RIGHT].push(TagsControlDiv);
+
+                    var locationControlDiv = document.createElement('div');
+                    var locationControl = new LocationsControl(locationControlDiv, googlemap);
+                    googlemap.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationControlDiv);
+
+////                    var RangesliderControlDiv = document.createElement('div');
+////                    var rangeslidercontrol = new RangesliderControl(RangesliderControlDiv, googlemap);
+////                    googlemap.controls[google.maps.ControlPosition.TOP_RIGHT].push(RangesliderControlDiv);
+
+////                    var RangeCountTextControlDiv = document.createElement('div');
+////                    var rangeslidercontrol = new RangeCountControl(RangeCountTextControlDiv, googlemap);
+////                    googlemap.controls[google.maps.ControlPosition.TOP_RIGHT].push(RangeCountTextControlDiv);
+                }
+                initialize();
+////                setTimeout(function () {
+////                    load_slidebar();
+////                }, 1000);
+            }
+        }
+//////        function load_slidebar() {
+//////            // Basic rangeslider initialization
+//////            $('#range_stpdtime').rangeslider({
+//////                // Deactivate the feature detection
+//////                polyfill: false,
+//////                // Callback function
+//////                onInit: function () {
+//////                },
+//////                // Callback function
+//////                onSlide: function (position, value) {
+//////                    //alert('position: ' + position, 'value: ' + value);
+//////                },
+//////                // Callback function
+//////                onSlideEnd: function (position, value) {
+//////                    if (parseInt(value) > 0)
+//////                        showstoppedvehicles_onmap();
+//////                    else
+//////                        clear_filters_click();
+//////                    //alert('position: ' + position, 'value: ' + value);
+//////                }
+//////            });
+//////            $(document).on('input', '#range_stpdtime', function (e) {
+//////                valueOutput(e.target);
+//////            });
+
+//////            // Example functionality to demonstrate a value feedback
+//////            function valueOutput(element) {
+//////                var value = parseInt(element.value);
+//////                if (value > 60) {
+//////                    var hours = Math.floor(value / 60);
+//////                    var minutes = value % 60;
+//////                    $('.convertedHour').html(hours);
+//////                    $('.convertedMin').html(minutes);
+//////                    $('#lbl_range_count').text(hours + 'H ' + minutes);
+//////                }
+//////                else {
+//////                    $('#lbl_range_count').text(value);
+//////                }
+//////                $('#lbl_range_count').attr('title', value);
+//////            }
+//////        }
+        // Deletes all markers in the array by removing references to them.
+        function deleteOverlays() {
+            clearOverlays();
+            closeinfowindow();
+            markersArray = [];
+            if (typeof markerClusterer === "undefined") {
+            }
+            else {
+                markerClusterer.clearMarkers();
+            }
+        }
+
+        // Sets the map on all markers in the array.
+        function setAllMap(googlemap) {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(googlemap);
+            }
+        }
+
+        // Removes the overlays from the map, but keeps them in the array.
+        function clearOverlays() {
+            setAllMap(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deletelocationOverlays() {
+            locationclearOverlays();
+            GMLocationsArray = [];
+        }
+
+        // Sets the map on all markers in the array.
+        function locationsetAllMap(googlemap) {
+            for (var i = 0; i < GMLocationsArray.length; i++) {
+                GMLocationsArray[i].setMap(googlemap);
+            }
+        }
+        $(function () {
+            $(".main-header").css('display', 'block');
+            btn_selectmap_click($('#btn_selectmap'));
+            checkstatus();
+        });
+        function checkstatus() {
+            var data = { 'op': 'checkstatus' };
+            var s = function (msg) {
+                if (msg) {
+//                    if (msg.status == "0") {
+//                        $("#expiredmsg").css('display', 'none');
+//                    }
+//                    else {
+//                        $("#expiredmsg").css('display', 'block');
+//                    }
+                    setCookie("Username", msg.Username, 30);
+                    $('#lbl_username').html(msg.Username);
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+            };
+            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            callHandler(data, s, e);
+        }
+        // Removes the overlays from the map, but keeps them in the array.
+        function locationclearOverlays() {
+            locationsetAllMap(null);
+        }
+        var googlemap;
+        var openstreetmap;
+        var markersArray = new Array();
+        var markersArrayOSM = new Array();
+        var showlocations = true;
+        var Locationsdata = new Array();
+        var infoWindow = new google.maps.InfoWindow();
+        var geocoding;
+        var OSMClusteredMarkers = L.markerClusterGroup();
+        var OSMClusterview = true;
+//        $(function () {
+//            var data = { 'op': 'checkstatus' };
+//            var s = function (msg) {
+//                if (msg) {
+//                    setCookie("Username", msg.Username, 30);
+//                    $('#lbl_username').html(msg.Username);
+//                    var AccountStatus = msg.AccountStatus;
+//                    if (AccountStatus == 'InActive') {
+//                        document.getElementById("openstreetmap").style.display = "none";
+//                        document.getElementById("expiredmsg").style.display = "block";
+//                        $(".main-header").css('display', 'none');
+//                    }
+//                    else {
+//                        document.getElementById("openstreetmap").style.display = "block";
+//                        document.getElementById("expiredmsg").style.display = "none";
+//                        $(".main-header").css('display', 'block');
+//                    }
+//                    var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//                        maxZoom: 18,
+//                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+//                    }),
+//                    latlng = L.latLng(17.497535, 78.408622);
+//                    openstreetmap = L.map('openstreetmap', { zoomControl: false, center: latlng, zoom: 5, layers: [tiles] });
+//                    L.control.zoom({
+//                        position: 'topright'
+//                    }).addTo(openstreetmap);
+//                    ClusterControl = function (theClusterFunction) {
+
+//                        var Clustercontrol = new (L.Control.extend({
+//                            options: { position: 'topright' },
+//                            onAdd: function (openstreetmap) {
+//                                ClustercontrolDiv = L.DomUtil.create('div', 'Cluster-button');
+//                                ClustercontrolDiv.id = 'clusteredbtn1';
+//                                L.DomEvent
+//                    .addListener(ClustercontrolDiv, 'click', L.DomEvent.stopPropagation)
+//                    .addListener(ClustercontrolDiv, 'click', L.DomEvent.preventDefault)
+//                    .addListener(ClustercontrolDiv, 'click', this.ClusterFunction);
+
+//                                // Set CSS for the control border
+//                                var ClustercontrolUI = L.DomUtil.create('div', 'Cluster-button-border', ClustercontrolDiv);
+//                                ClustercontrolUI.title = 'Clustering';
+//                                ClustercontrolUI.style.backgroundColor = 'rgb(255, 255, 255)';
+//                                ClustercontrolUI.style.border = '1px solid rgb(113, 123, 135)';
+//                                ClustercontrolUI.style.cursor = 'pointer';
+//                                ClustercontrolUI.style.textAlign = 'center';
+//                                ClustercontrolUI.style.width = '120px';
+//                                ClustercontrolUI.style.height = '20px';
+//                                ClustercontrolUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+//                                ClustercontrolUI.style.marginRight = "170px";
+//                                ClustercontrolUI.style.marginTop = "-60px";
+//                                // Set CSS for the control interior
+//                                var ClustercontrolText = L.DomUtil.create('div', 'Cluster-button-interior', ClustercontrolUI);
+//                                ClustercontrolText.id = 'clusteredbtn';
+//                                ClustercontrolText.innerHTML = '<b>NonClustered View<b>';
+//                                ClustercontrolText.style.fontFamily = 'Arial,sans-serif';
+//                                ClustercontrolText.style.fontSize = '12px';
+//                                ClustercontrolText.style.paddingLeft = '4px';
+//                                ClustercontrolText.style.paddingRight = '4px';
+//                                ClustercontrolText.style.height = '20px';
+//                                ClustercontrolText.style.paddingTop = '1px';
+
+//                                return ClustercontrolDiv;
+//                            }
+//                        }));
+//                        Clustercontrol.ClusterFunction = theClusterFunction;
+//                        return Clustercontrol;
+//                    };
+//                    ClusterFunction = function () {
+//                        if (OSMClusterview == true) {
+//                            OSMClusterview = false;
+//                            update();
+//                            $('#clusteredbtn').html("<b>Clustered View<b>");
+//                        }
+//                        else {
+//                            OSMClusterview = true;
+//                            update();
+//                            $('#clusteredbtn').html("<b>NonClustered View<b>");
+//                        }
+//                    };
+//                    openstreetmap.addControl(ClusterControl(ClusterFunction));
+//                    LocationsControl = function (theLocationsFunction) {
+
+//                        var control = new (L.Control.extend({
+//                            options: { position: 'topright' },
+//                            onAdd: function (openstreetmap) {
+//                                controlDiv = L.DomUtil.create('div', 'Locations-button');
+//                                controlDiv.id = 'locationsbtn1';
+//                                L.DomEvent
+//                    .addListener(controlDiv, 'click', L.DomEvent.stopPropagation)
+//                    .addListener(controlDiv, 'click', L.DomEvent.preventDefault)
+//                    .addListener(controlDiv, 'click', this.LocationsFunction);
+
+//                                // Set CSS for the control border
+//                                var controlUI = L.DomUtil.create('div', 'Locations-button-border', controlDiv);
+//                                controlUI.title = 'Locations';
+//                                controlUI.style.backgroundColor = 'rgb(255, 255, 255)';
+//                                controlUI.style.border = '1px solid rgb(113, 123, 135)';
+//                                controlUI.style.cursor = 'pointer';
+//                                controlUI.style.textAlign = 'center';
+//                                controlUI.style.width = '110px';
+//                                controlUI.style.height = '20px';
+//                                controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+//                                controlUI.style.marginRight = "50px";
+//                                controlUI.style.marginTop = "-70px";
+//                                // Set CSS for the control interior
+//                                var controlText = L.DomUtil.create('div', 'Locations-button-interior', controlUI);
+//                                controlText.id = 'locationsbtn';
+//                                controlText.innerHTML = '<b>Show Locations<b>';
+//                                controlText.style.fontFamily = 'Arial,sans-serif';
+//                                controlText.style.fontSize = '12px';
+//                                controlText.style.paddingLeft = '4px';
+//                                controlText.style.paddingRight = '4px';
+//                                controlText.style.height = '20px';
+//                                controlText.style.paddingTop = '1px';
+
+//                                return controlDiv;
+//                            }
+//                        }));
+//                        control.LocationsFunction = theLocationsFunction;
+//                        return control;
+//                    };
+//                    LocationsFunction = function () { locationsfnctn(this); };
+//                    openstreetmap.addControl(LocationsControl(LocationsFunction));
+//                    var custom_geocoding_provider = function (arg) {
+//                        var that = this
+//                    , query = arg.query
+//                    , cb = arg.cb;
+
+//                        $.ajax({
+//                            url: 'http://nominatim.openstreetmap.org/search'
+//                    , dataType: 'jsonp'
+//                    , jsonp: 'json_callback'
+//                    , data: {
+//                        'q': query
+//                        , 'format': 'json'
+//                    }
+//                        })
+//                .done(function (data) {
+//                    if (data.length > 0) {
+//                        var res = data[0];
+//                        cb({
+//                            query: query
+//                            , content: res.display_name
+//                            , latlng: new L.LatLng(res.lat, res.lon)
+//                            , bounds: new L.LatLngBounds([res.boundingbox[0], res.boundingbox[2]], [res.boundingbox[1], res.boundingbox[3]])
+//                        });
+//                    }
+//                });
+//                    }
+//                    geocoding = new L.Geocoding({
+//                        apikeys: {
+//                            'bing': 'Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5'
+//                  , 'mapquest': 'Kmjtd%7Cluua2qu7n9%2C7a%3Do5-lzbgq'
+//                  , 'nokia': 'HGHGJHgdbndbmbsdf7675wefdvvdsnb'
+//                        }
+//                , providers: {
+//                    'custom': custom_geocoding_provider
+//                }
+//                    });
+//                    openstreetmap.addControl(geocoding);
+//                }
+//                else {
+//                }
+//            };
+//            var e = function (x, h, e) {
+//            };
+//            callHandler(data, s, e);
+//        });
+
+        function locationsfnctn(thisid) {
+            deleteLocationOverlaysOSM();
+            if (showlocations) {
+                showlocations = false;
+                $('#' + thisid.id + '').find('#locationsbtn').html("<b>Hide Locations<b>");
+                if (Locationsdata.length > 0) {
+                    for (var vehicledata in Locationsdata) {
+                        var myCenter;
+                        if (slctdmap == "Openstreet Map") {
+                            myCenter = [[Locationsdata[vehicledata].latitude, Locationsdata[vehicledata].longitude]];
+                        }
+                        else {
+                            myCenter = new google.maps.LatLng(Locationsdata[vehicledata].latitude, Locationsdata[vehicledata].longitude);
+                        }
+                        placeMarkerlocations(myCenter, Locationsdata[vehicledata].BranchName, Locationsdata[vehicledata].Image, Locationsdata[vehicledata].Decription);
+                    }
+                }
+                else {
+                    var data = { 'op': 'ShowMyLocations' };
+                    var s = function (msg) {
+                        if (msg) {
+                            Bindlocations(msg);
+                        }
+                        else {
+                        }
+                    };
+                    var e = function (x, h, e) {
+                        // $('#BookingDetails').html(x);
+                    };
+                    callHandler(data, s, e);
+                }
+                function Bindlocations(data) {
+                    Locationsdata = data;
+                    for (var vehicledata in data) {
+                        if (slctdmap == "Openstreet Map") {
+                            myCenter = [[data[vehicledata].latitude, data[vehicledata].longitude]];
+                        }
+                        else {
+                            myCenter = new google.maps.LatLng(data[vehicledata].latitude, data[vehicledata].longitude);
+                        }
+                        placeMarkerlocations(myCenter, data[vehicledata].BranchName, data[vehicledata].Image, data[vehicledata].Decription);
+                    }
+                }
+            }
+            else {
+                showlocations = true;
+                $('#' + thisid.id + '').find('#locationsbtn').html("<b>Show Locations<b>");
+            }
+        }
+        var GMLocationsArray = new Array();
+        var OSMLocationsArray = new Array();
+        function placeMarkerlocations(location, BranchName, Image, Decription) {
+            if (slctdmap == "Openstreet Map") {
+                var content = "Location : " + BranchName + "<br/>" + "Description : " + Decription;
+                var Locationmarker = new L.marker([location[0][0], location[0][1]])
+				.bindPopup(content)
+				.addTo(openstreetmap);
+                OSMLocationsArray.push(Locationmarker);
+            }
+            else {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: googlemap,
+                    center: location,
+                    zoom: 7,
+                    title: BranchName,
+                    icon: 'UserImgs/' + Image + '.png'
+                });
+                GMLocationsArray.push(marker);
+
+                var content = "Location : " + BranchName + "<br/>" + "Description : " + Decription;
+                var infowindow = new google.maps.InfoWindow({
+                    content: content
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(googlemap, marker);
+                });
+            }
+        }
+        function deleteOverlaysOSM() {
+            for (i = 0; i < markersArrayOSM.length; i++) {
+                openstreetmap.removeLayer(markersArrayOSM[i]);
+            }
+            markersArrayOSM = [];
+            OSMClusteredMarkers.clearLayers();
+            OSMClusteredMarkers = null;
+            OSMClusteredMarkers = L.markerClusterGroup();
+        }
+        function deleteLocationOverlaysOSM() {
+            for (i = 0; i < OSMLocationsArray.length; i++) {
+                openstreetmap.removeLayer(OSMLocationsArray[i]);
+            }
+            OSMLocationsArray = [];
+        }
+        function popupClear() {
+            while (openstreetmap.popups.length) {
+                openstreetmap.removePopup(openstreetmap.popups[0]);
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var myVar = setInterval(function () { liveupdate() }, 20000);
+        });
+    </script>
+    <script type="text/javascript">
+        var ServerDate;
+        $(function () {
+            $('#veh_loader').show();
+            var data = { 'op': 'InitilizeVehicles' };
+            var s = function (msg) {
+                if (msg) {
+                    if (msg == "Error login") {
+                        $('#veh_loader').hide();
+                        window.location = "login.html";
+                    }
+                    else {
+                        $('#veh_loader').hide();
+                        BindResults(msg);
+                    }
+                }
+                else {
+                    $('#veh_loader').hide();
+                }
+            };
+            var e = function (x, h, e) {
+                $('#veh_loader').hide();
+            };
+            callHandler(data, s, e);
+        });
+
+        function callHandler(d, s, e) {
+            $.ajax({
+                url: 'Bus.axd',
+                data: d,
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: true,
+                cache: true,
+                success: s,
+                error: e
+            });
+        }
+
+        var vehiclenos = [];
+        var vehicletypes = [];
+        function BindResults(data) {
+            vehicletypes = data;
+            $('#divAllvehicles').css('display', 'block');
+            $('#divAllvehicles').setTemplateURL('liveview2.htm');
+            $('#divAllvehicles').processTemplate(data);
+            document.getElementById('lblvehscount').innerHTML = data.length;
+            document.getElementById('lblvehscount1').innerHTML = data.length;
+            $('#ul_showallvehs').html('');
+            for (var i = 0; i < data.length; i++) {
+                $('#ul_showallvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-taxi"></i></div><span>' + data[i].vehicleno + '</span></a></li>');
+            }
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            $('#ckballveh').on('ifChanged', function (event) {
+                onallcheck(this);
+            });
+            $('.ckblvvehscls').on('ifChanged', function (event) {
+                var ckdval = $(this);
+                oncheck(this, ckdval[0].id);
+            });
+
+            //var vehkeys = Object.keys(vehiclesdata);
+            //vehkeys.forEach(function (veh) {
+            //    vehiclenos.push({ vehicleno: vehiclesdata[veh].vehicleno });
+            //});
+            //$('#divAllvehicles').css('display', 'block');
+            //$.getScript("js/JTemplate.js", function (data, textStatus, jqxhr) {
+            //    $('#divAllvehicles').setTemplateURL('liveview2.htm');
+            //    $('#divAllvehicles').processTemplate(vehiclenos);
+            //    liveupdate();
+            //    if (slctdmap == "Openstreet Map") {
+            //        deleteOverlaysOSM();
+            //    }
+            //    else {
+            //        deleteOverlays();
+            //    }
+            //    checkedvehicles = [];
+            //    document.getElementById('lblvehscount').innerHTML = vehiclenos.length;
+            //});
+            liveupdate();
+        }
+
+
+        function liveupdate() {
+            var data = { 'op': 'LiveUpdate' };
+            var s = function (msg) {
+                if (msg) {
+                    var date = msg.ServerDt.split(" ")[0];
+                    var time = msg.ServerDt.split(" ")[1];
+                    var datevalues = new Array();
+                    var timevalues = new Array();
+                    datevalues = date.split('/');
+                    timevalues = time.split(':');
+                    ServerDate = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                    BindUpdate(msg.vehiclesupdatelist, ServerDate);
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+                // $('#BookingDetails').html(x);
+            };
+            callHandler(data, s, e);
+        }
+
+        var livedata = null;
+        var nonworkingvehicles = [];
+        function BindUpdate(data, ServerDt) {
+            nonworkingvehicles = [];
+            livedata = data;
+            var j = 0;
+            latlng_pos = [];
+
+            if (slctdmap == "Openstreet Map") {
+                deleteOverlaysOSM();
+            }
+            else {
+                deleteOverlays();
+            }
+            for (var vehicledata in data) {
+                var vehicleno = data[vehicledata].vehiclenum;
+
+                var vehicle = $("#" + vehicleno + "");
+                var mainpower = data[vehicledata].mainpower;
+                var latitude = data[vehicledata].latitude;
+                var longitude = data[vehicledata].longitude;
+                var angle = data[vehicledata].direction;
+                var updatedata = data[vehicledata].Datetime;
+                var ignation = data[vehicledata].Ignation;
+                var acstatus = data[vehicledata].ACStatus;
+                var speed = data[vehicledata].Speed;
+                var odometervalue = data[vehicledata].odometervalue;
+                var gps = data[vehicledata].GPSSignal;
+                var geofence = data[vehicledata].Geofence;
+                var todaymileage = data[vehicledata].todaymileage;
+                var dieselstring = data[vehicledata].dieselvalue;
+                var fulltankval = data[vehicledata].fulltankval;
+                if (mainpower == "ON") {
+                    var mainpowericon = vehicle.closest('tr').find('#imgpower');
+                    mainpowericon.attr("src", "LiveIcons/Green%20Power.png");
+                    mainpowericon.attr('title', 'Power On');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgpower');
+                    mainpowericon.attr("src", "LiveIcons/Red%20Power.png");
+                    mainpowericon.attr('title', 'Power Off');
+                }
+                if (gps == "V") {
+                    var mainpowericon = vehicle.closest('tr').find('#imggps');
+                    mainpowericon.attr("src", "LiveIcons/GPSV.png");
+                    mainpowericon.attr('title', 'GPS Void');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imggps');
+                    mainpowericon.attr("src", "LiveIcons/gpsA.png");
+                    mainpowericon.attr('title', 'GPS Active');
+                }
+                if (acstatus == "ON") {
+                    var mainpowericon = vehicle.closest('tr').find('#imgac');
+                    mainpowericon.attr("src", "LiveIcons/ACOn.png");
+                    mainpowericon.attr('title', 'AC On');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgac');
+                    mainpowericon.attr("src", "LiveIcons/ACOff.png");
+                    mainpowericon.attr('title', 'AC Off');
+                }
+                if (ignation == "ON") {
+                    var mainpowericon = vehicle.closest('tr').find('#imgignation');
+                    mainpowericon.attr("src", "LiveIcons/bullet_green.png");
+                    mainpowericon.attr('title', 'Ignation On');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgignation');
+                    mainpowericon.attr("src", "LiveIcons/bullet_red.png");
+                    mainpowericon.attr('title', 'Ignation Off');
+                }
+                if (speed > 0) {
+                    var mainpowericon = vehicle.closest('tr').find('#imgspeed');
+                    mainpowericon.attr("src", "LiveIcons/State1.png");
+                    mainpowericon.attr('title', "Speed : " + speed + " Kms/Hr");
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgspeed');
+                    mainpowericon.attr("src", "LiveIcons/State3.png");
+                    mainpowericon.attr('title', "Speed : " + speed + " Kms/Hr");
+                }
+                if (dieselstring < (fulltankval / 4)) {
+                    var imgfuelicon = vehicle.closest('tr').find('#imgfuel');
+                    imgfuelicon.attr("src", "LiveIcons/actuality4.png");
+                    imgfuelicon.attr('title', "Fuel : " + dieselstring + " Ltrs");
+                }
+                else if (dieselstring < (fulltankval / 3)) {
+                    var imgfuelicon = vehicle.closest('tr').find('#imgfuel');
+                    imgfuelicon.attr("src", "LiveIcons/actuality3.png");
+                    imgfuelicon.attr('title', "Fuel : " + dieselstring + " Ltrs");
+
+                }
+                else if (dieselstring < (fulltankval / 2)) {
+                    var imgfuelicon = vehicle.closest('tr').find('#imgfuel');
+                    imgfuelicon.attr("src", "LiveIcons/actuality2.png");
+                    imgfuelicon.attr('title', "Fuel : " + dieselstring + " Ltrs");
+
+                }
+                else {
+                    var imgfuelicon = vehicle.closest('tr').find('#imgfuel');
+                    imgfuelicon.attr("src", "LiveIcons/actuality1.png");
+                    imgfuelicon.attr('title', "Fuel Not Calibrated");
+                }
+                try {
+                    var date = updatedata.split(" ")[0];
+                    var time = updatedata.split(" ")[1];
+                    var datevalues = new Array();
+                    var timevalues = new Array();
+                    datevalues = date.split('/');
+                    timevalues = time.split(':');
+                    var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                    todaydate = ServerDt;
+                    var _MS_PER_DAY = 86400000;
+                    var _MS_PER_aaa = 3600000;
+                    var _MS_PER_sss = 60000;
+                    var _MS_PER_ddd = 1000;
+                    var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                    var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                    if (hours > 24) {
+                        hours = hours % 24;
+                    }
+                    var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                    if (min > 60) {
+                        min = min % 60;
+                    }
+                    var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                    if (sec > 60) {
+                        sec = sec % 60;
+                    }
+                    var timestamp;
+                    if (days >= 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "LiveIcons/nodataavail.png");
+                        updateicon.attr('title', "There was no Update form " + days + " days " + hours + " Hrs " + min + " Min");
+                        timestamp = "No Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (hours > 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "LiveIcons/MoreDelay.png");
+                        updateicon.attr('title', "There was no Update form " + hours + " Hrs " + min + " Min");
+                        timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (min < 10) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "LiveIcons/nodelay.png");
+                        updateicon.attr('title', min + " Min " + sec + " Sec Back ");
+                        timestamp = min + " Min " + sec + " Sec Back Update";
+                    }
+                    else if (days < 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "LiveIcons/halfdelay.png");
+                        updateicon.attr('title', "No Update form " + hours + " Hrs " + min + " Min");
+                        timestamp = "There is no Update form " + hours + " Hrs " + min + " Min";
+                    }
+                    if (min > 30 || hours >= 1 || days >= 1) {
+                        nonworkingvehicles.push({ vehicleno: vehicleno, timestamp: timestamp });
+                    }
+                }
+                catch (Error) {
+                }
+                document.getElementById('icon_notworkingvehicles').innerHTML = nonworkingvehicles.length;
+                document.getElementById('icon_notworkingvehicles1').innerHTML = nonworkingvehicles.length;
+                $('#ul_shownonworkingvehs').html('');
+                for (var i = 0; i < nonworkingvehicles.length; i++) {
+                    $('#ul_shownonworkingvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-2x fa-taxi"></i></div><span>' + nonworkingvehicles[i].vehicleno + '</span><p><i class="fa fa-clock-o"></i> ' + nonworkingvehicles[i].timestamp + '</p></a></li>');
+                }
+                document.getElementById('icon_workingvehicles').innerHTML = vehicletypes.length - nonworkingvehicles.length;
+                document.getElementById('icon_workingvehicles1').innerHTML = vehicletypes.length - nonworkingvehicles.length;
+                $('#ul_showworkingvehs').html('');
+                for (var i = 0; i < vehicletypes.length; i++) {
+                    var existd = false;
+                    for (var j = 0; j < nonworkingvehicles.length; j++) {
+                        if (vehicletypes[i].vehicleno == nonworkingvehicles[j].vehicleno) {
+                            existd = true;
+                        }
+                    }
+                    if (!existd)
+                        $('#ul_showworkingvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-taxi"></i></div><span>' + vehicletypes[i].vehicleno + '</span></a></li>');
+                }
+                var stpdtimestamp = "0 Min";
+                var stoppeddate = data[vehicledata].stoppedfor;
+                if (speed == 0 && stoppeddate != "") {
+                    try {
+                        var stpddate = stoppeddate.split(" ")[0];
+                        var stpdtime = stoppeddate.split(" ")[1];
+                        var stpddatevalues = new Array();
+                        var stpdtimevalues = new Array();
+                        stpddatevalues = stpddate.split('/');
+                        stpdtimevalues = stpdtime.split(':');
+                        var stpdupdatetime = new Date(stpddatevalues[2], stpddatevalues[1] - 1, stpddatevalues[0], stpdtimevalues[0], stpdtimevalues[1], stpdtimevalues[2]);
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((updatetime - stpdupdatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((updatetime - stpdupdatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((updatetime - stpdupdatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((updatetime - stpdupdatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            stpdtimestamp = days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 10) {
+                            stpdtimestamp = min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                    }
+                    catch (Error) {
+                    }
+                }
+
+                if (checkedvehicles.indexOf(vehicleno) > -1) {
+                    var myCenter;
+                    if (slctdmap == "Openstreet Map") {
+                        myCenter = [[livedata[vehicledata].latitude, livedata[vehicledata].longitude]];
+                    }
+                    else {
+                        myCenter = new google.maps.LatLng(livedata[vehicledata].latitude, livedata[vehicledata].longitude);
+                    }
+                    var iconsrc;
+                    for (var vehicletype in vehicletypes) {
+                        if (vehicletypes[vehicletype].vehicleno == vehicleno) {
+                            var VehicleType = vehicletypes[vehicletype].vehicletype;
+                        }
+                    }
+                    if (VehicleType == 'Escavator') {
+                        iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                    }
+                    else
+                        if (VehicleType == "Roller") {
+                            if (speed == 0) {
+                                VehicleType = "red" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                            else {
+                                VehicleType = "green" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                        }
+                        else {
+                            if (VehicleType == "") {
+                                VehicleType = "Car";
+                            }
+                            if (speed == 0) {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "red" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "red" + VehicleType;
+                                }
+                                //                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                            else {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "green" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "green" + VehicleType;
+                                }
+
+                            }
+                            if (angle >= 0 && angle < 22.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                            }
+                            else if (angle >= 22.5 && angle < 45) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                            }
+                            else if (angle >= 45 && angle < 67.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                            }
+                            else if (angle >= 67.5 && angle < 90) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                            }
+                            else if (angle >= 90 && angle < 112.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                            }
+                            else if (angle >= 112.5 && angle < 135) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                            }
+                            else if (angle >= 135 && angle < 157.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                            }
+                            else if (angle >= 157.5 && angle < 180) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                            }
+                            else if (angle >= 180 && angle < 202.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                            }
+                            else if (angle >= 202.5 && angle < 225) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                            }
+                            else if (angle >= 225 && angle < 247.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                            }
+                            else if (angle >= 247.5 && angle < 270) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                            }
+                            else if (angle >= 270 && angle < 292.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "16.png";
+                            }
+                            else if (angle >= 292.5 && angle < 315) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                            }
+                            else if (angle >= 315 && angle < 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                            }
+                            else if (angle >= 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                            }
+                        }
+
+
+                    placeMarker(myCenter, iconsrc, vehicleno, speed, timestamp, todaymileage, stpdtimestamp);
+                    latlng_pos[j] = myCenter;
+
+                    if (showtags == true) {
+                        var vehtag = "";
+                        for (var veh = 0; veh < vehicletypes.length; veh++) {
+                            if (vehicletypes[veh].vehicleno == vehicleno) {
+                                vehtag = vehicletypes[veh].vehicletag;
+                                break;
+                            }
+                        }
+                        for (var i = 0; i < infowindows.length; i++) {
+                            if (infowindows[i].content == vehtag) {
+                                infowindows[i].close();
+                                infowindows.splice(i, 1);
+                                break;
+                            }
+                        }
+                        var infotag = new google.maps.InfoWindow();
+                        infotag.setOptions({
+                            content: vehtag,
+                            position: myCenter
+                        });
+                        infotag.open(googlemap);
+                        infowindows.push(infotag);
+                    }
+                    j++;
+                }
+            }
+            var $rows = $('#VehiclesTable tr');
+            $('#txt_search').keyup(function () {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return ! ~text.indexOf(val);
+                }).hide();
+            });
+        }
+
+        function addlocations(lat, lng) {
+            var mytext = lat + "," + lng;
+            window.open('Locations.html?lat=' + lat + "&long=" + lng);
+        }
+        function addtag(vehicleno) {
+            $("#divtripsheet").css("display", "block");
+            document.getElementById('lbl_tagvehno').innerHTML = vehicleno.value;
+            document.getElementById('txt_tagname').value = "";
+        }
+        function btn_tagupdate_click() {
+            var tagvehno = document.getElementById('lbl_tagvehno').innerHTML;
+            var tagname = document.getElementById('txt_tagname').value;
+            if (tagname == "") {
+                alert("Please enter tag name!");
+                return;
+            }
+            var data = { 'op': 'updatetagname', tagvehno: tagvehno, tagname: tagname };
+            var s = function (msg) {
+                if (msg) {
+                    if (msg == "OK") {
+                        $("#divtripsheet").css("display", "none");
+                    }
+                    else if (msg == "Error") {
+                        alert("Error,Tag not updated!");
+                    }
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+                // $('#BookingDetails').html(x);
+            };
+            callHandler(data, s, e);
+        }
+        $(function () {
+            $('#divtripclose').click(function () {
+                $('#divtripsheet').css('display', 'none');
+                document.getElementById('lbl_tagvehno').innerHTML = "";
+                document.getElementById('txt_tagname').value = "";
+            });
+        });
+        var infowindows = [];
+        var popupcontent = "";
+        var showpopup = true;
+        function placeMarker(location, iconsrc, vehicleno, speed, timestamp, Odometer, stpdtimestamp) {
+            if (slctdmap == "Openstreet Map") {
+                var RedIcon = L.Icon.Default.extend({
+                    options: {
+                        iconUrl: iconsrc,
+                        iconSize: [43, 43],
+                        iconAnchor: [21, 21],
+                        shadowSize: [0, 0],
+                        shadowAnchor: [0, 0]
+                    }
+                });
+                var redIcon = new RedIcon();
+                var content = "VehicleID : " + vehicleno + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a onclick='addlocations(" + location[0] + "," + location[1] + ")'>Add to My Locations</a>";
+                var marker;
+                if (OSMClusterview == true) {
+                    marker = new L.marker([location[0][0], location[0][1]], { icon: redIcon }).bindPopup(content);
+                    OSMClusteredMarkers.addLayer(marker);
+                    openstreetmap.addLayer(OSMClusteredMarkers);
+                }
+                else {
+                    marker = new L.marker([location[0][0], location[0][1]], { icon: redIcon }).bindPopup(content).addTo(openstreetmap);
+                }
+                markersArrayOSM.push(marker);
+                //                OSMClusteredMarkers.on('click', function (a) {
+                //                    alert('Marker Clicked');
+                //                 });
+                // OSMClusteredMarkers.on('clusterclick', function (a) { alert('Cluster Clicked'); });
+            }
+            else {
+                var image = new google.maps.MarkerImage(iconsrc,
+                // This marker is 20 pixels wide by 32 pixels tall.
+        null,
+                // The origin for this image is 0,0.
+        new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at 0,32.
+        new google.maps.Point(20, 20)
+    );
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: googlemap,
+                    center: location,
+                    zoom: 10,
+                    icon: image,
+                    title: vehicleno
+                });
+
+                markersArray.push(marker);
+                if (clusteredview) {
+                    markerClusterer.addMarker(marker);
+                }
+                var address;
+                geocoder = new google.maps.Geocoder();
+                infoWindow.close();
+                address = geocoder.geocode({ 'latLng': location }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results.length > 0) {
+                            if (results[0]) {
+                                address = results[0].formatted_address;
+
+                                var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;' onclick='addtag(" + vehicleno + ")'>Add Tag</a>";
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: content
+                                });
+
+                                google.maps.event.addListener(marker, 'click', function () {
+                                    infowindow.open(googlemap, marker);
+                                });
+                                attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp);
+                            }
+                            else {
+                                address = "No results";
+
+                                var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp;
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: content
+                                });
+
+                                google.maps.event.addListener(marker, 'click', function () {
+                                    infowindow.open(googlemap, marker);
+                                });
+                                attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp);
+                            }
+                        }
+                        else {
+                            address = "No results";
+
+                            var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;' onclick='addtag(" + vehicleno + ")'>Add Tag</a>";
+                            var infowindow = new google.maps.InfoWindow({
+                                content: content
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infowindow.open(googlemap, marker);
+                            });
+                            attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp);
+                        }
+                    }
+                    else {
+                        address = "No results";
+
+                        var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;' onclick='addtag(" + vehicleno + ")'>Add Tag</a>";
+
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: content
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(googlemap, marker);
+                        });
+                        attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + "<br/>" + "Stopped From : " + stpdtimestamp);
+                    }
+                });
+            }
+        }
+
+        function trhover(id) {
+            var newColor = '#d5d5d5';
+            id.style.backgroundColor = (newColor == id.style.backgroundColor) ? origColor : newColor;
+        }
+        function trmouseout(id) {
+            var newColor = 'transparent';
+            id.style.backgroundColor = (newColor == id.style.backgroundColor) ? origColor : newColor;
+        }
+        function onvehicleclick(id, vehicleid) {
+            var Vehicleclicked = false;
+            for (var vehicletype in checkedvehicles) {
+                if (checkedvehicles[vehicletype] == vehicleid) {
+                    Vehicleclicked = true;
+                }
+            }
+            if (Vehicleclicked) {
+                for (var vehicledata in livedata) {
+                    if (livedata[vehicledata].vehiclenum == vehicleid) {
+                        var updatedata = livedata[vehicledata].Datetime;
+                        var Odometer = livedata[vehicledata].todaymileage;
+                        var date = updatedata.split(" ")[0];
+                        var time = updatedata.split(" ")[1];
+                        var datevalues = new Array();
+                        var timevalues = new Array();
+                        datevalues = date.split('/');
+                        timevalues = time.split(':');
+                        var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                        todaydate = ServerDate;
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        var timestamp;
+                        if (days >= 1) {
+                            timestamp = "There was no Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            timestamp = "There was no Update form " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 5) {
+                            timestamp = min + " Min " + sec + " Sec Back Update";
+                        }
+                        else if (days < 1) {
+                            timestamp = "There was no Update form " + hours + " Hrs " + min + " Min";
+                        }
+                        var speed = livedata[vehicledata].Speed;
+                        var myCenter;
+                        if (slctdmap == "Openstreet Map") {
+                            showpopup = true;
+                            popupcontent = "VehicleID : " + vehicleid + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer;
+                            geocoding.geocode(livedata[vehicledata].latitude + ',' + livedata[vehicledata].longitude);
+                            myCenter = [[livedata[vehicledata].latitude, livedata[vehicledata].longitude]];
+                            openstreetmap.panTo(new L.LatLng(livedata[vehicledata].latitude, livedata[vehicledata].longitude));
+                        }
+                        else {
+                            myCenter = new google.maps.LatLng(livedata[vehicledata].latitude, livedata[vehicledata].longitude);
+                            googlemap.panTo(myCenter);
+                        }
+
+                        if (slctdmap == "Google Map") {
+                            var address;
+                            geocoder = new google.maps.Geocoder();
+                            infoWindow.close();
+                            address = geocoder.geocode({ 'latLng': myCenter }, function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    if (results.length > 0) {
+                                        if (results[0]) {
+                                            address = results[0].formatted_address;
+
+                                            infoWindow.close();
+                                            infoWindow.setOptions({
+                                                content: "VehicleID : " + vehicleid + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer,
+                                                position: myCenter
+                                            });
+                                            infoWindow.open(googlemap);
+                                        }
+                                        else {
+                                            address = "No results";
+
+                                            infoWindow.close();
+                                            infoWindow.setOptions({
+                                                content: "VehicleID : " + vehicleid + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer,
+                                                position: myCenter
+                                            });
+                                            infoWindow.open(googlemap);
+                                        }
+                                    }
+                                    else {
+                                        address = "No results";
+
+                                        infoWindow.close();
+                                        infoWindow.setOptions({
+                                            content: "VehicleID : " + vehicleid + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer,
+                                            position: myCenter
+                                        });
+                                        infoWindow.open(googlemap);
+                                    }
+                                }
+                                else {
+                                    address = "No results";
+
+                                    infoWindow.close();
+                                    infoWindow.setOptions({
+                                        content: "VehicleID : " + vehicleid + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer,
+                                        position: myCenter
+                                    });
+                                    infoWindow.open(googlemap);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        }
+        $(function () {
+            var hidden = false;
+            $("#btnClose").click(function () {
+                if (hidden) {
+                    $(".togglediv").stop().animate({ left: 0 }, 500);
+                    hidden = false;
+                    $("#btnClose").attr('title', "Hide");
+                    $("#btnClose").attr('src', "Images/bigleft.png");
+                }
+                else {
+                    $(".togglediv").css('margin-left', 0);
+                    $(".togglediv").css('margin-right', 0);
+                    $(".togglediv").animate({ left: '-335px' }, 500);
+                    $("#btnClose").attr('title', "Show");
+                    $("#btnClose").attr('src', "Images/bigright.png");
+                    hidden = true;
+                }
+            });
+        });
+        var todaydate;
+        function bphover(me, vehicleid) {
+            var valu = $('#displaydiv');
+            $('#displaydiv').css("display", "block");
+            var pos = $(me).offset();
+            var content = "";
+            var timestamp;
+            var myCenterZoom;
+            for (var vehicledata in livedata) {
+                var vehicleno = livedata[vehicledata].vehiclenum;
+                var speed = livedata[vehicledata].Speed;
+                var Odometer = livedata[vehicledata].todaymileage;
+
+                var updatedata = livedata[vehicledata].Datetime;
+                var date = updatedata.split(" ")[0];
+                var time = updatedata.split(" ")[1];
+                var datevalues = new Array();
+                var timevalues = new Array();
+                datevalues = date.split('/');
+                timevalues = time.split(':');
+                var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                todaydate = ServerDate;
+                var _MS_PER_DAY = 86400000;
+                var _MS_PER_aaa = 3600000;
+                var _MS_PER_sss = 60000;
+                var _MS_PER_ddd = 1000;
+                var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                if (hours > 24) {
+                    hours = hours % 24;
+                }
+                var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                if (min > 60) {
+                    min = min % 60;
+                }
+                var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                if (sec > 60) {
+                    sec = sec % 60;
+                }
+
+                if (days >= 1) {
+                    timestamp = "No Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                }
+                else if (hours > 1) {
+                    timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                }
+                else if (min < 5) {
+                    timestamp = min + " Min " + sec + " Sec Back";
+                }
+                else if (days < 1) {
+                    timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                }
+
+                var stpdtimestamp = "0 Min";
+                var stoppeddate = livedata[vehicledata].stoppedfor;
+                if (speed == 0 && stoppeddate != "") {
+                    try {
+                        var stpddate = stoppeddate.split(" ")[0];
+                        var stpdtime = stoppeddate.split(" ")[1];
+                        var stpddatevalues = new Array();
+                        var stpdtimevalues = new Array();
+                        stpddatevalues = stpddate.split('/');
+                        stpdtimevalues = stpdtime.split(':');
+                        var stpdupdatetime = new Date(stpddatevalues[2], stpddatevalues[1] - 1, stpddatevalues[0], stpdtimevalues[0], stpdtimevalues[1], stpdtimevalues[2]);
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((updatetime - stpdupdatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((updatetime - stpdupdatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((updatetime - stpdupdatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((updatetime - stpdupdatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            stpdtimestamp = days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 10) {
+                            stpdtimestamp = min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                    }
+                    catch (Error) {
+                    }
+                }
+
+                var vehicle = $("#" + vehicleno + "");
+                if (vehicleid == vehicleno) {
+                    content = "Vehicle ID : " + vehicleid + "<br/><br/>" + "Speed : " + livedata[vehicledata].Speed + " Kms/Hr<br/><br/>" + "Ignition : " + livedata[vehicledata].Ignation + "<br/><br/>" + "A\C Status : " + livedata[vehicledata].ACStatus + "<br/><br/>" + "Update Status : " + timestamp + "<br/><br/>" + "Today Mileage : " + Odometer + "<br/><br/>" + "Stopped From : " + stpdtimestamp;
+                }
+            }
+
+            $("#displaydiv").html(content);
+
+            var top = $(document).scrollTop();
+            var tothei = $(document).height();
+            var xx = window.screen.availHeight;
+            var aa = pos.top;
+            var zz = aa + 40;
+            if ((top + xx) >= (pos.top + $('#displaydiv').height() + 30 + ($('#displaydiv').height() * 0.5))) {
+                $('#displaydiv').css("top", zz).css("left", pos.left + 30);
+            }
+            else {
+                if ((pos.top - $('#displaydiv').height()) < 0) {
+                    $('#displaydiv').css("top", "0").css("left", pos.left + 30);
+                }
+                else {
+                    $('#displaydiv').css("top", pos.top - $('#displaydiv').height() - 30).css("left", pos.left + 30);
+                }
+            }
+        }
+        function attachInfowindow(marker, latlng, country) {
+            var location = latlng;
+            var boxText = document.createElement("div");
+            boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: white; padding: 5px;";
+            boxText.innerHTML = '<b>' + country + '</b><br />';
+
+            var myOptions = {
+                content: boxText
+				, disableAutoPan: false
+				, maxWidth: 0
+				, pixelOffset: new google.maps.Size(-140, 0)
+				, zIndex: null
+				, boxStyle: {
+				    background: "url('../images/tipbox.gif') no-repeat"
+				  , opacity: 0.9
+				  , width: "350px"
+				}
+				, closeBoxMargin: "10px 5px 0px 2px"
+                , closeBoxURL: ""
+				, infoBoxClearance: new google.maps.Size(1, 1)
+				, isHidden: false
+				, pane: "floatPane"
+				, enableEventPropagation: false
+            };
+
+
+            var ib = new InfoBox(myOptions);
+            //var infowindow = new google.maps.InfoWindow({ content: '<b>' + description + '</b><br />' + location });
+            google.maps.event.addListener(marker, 'mouseover', function () {
+                //infowindow.open(googlemap,marker);
+                ib.open(googlemap, marker);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function () {
+                //infowindow.close();
+                ib.close();
+            });
+        }
+
+        function bpmouseout() {
+            $("#displaydiv").css("display", "none"); $("#displaydiv").html("");
+        }
+        var checkedvehicles = [];
+        var latlng_pos = [];
+        function oncheck(id, onckvehicleid) {
+            var vehtag = "";
+            for (var veh = 0; veh < vehicletypes.length; veh++) {
+                if (vehicletypes[veh].vehicleno == onckvehicleid) {
+                    vehtag = vehicletypes[veh].vehicletag;
+                    break;
+                }
+            }
+            for (var i = checkedvehicles.length - 1; i >= 0; i--) {
+                if (checkedvehicles[i] === onckvehicleid) {
+                    checkedvehicles.splice(i, 1);
+                }
+            }
+            if (id.checked == true) {
+                checkedvehicles.push(onckvehicleid);
+            }
+            for (var i = 0; i < infowindows.length; i++) {
+                if (infowindows[i].content == vehtag) {
+                    infowindows[i].close();
+                    infowindows.splice(i, 1);
+                }
+            }
+
+            if (currentpage == 'Liveview') {
+                update();
+            }
+        }
+
+        function update() {
+            if (slctdmap == "Openstreet Map") {
+                deleteOverlaysOSM();
+            }
+            else {
+                deleteOverlays();
+            }
+            var j = 0;
+            latlng_pos = [];
+            for (var vehicledata in livedata) {
+                var vehicleno = livedata[vehicledata].vehiclenum;
+                var speed = livedata[vehicledata].Speed;
+                var angle = livedata[vehicledata].direction;
+                var updatedata = livedata[vehicledata].Datetime;
+                var ignation = livedata[vehicledata].Ignation;
+                var acstatus = livedata[vehicledata].ACStatus;
+                var date = updatedata.split(" ")[0];
+                var time = updatedata.split(" ")[1];
+                var todaymileage = livedata[vehicledata].todaymileage;
+                try {
+                    var datevalues = new Array();
+                    var timevalues = new Array();
+                    datevalues = date.split('/');
+                    timevalues = time.split(':');
+                    var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                    todaydate = ServerDate;
+                    var _MS_PER_DAY = 86400000;
+                    var _MS_PER_aaa = 3600000;
+                    var _MS_PER_sss = 60000;
+                    var _MS_PER_ddd = 1000;
+                    var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                    var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                    if (hours > 24) {
+                        hours = hours % 24;
+                    }
+                    var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                    if (min > 60) {
+                        min = min % 60;
+                    }
+                    var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                    if (sec > 60) {
+                        sec = sec % 60;
+                    }
+                    var timestamp;
+                    if (days >= 1) {
+                        timestamp = "There is no Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (hours > 1) {
+                        timestamp = "There is no Update form " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (min < 5) {
+                        timestamp = min + " Min " + sec + " Sec Back Update";
+                    }
+                    else if (days < 1) {
+                        timestamp = "There is no Update form " + hours + " Hrs " + min + " Min";
+                    }
+                }
+                catch (Error) {
+                }
+                var stpdtimestamp = "0 Min";
+                var stoppeddate = livedata[vehicledata].stoppedfor;
+                if (speed == 0 && stoppeddate != "") {
+                    try {
+                        var stpddate = stoppeddate.split(" ")[0];
+                        var stpdtime = stoppeddate.split(" ")[1];
+                        var stpddatevalues = new Array();
+                        var stpdtimevalues = new Array();
+                        stpddatevalues = stpddate.split('/');
+                        stpdtimevalues = stpdtime.split(':');
+                        var stpdupdatetime = new Date(stpddatevalues[2], stpddatevalues[1] - 1, stpddatevalues[0], stpdtimevalues[0], stpdtimevalues[1], stpdtimevalues[2]);
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((updatetime - stpdupdatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((updatetime - stpdupdatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((updatetime - stpdupdatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((updatetime - stpdupdatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            stpdtimestamp = days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 10) {
+                            stpdtimestamp = min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                    }
+                    catch (Error) {
+                    }
+                }
+                var vehicle = $("#" + vehicleno + "");
+                if (checkedvehicles.indexOf(vehicleno) > -1) {
+                    var myCenter;
+                    if (slctdmap == "Openstreet Map") {
+                        myCenter = [[livedata[vehicledata].latitude, livedata[vehicledata].longitude]];
+                    }
+                    else {
+                        myCenter = new google.maps.LatLng(livedata[vehicledata].latitude, livedata[vehicledata].longitude);
+                    }
+
+                    var iconsrc;
+                    for (var vehicletype in vehicletypes) {
+                        if (vehicletypes[vehicletype].vehicleno == vehicleno) {
+                            var VehicleType = vehicletypes[vehicletype].vehicletype;
+                        }
+                    }
+                    if (VehicleType == 'Escavator') {
+                        iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                    }
+                    else
+                        if (VehicleType == "Roller") {
+                            if (speed == 0) {
+                                VehicleType = "red" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                            else {
+                                VehicleType = "green" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                        }
+                        else {
+                            if (VehicleType == "") {
+                                VehicleType = "Car";
+                            }
+                            if (speed == 0) {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "red" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "red" + VehicleType;
+                                }
+                            }
+                            else {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "green" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "green" + VehicleType;
+                                }
+                            }
+                            if (angle >= 0 && angle < 22.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                            }
+                            else if (angle >= 22.5 && angle < 45) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                            }
+                            else if (angle >= 45 && angle < 67.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                            }
+                            else if (angle >= 67.5 && angle < 90) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                            }
+                            else if (angle >= 90 && angle < 112.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                            }
+                            else if (angle >= 112.5 && angle < 135) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                            }
+                            else if (angle >= 135 && angle < 157.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                            }
+                            else if (angle >= 157.5 && angle < 180) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                            }
+                            else if (angle >= 180 && angle < 202.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                            }
+                            else if (angle >= 202.5 && angle < 225) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                            }
+                            else if (angle >= 225 && angle < 247.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                            }
+                            else if (angle >= 247.5 && angle < 270) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                            }
+                            else if (angle >= 270 && angle < 292.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "16.png";
+                            }
+                            else if (angle >= 292.5 && angle < 315) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                            }
+                            else if (angle >= 315 && angle < 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                            }
+                            else if (angle >= 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                            }
+                            //                            }
+                        }
+                    placeMarker(myCenter, iconsrc, vehicleno, speed, timestamp, todaymileage, stpdtimestamp);
+                    latlng_pos[j] = myCenter;
+
+                    if (showtags == true) {
+                        var vehtag = "";
+                        for (var veh = 0; veh < vehicletypes.length; veh++) {
+                            if (vehicletypes[veh].vehicleno == vehicleno) {
+                                vehtag = vehicletypes[veh].vehicletag;
+                                break;
+                            }
+                        }
+                        for (var i = 0; i < infowindows.length; i++) {
+                            if (infowindows[i].content == vehtag) {
+                                infowindows[i].close();
+                                infowindows.splice(i, 1);
+                                break;
+                            }
+                        }
+                        var infotag = new google.maps.InfoWindow();
+                        infotag.setOptions({
+                            content: vehtag,
+                            position: myCenter
+                        });
+                        infotag.open(googlemap);
+                        infowindows.push(infotag);
+                    }
+
+                    j++;
+                }
+                else {
+                }
+            }
+            if (slctdmap == "Openstreet Map") {
+                var bounds = [];
+                if (latlng_pos.length > 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        bounds.push(latlng_pos[i]);
+                    }
+                    openstreetmap.fitBounds(bounds);
+                }
+                else if (latlng_pos.length == 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        bounds.push(latlng_pos[i]);
+                    }
+                    openstreetmap.fitBounds(bounds);
+                }
+                else {
+                    //                        openstreetmap.panTo(new L.LatLng(17.497535, 78.408622));
+                    openstreetmap.setView(new L.LatLng(17.497535, 78.408622), 5);
+                }
+            }
+            else {
+                var latlngbounds = new google.maps.LatLngBounds();
+                if (latlng_pos.length > 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        latlngbounds.extend(latlng_pos[i]);
+                    }
+                    googlemap.fitBounds(latlngbounds);
+                }
+                else if (latlng_pos.length == 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        latlngbounds.extend(latlng_pos[i]);
+                    }
+                    googlemap.fitBounds(latlngbounds);
+                    googlemap.setZoom(12);
+                }
+                else {
+                    googlemap.setCenter(new google.maps.LatLng(17.497535, 78.408622));
+                    googlemap.setZoom(6);
+                }
+            }
+        }
+
+        function onallcheck(id) {
+            checkedvehicles = [];
+            for (var vehicledata in livedata) {
+                var vehicleno = livedata[vehicledata].vehiclenum;
+                var vehicle = $("#" + vehicleno + "");
+                if (id.checked == true) {
+                    if (typeof vehicle[0] === "undefined") {
+                    }
+                    else {
+                        $(vehicle[0]).iCheck('check');
+                        //vehicle[0].checked = true;
+                        //checkedvehicles.push(vehicleno);
+                    }
+                }
+                else {
+                    if (typeof vehicle[0] === "undefined") {
+                    }
+                    else {
+                        $(vehicle[0]).iCheck('uncheck');
+                        //vehicle[0].checked = false;
+                    }
+                }
+            }
+            if (currentpage == 'Liveview') {
+                if (slctdmap == "Openstreet Map") {
+                    update();
+                    var bounds = [];
+                    if (latlng_pos.length > 1) {
+                        for (var i = 0; i < latlng_pos.length; i++) {
+                            bounds.push(latlng_pos[i]);
+                        }
+                        openstreetmap.fitBounds(bounds);
+                    }
+                    else if (latlng_pos.length == 1) {
+                        for (var i = 0; i < latlng_pos.length; i++) {
+                            bounds.push(latlng_pos[i]);
+                        }
+                        openstreetmap.fitBounds(bounds);
+                    }
+                    else {
+                        //                    openstreetmap.panTo(new L.LatLng(78.408622, 17.497535));
+                        openstreetmap.setView(new L.LatLng(17.497535, 78.408622), 5);
+                    }
+                }
+                else {
+                    closeinfowindow();
+                    update();
+                    var latlngbounds = new google.maps.LatLngBounds();
+                    if (latlng_pos.length > 1) {
+                        for (var i = 0; i < latlng_pos.length; i++) {
+                            latlngbounds.extend(latlng_pos[i]);
+                        }
+                        googlemap.fitBounds(latlngbounds);
+                    }
+                    else if (latlng_pos.length == 1) {
+                        for (var i = 0; i < latlng_pos.length; i++) {
+                            latlngbounds.extend(latlng_pos[i]);
+                        }
+                        googlemap.fitBounds(latlngbounds);
+                        googlemap.setZoom(12);
+                    }
+                    else {
+                        googlemap.setCenter(new google.maps.LatLng(17.497535, 78.408622));
+                        googlemap.setZoom(6);
+                    }
+                    if (id.checked == false) {
+                        for (var i = infowindows.length - 1; i >= 0; i--) {
+                            infowindows[i].close();
+                            infowindows.splice(i, 1);
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="Images/GoTrackingLogo.jpg" type="image/x-icon">
+    <title>GoTracking | Nearby Vehicles</title>
+	<meta charset="utf-8" />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css?v=1600">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="CustomCSS/font-awesome.css?v=1600" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.css?v=1600">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css?v=1600">
+    <link href="plugins/iCheck/all.css?v=1600" rel="stylesheet" />
+    <link href="plugins/iCheck/minimal/_all.css?v=1600" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css">
+
+    <style type="text/css">
+        .googleMapcls {
+            width: 100%;
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+        }
+         .noft-red
+        {
+            background: none repeat scroll 0 0 #EA3F3F;
+            border-radius: 26px;
+            color: #FFFFFF;
+            font-size: 10px;
+            left: 25px;
+            padding: 0;
+            position: absolute;
+            text-align: center;
+            top: 5px;
+            width: 20px;
+        }
+        .noft-green
+        {
+            background: none repeat scroll 0 0 #4AC4BC;
+            border-radius: 26px;
+            color: #FFFFFF;
+            font-size: 10px;
+            left: 25px;
+            padding: 0;
+            position: absolute;
+            text-align: center;
+            top: 5px;
+            width: 20px;
+        }
+         .img-msg
+        {
+            border-radius: 50%;
+            color: #FFFFFF;
+            height: 25px;
+            left: -17px;
+            position: relative;
+            top: 0;
+            width: 25px;
+        }
+    </style>
+    <style type="text/css">
+        element.style
+        {
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: block;
+            height: 15px;
+            position: absolute;
+            padding-bottom: 31px;
+            top: 9.5%;
+            left: 17%;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
+            <div class="container" style="width: 100%;">
+                <!--<div class="navbar-header" style="width: 21%;">
+                    <a class="navbar-brand"><span style="font-size: 40px;">GoTracking</span></a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>-->
+                 <a class="navbar-brand"><b>GoTracking</b></a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                   </button>
+                      <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav" style="padding-left: 141px;">
+                             <li><a style="cursor: pointer;" href="index.html"><i class="fa fa-bullseye"
+                                    aria-hidden="true"></i>&nbsp Liveview</a></li>
+                            <li class="dropdown">
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tasks" aria-hidden="true"></i>&nbspManage <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                   <li><a style="cursor: pointer;" href="Locations.html">
+                                        <img alt="" class="img-msg img-circle" src="img/location.png">My Locations</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="VehicleGrouping.html">
+                                        <img alt="" class="img-msg img-circle" src="img/vehicle2.jpg">Vehicle Groups</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="PersonDetails.html">
+                                        <img alt="" class="img-msg img-circle" src="img/person.png">Person Details</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="AlertGroups.html">
+                                        <img alt="" class="img-msg img-circle" src="img/alerts.jpg">Alert Groups</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="AssignAlerts.html">
+                                        <img alt="" class="img-msg img-circle" src="img/alerts.jpg">Assign Alerts</a></li>
+                                    <li class="divider"></li>
+                                    <li><a style="cursor: pointer;" href="ChangePassword.html">
+                                        <div>
+                                            Change Password</div>
+                                    </a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-tasks"
+                                aria-hidden="true"></i>&nbsp Reports <span class="caret"></span></a>
+                                <ul style="margin: 11px 0px 0px 9px; position: absolute; left: 0px; top: 46px;" role="menu"
+                                    class="dropdown-menu dropdown-wrap">
+                                    <li style="height: 28px; width: 233px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px;">
+                                                <img alt="" class="img-msg img-circle" src="img/report2.jpg" />
+                                            </div>
+                                            <div style="width: 85%; float: right;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">General Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/stop.png">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">Stopage Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/overspeed.png">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">OverSpeed Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/daily.jpg">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">Daily Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/timetostop.jpg">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">Location HaltingHours Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/location.png">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">Location to Location Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li style="height: 30px;">
+                                        <div style="width: 100%;">
+                                            <div style="width: 14%; float: left; padding-left: 20px; padding-top: 2px;">
+                                                <img alt="" class="img-msg img-circle" src="img/reports.jpg">
+                                            </div>
+                                            <div style="width: 85%; float: right; padding-top: 5px;">
+                                                <a style="cursor: pointer;" href="index.html" onclick="changepage(this);">Ignition Report</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a style="cursor: pointer;" href="Nearbyvehicles.html"><i class="fa fa-map-marker"
+                                aria-hidden="true"></i>&nbsp Get Nearest Vehicles</a></li>
+                            <li><a style="cursor: pointer; padding-left: 211px;" href="#"></a></li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown messages-menu" style="display: none;">
+                                <!-- Menu toggle button -->
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-taxi">
+                                </i><span class="label label-default" id="lblvehscount">0</span> </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Total Vehicles <span class="label label-default" id="lblvehscount1">
+                                    </span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_showallvehs">
+                                        </ul>
+                                        <!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- /.messages-menu -->
+                            <!-- Notifications Menu -->
+                            <li class="dropdown messages-menu" style="display: none;">
+                                <!-- Menu toggle button -->
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-check-square-o">
+                                </i><span class="label label-success" id="icon_workingvehicles">0</span> </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Working Vehicles <span class="label label-success" id="icon_workingvehicles1">
+                                    </span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_showworkingvehs">
+                                        </ul>
+                                        <!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Tasks Menu -->
+                            <li class="dropdown messages-menu" style="display: none;">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor: pointer;" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ban">
+                                </i><span class="label label-danger" id="icon_notworkingvehicles">0</span> </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Not Working Vehicles <span class="label label-danger" id="icon_notworkingvehicles1">
+                                    </span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_shownonworkingvehs">
+                                        </ul>
+                                        <!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- User Account Menu -->
+                           <!-- <li class="dropdown user user-menu">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                    <img alt="" class="admin-pic img-circle" src="dist/img/avatar5.png" height="25px"
+                                        width="25px">&nbsp Hi, <span id="lbl_username"></span><b class="caret"></b>
+                                </a>
+                                <ul style="margin-top: 0px;" role="menu" class="dropdown-setting dropdown-menu">
+                                    <li class="divider"></li>
+                                    <li id="logout_click"><a><span class="entypo-basket"></span>&nbsp;&nbsp; Sign Out</a>
+                                    </li>-->
+
+                                     <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="Images/GoTrackingLogo.jpg" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs" id="lbl_username" style="text-transform: capitalize;" >Guest</span>
+                                </a>
+                            </li>
+                            <li id="logout_click" style="cursor:pointer;"><a>Sign out</a></li>
+                                </ul>
+                    </div>
+                    <!-- /.navbar-custom-menu -->
+                </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <!--<div class="box-header">
+                        <h3 class="box-title">Finding Nearest Vehicle</h3>
+                    </div>-->
+                    <div class="box-body">
+                        <div class="col-md-3">
+                            <div class="form-group" style="margin-bottom:5px;">
+                                <label for="txtLocation">Location Name</label>
+                                <input type="text" class="form-control" id="txtLocation" placeholder="Location Name">
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="height: 58px;">
+                            <input type="button" style="bottom: 0px; position: absolute; width: 100px;" class="btn btn-info" id="btnFix" value="Fix" />
+                        </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-bottom:5px;">
+                                    <label for="txtLatitude">Latitude</label>
+                                    <input type="text" class="form-control" id="txtLatitude" placeholder="Latitude" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-bottom:5px;">
+                                    <label for="txtLongitude">Longitude</label>
+                                    <input type="text" class="form-control" id="txtLongitude" placeholder="Longitude" disabled>
+                                </div>
+                            </div>
+                        <div class="col-md-3">
+                            <div class="form-group" style="margin-bottom:5px;">
+                                <label for="txtKMs">No Of KMs</label>
+                                <input type="number" class="form-control" id="txtKMs" placeholder="No Of KMs">
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="height: 58px;width:110px;">
+                            <input type="button" class="btn btn-success" style="bottom: 0px; position: absolute; width: 100px;" id="Button1" value="Find" />
+                        </div>
+                            <div class="col-md-3" style="height: 58px;">
+                                <input type="button" class="btn btn-default" style="bottom: 0px; position: absolute; width: 100px;" id="btnClear" value="Clear" />
+                            </div>
+                        <div class="col-md-3" style="height: 58px;">
+                            <span class="label label-danger" id="lbl_vehcount"  style="bottom: 0px; position: absolute; font-size: 20px;">0 Vehicles Found</span>
+                        </div>
+                            <div class="col-md-12">
+                                <div id="googleMap" class="googleMapcls">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <script src="plugins/iCheck/icheck.js"></script>
+    <script src="customapp.js?v=2" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDGYPgYpwZ4ZQCLCAujetDwArlVBC_S9TI&sensor=false"></script>
+    <script src="js/JTemplate.js?v=1002" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $('#logout_click').click(function () {
+            var data = { 'op': 'log_out' };
+            var s = function (msg) {
+                document.cookie = "currentpage=;expires=Wed; 01 Jan 1970";
+                window.location = 'login.html';
+                return;
+            };
+            var e = function (x, h, e) {
+                document.cookie = "currentpage=;expires=Wed; 01 Jan 1970";
+                window.location = 'login.html';
+                return;
+            };
+            callHandler(data, s, e);
+        });
+        function changepage(pge) {
+            redirectpage($(pge).html());
+        }
+        function redirectpage(pge) {
+            currentpage = pge;
+            setCookie("currentpage", currentpage, 1);
+        }
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+       
+    </script>
+   
+    <script type="text/javascript">
+        var rendererOptions = {
+            draggable: true
+        };
+        var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);;
+        var directionsService = new google.maps.DirectionsService();
+        var australia = new google.maps.LatLng(-25.274398, 133.775136);
+
+        var map;
+        var geocoder;
+        var marker;
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(17.497535, 78.408622);
+            geocoder = new google.maps.Geocoder();
+            var myOptions = {
+                zoom: 10,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
+            directionsDisplay.setMap(map);
+
+            marker = new google.maps.Marker({
+                draggable: true,
+                position: myLatlng,
+                map: map,
+                title: "Your location"
+            });
+            google.maps.event.addListener(marker, "dragend", function (event) {
+                var lat = event.latLng.lat();
+                var lng = event.latLng.lng();
+                document.getElementById('txtLatitude').value = lat;
+                document.getElementById('txtLongitude').value = lng;
+                var location = new google.maps.LatLng(lat, lng);
+                getAddress(location);
+            });
+            function getAddress(latLng) {
+                geocoder.geocode({ 'latLng': latLng },
+      function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+                  document.getElementById('txtLocation').value = results[0].formatted_address;
+              }
+              else {
+                  document.getElementById('txtLocation').value = "No results";
+              }
+          }
+          else {
+              document.getElementById('txtLocation').value = status;
+          }
+      });
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <script type="text/javascript">
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        $(function () {
+            var Username = getCookie("Username");
+            $('#lbl_username').html(Username);
+            $('#btnFix').click(function (e) {
+                deleteOverlays();
+                var myLatlng = new google.maps.LatLng(17.497535, 78.408622);
+
+                var myOptions = {
+                    zoom: 8,
+                    center: myLatlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
+                var txtLocation = document.getElementById('txtLocation').value;
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'address': txtLocation }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        document.getElementById('txtLatitude').value = latitude;
+                        document.getElementById('txtLongitude').value = longitude;
+                        var locatipon = new google.maps.LatLng(latitude, longitude);
+                        marker = new google.maps.Marker({
+                            draggable: true,
+                            position: locatipon,
+                            map: map,
+                            title: "Your location"
+                        });
+                        map.panTo(locatipon);
+                        google.maps.event.addListener(marker, "dragend", function (event) {
+                            var lat = event.latLng.lat();
+                            var lng = event.latLng.lng();
+                            document.getElementById('txtLatitude').value = lat;
+                            document.getElementById('txtLongitude').value = lng;
+                            var location = new google.maps.LatLng(lat, lng);
+                            getAddress(location);
+                        });
+                        function getAddress(latLng) {
+                            geocoder.geocode({ 'latLng': latLng },
+      function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              if (results[0]) {
+                  document.getElementById('txtLocation').value = results[0].formatted_address;
+              }
+              else {
+                  document.getElementById('txtLocation').value = "No results";
+              }
+          }
+          else {
+              document.getElementById('txtLocation').value = status;
+          }
+      });
+                        }
+                    } else {
+                    }
+                });
+            });
+            $('#btnClear').click(function (e) {
+                vehcount = 0;
+                $('#lbl_vehcount').html(vehcount + ' Vehicles Found');
+                latlng_pos = [];
+                document.getElementById('txtLocation').value = "";
+                document.getElementById('txtLatitude').value = "";
+                document.getElementById('txtLongitude').value = "";
+                document.getElementById('txtKMs').value = "";
+                deleteOverlays();
+                directionsDisplay.setDirections({ routes: [] });
+            });
+            $('#Button1').click(function (e) {
+                vehcount = 0;
+                $('#lbl_vehcount').html(vehcount + ' Vehicles Found');
+                latlng_pos = [];
+                deleteOverlays();
+                var txtLocation = document.getElementById('txtLocation').value;
+                var txtKMs = document.getElementById('txtKMs').value;
+                if (txtLocation == "" || txtKMs == "") {
+                    alert("Please Enter Location and Distance(KMs)");
+                    return false;
+                }
+
+                var latt = document.getElementById('txtLatitude').value;
+                var long = document.getElementById('txtLongitude').value;
+                var locatipon = new google.maps.LatLng(latt, long);
+                latlng_pos.push(locatipon);
+                var Nokm = document.getElementById('txtKMs').value;
+                var data = { 'op': 'getNearestVehicle', 'latt': latt, 'long': long, 'Nokm': Nokm };
+                var s = function (msg) {
+                    if (msg) {
+                        BindVehicles(msg);
+                    }
+                    else {
+                    }
+                };
+                var e = function (x, h, e) {
+                    // $('#BookingDetails').html(x);
+                };
+                callHandler(data, s, e);
+            });
+            function deleteOverlays() {
+                clearOverlays();
+                LocationsArray = [];
+            }
+            function clearOverlays() {
+                setAllMap(null);
+            }
+            function setAllMap(map) {
+                for (var i = 0; i < LocationsArray.length; i++) {
+                    LocationsArray[i].setMap(map);
+                }
+            }
+            function callHandler(d, s, e) {
+                $.ajax({
+                    url: 'Bus.axd',
+                    data: d,
+                    type: 'GET',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    async: true,
+                    cache: true,
+                    success: s,
+                    error: e
+                });
+            }
+            var vehlat;
+            var vehlong;
+            var vehicleno;
+            function calcRoute(Lat1, Long1, VehicleID) {
+                vehlat = Lat1;
+                vehlong = Long1;
+                vehicleno = VehicleID;
+                var origin1 = new google.maps.LatLng(Lat1, Long1);
+                var latitude = document.getElementById('txtLatitude').value;
+                var longitude = document.getElementById('txtLongitude').value;
+                var destinationA = new google.maps.LatLng(latitude, longitude);
+                var service = new google.maps.DistanceMatrixService();
+                service.getDistanceMatrix({
+                    origins: [origin1],
+                    destinations: [destinationA],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, callback);
+            }
+            function callback(response, status) {
+                if (status != google.maps.DistanceMatrixStatus.OK) {
+                    alert('Error was: ' + status);
+                } else {
+                    var origins = response.originAddresses;
+                    var destinations = response.destinationAddresses;
+                    if (response.rows[0].elements[0].status == 'OK') {
+                        vehdistance = response.rows[0].elements[0].distance.text;
+                        duration = response.rows[0].elements[0].duration.text;
+                        var Nokm = document.getElementById('txtKMs').value;
+                        var distance = vehdistance.split(' ')[0];
+                        if (distance <= Nokm) {
+                            var location = new google.maps.LatLng(vehlat, vehlong);
+                            placeMarker(location, vehicleno, vehdistance, duration);
+                        }
+                    }
+                }
+            }
+            var interval;
+            function BindVehicles(data) {
+                interval = setInterval(function () { vehupdate(data) }, 200);
+            }
+            var vehicledata = 0;
+            function vehupdate(data) {
+                if (vehicledata < data.length) {
+                    //                for (var vehicledata in data) {
+                    var vehicleno = data[vehicledata].Vehicleno;
+                    var latitude = data[vehicledata].latitude;
+                    var longitude = data[vehicledata].longitude;
+                    var Distance = data[vehicledata].Distance;
+                    var ExpectedTime = data[vehicledata].ExpectedTime;
+                    calcRoute(latitude, longitude, vehicleno);
+                    vehicledata++;
+                }
+                else {
+                    vehicledata = 0;
+                    clearInterval(interval);
+                }
+            }
+            var vehcount = 0;
+            var latlng_pos = [];
+            var LocationsArray = new Array();
+            function placeMarker(location, vehicleno, Distance, ExpectedTime) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    center: location,
+                    zoom: 10,
+                    icon: 'Vehicletypes/greenCar7.png',
+                    title: 'Vehicle Number : ' + vehicleno + "\n" + 'Distance : ' + Distance + "\n" + 'ExpectedTime : ' + ExpectedTime
+                });
+                LocationsArray.push(marker);
+                var content = 'Vehicle Number : ' + vehicleno + "<br/>" + 'Distance : ' + Distance + "<br/>" + 'ExpectedTime : ' + ExpectedTime;
+                var infowindow = new google.maps.InfoWindow({
+                    content: content
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                    drawRoute(location);
+                });
+                vehcount++;
+                $('#lbl_vehcount').html(vehcount + ' Vehicles Found');
+                latlng_pos.push(location);
+                var latlngbounds = new google.maps.LatLngBounds();
+                if (latlng_pos.length > 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        latlngbounds.extend(latlng_pos[i]);
+                    }
+                    map.fitBounds(latlngbounds);
+                }
+                else if (latlng_pos.length == 1) {
+                    for (var i = 0; i < latlng_pos.length; i++) {
+                        latlngbounds.extend(latlng_pos[i]);
+                    }
+                    map.fitBounds(latlngbounds);
+                    map.setZoom(12);
+                }
+                else {
+                    map.setCenter(new google.maps.LatLng(17.497535, 78.408622));
+                    map.setZoom(10);
+                }
+            }
+        });
+        function drawRoute(end) {
+            var start = document.getElementById('txtLatitude').value + ',' + document.getElementById('txtLongitude').value;
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

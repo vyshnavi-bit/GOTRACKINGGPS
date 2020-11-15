@@ -1,0 +1,37 @@
+﻿<table class="VehiclesTablecls" id="VehiclesTable" cellpadding="4" cellspacing="0" style="width: 100%;">
+    <tbody>
+      
+        {#foreach $T as vehicles}
+        <tr onmouseover="trhover(this);" onmouseout="trmouseout(this);">
+            <td style="width: 180px;  padding: 4px; font-size: 12px; font-family: Verdana;">
+                <input type="checkbox" value="{$T.vehicles.vehicleno}" id="{$T.vehicles.vehicleno}"
+                    class="ckblvvehscls minimal" onmouseover="bphover(this,'{ $T.vehicles.vehicleno }');"
+                    onmouseout="bpmouseout()" />
+                <span style="height: 15px; cursor: pointer;vertical-align: sub;" onclick="onvehicleclick(this,'{ $T.vehicles.vehicleno }');">
+                    {$T.vehicles.vehicleno}</span>
+            </td>
+            <td style="width: 20px; padding: 4px;">
+                <img id="imgpower" src="LiveIcons/Red%20Power.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imgdata" src="LiveIcons/nodataavail.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imgignation" src="LiveIcons/bullet_red.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imgac" src="LiveIcons/ACOff.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imgspeed" src="LiveIcons/state3.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imgfuel" src="LiveIcons/actuality4.png" />
+            </td>
+            <td style="width: 20px;padding: 4px;">
+                <img id="imggps" src="LiveIcons/GPSV.png" />
+            </td>
+        </tr>
+        {#/for}
+    </tbody>
+</table>

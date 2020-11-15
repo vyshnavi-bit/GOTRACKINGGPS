@@ -1,0 +1,2234 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="Images/TitleLogo.png" type="image/x-icon" title="trackmyasset.in" />
+    <title>TrackMyAsset | RouteHistory</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="../../CustomCSS/font-awesome.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link href="../../plugins/iCheck/all.css" rel="stylesheet" />
+    <link href="../../plugins/iCheck/minimal/_all.css" rel="stylesheet" />
+
+    <link rel="icon" href="Images/TitleLogo.png" type="image/x-icon" title="trackmyasset.in" />
+    <title>Track my asset</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <link href="../../leaflet/Leaflet.Elevation-0.0.2.css" rel="stylesheet" type="text/css" />
+    <script src="../../leaflet/Leaflet.Elevation-0.0.2.min.js" type="text/javascript"></script>
+    <script src="../../leaflet/realworld.388.js" type="text/javascript"></script>
+    <link href="../../leaflet/screen.css" rel="stylesheet" type="text/css" />
+    <script src="../../leaflet/leaflet.geocoding.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../../js/JTemplate.js?v=1002" type="text/javascript"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=geometry"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbt9z3InHbzrV66t1eSZB5TnlJ2HQ-Uc8&v=3.exp&sensor=false&libraries=geometry"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="https://www.google.com/uds/?file=visualization&amp;v=1&amp;packages=columnchart" type="text/javascript"></script>
+    <script src="../Data_tables/jquery.blockUI.js"></script>
+
+    <style type="text/css">
+        .wrapper {
+            overflow: hidden;
+            top: 0px;
+        }
+
+        html, body {
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            height: 99.5%; /* needed for container min-height */
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            background: url(CSS/cream_dust.png) repeat left top;
+        }
+
+        .inner {
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            color: Black;
+            z-index: 99999;
+            height: 225px;
+            overflow: hidden;
+        }
+
+        .togglediv {
+            position: absolute;
+            width: 100%;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            color: Black;
+            z-index: 99999;
+            border: 1px solid #d5d5d5;
+            height: 196px;
+            background-color: #ffffff;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .allbtncls {
+            display: inline-block;
+            min-width: 54px;
+            border: 1px solid #dcdcdc;
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            color: #444;
+            font-size: 12px;
+            font-weight: bold;
+            height: 23px;
+            padding: 0 8px;
+            line-height: 27px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-transition: all 0.218s;
+            -moz-transition: all 0.218s;
+            -o-transition: all 0.218s;
+            transition: all 0.218s;
+            background-color: #f5f5f5;
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
+            background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+            width: 10px;
+            opacity: 1.9;
+        }
+
+        .btntogglecls:hover {
+            cursor: pointer;
+            -moz-box-shadow: 0px 0px 10px 0px #000000;
+            -webkit-box-shadow: 0px 0px 10px 0px #000000;
+            box-shadow: 0px 0px 10px 0px #000000;
+        }
+
+        .btntogglecls {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            color: #444;
+            font-size: 12px;
+            font-weight: bold;
+            height: 30px;
+            border-radius: 2px 2px 0px 0px;
+            width: 10px;
+            cursor: pointer;
+            opacity: 2.0;
+        }
+
+        div#mapcontent {
+            right: 5px;
+            bottom: 0;
+            left: 5px;
+            top: 40px;
+            overflow: hidden;
+            position: fixed;
+        }
+
+        .datebuttonsleft {
+           border-radius: 3px 0px 0px 0px;
+           width: 75px;
+           height: 26px;
+        }
+
+        .datebuttonsright {
+           border-radius: 0px 3px 0px 0px;
+           width: 75px;
+           height: 26px;
+        }
+
+        
+    </style>
+    <script type="text/javascript">
+        var openstreetmap;
+        var selectmap;
+        var Locationsdata = [];
+        $(function () {
+            var data = { 'op': 'get_locations' };
+            var s = function (msg) {
+                if (msg) {
+                    Locationsdata = msg;
+                }
+                else {
+                    fillfilters();
+                }
+            };
+            var e = function (x, h, e) {
+                // $('#BookingDetails').html(x);
+            };
+            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            callHandler(data, s, e);
+
+            initializeOSMmaps();
+            maptypeclick();
+        });
+
+        function maptypeclick() {
+            var maptype = $("#btn_maptype").val();
+            if (maptype == "Google Map") {
+                $("#btn_maptype").val("Openstreet Map");
+                document.getElementById("openstreetmap").style.display = "none";
+                document.getElementById("googleMap").style.display = "block";
+                clearInterval(interval);
+                $("#speedval").val("speed");
+                firstlog = false;
+                $('#btnShow').val('Draw');
+                count = 0;
+                $('#example').remove();
+                $("#btntabs").val("Show Graph");
+                tabchart = true;
+                initialize();
+            }
+            else {
+                $("#btn_maptype").val("Google Map");
+                document.getElementById("googleMap").style.display = "none";
+                document.getElementById("openstreetmap").style.display = "block";
+                clearInterval(interval);
+                $("#speedval").val("speed");
+                firstlog = false;
+                $('#btnShow').val('Draw');
+                count = 0;
+                $('#example').remove();
+                deleteOverlaysOSM();
+                for (i = 0; i < OSMpolilinepath.length; i++) {
+                    openstreetmap.removeLayer(OSMpolilinepath[i]);
+                }
+                OSMpolilinepath = [];
+                pointList = [];
+                openstreetmap.setView(new L.LatLng(17.497535, 78.408622), 5);
+                el.clear();
+                btnclearclick();
+                $("#btntabs").val("Show Graph");
+                tabchart = true;
+            }
+        }
+
+        function initializeOSMmaps() {
+            var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }),
+		    latlng = L.latLng(17.497535, 78.408622);
+
+            openstreetmap = L.map('openstreetmap', { zoomControl: false, center: latlng, zoom: 5, layers: [tiles] });
+            L.control.zoom({
+                position: 'topleft'
+            }).addTo(openstreetmap);
+
+            selectmap = document.getElementById("btn_maptype");
+            var custom_geocoding_provider = function (arg) {
+                var that = this
+            , query = arg.query
+            , cb = arg.cb;
+
+                $.ajax({
+                    url: 'http://nominatim.openstreetmap.org/search'
+            , dataType: 'jsonp'
+            , jsonp: 'json_callback'
+            , data: {
+                'q': query
+                , 'format': 'json'
+            }
+                })
+        .done(function (data) {
+            if (data.length > 0) {
+                var res = data[0];
+                cb({
+                    query: query
+                    , content: res.display_name
+                    , latlng: new L.LatLng(res.lat, res.lon)
+                    , bounds: new L.LatLngBounds([res.boundingbox[0], res.boundingbox[2]], [res.boundingbox[1], res.boundingbox[3]])
+                });
+            }
+        });
+            }
+
+
+            geocoding = new L.Geocoding({
+                apikeys: {
+                    'bing': 'Anqm0F_JjIZvT0P3abS6KONpaBaKuTnITRrnYuiJCE0WOhH6ZbE4DzeT6brvKVR5'
+          , 'mapquest': 'Kmjtd%7Cluua2qu7n9%2C7a%3Do5-lzbgq'
+          , 'nokia': 'HGHGJHgdbndbmbsdf7675wefdvvdsnb'
+                }
+        , providers: {
+            'custom': custom_geocoding_provider
+        }
+            });
+
+            openstreetmap.addControl(geocoding);
+
+            el = L.control.elevation({
+                position: "topright",
+                theme: "steelblue-theme", //default: lime-theme
+                width: 600,
+                height: 125,
+                margins: {
+                    top: 0,
+                    right: 0,
+                    bottom: 30,
+                    left: 50
+                },
+                useHeightIndicator: true, //if false a marker is drawn at map position
+                interpolation: "linear", //see https://github.com/mbostock/d3/wiki/SVG-Shapes#wiki-area_interpolate
+                hoverNumber: {
+                    decimalsX: 3, //decimals on distance (always in km)
+                    decimalsY: 0, //deciamls on height (always in m)
+                    formatter: undefined //custom formatter function may be injected
+                },
+                xTicks: undefined, //number of ticks in x axis, calculated by default according to width
+                yTicks: undefined, //number of ticks on y axis, calculated by default according to height
+                collapsed: false    //collapsed mode, show chart on click or mouseover
+            });
+            el.addTo(openstreetmap);
+            $(".elevation").css("display", "none");
+        }
+
+    </script>
+    <script type="text/javascript">
+        function callHandler(d, s, e) {
+            $.ajax({
+                url: 'Client.axd',
+                data: d,
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: true,
+                cache: true,
+                success: s,
+                error: e
+            });
+        }
+
+        var interval;
+        var data = [];
+        var point;
+        var flightPlanCoordinates = new Array();
+        var pointList = new Array();
+        var x;
+        var maxID = 0;
+        var showlocations = true;
+        function load() {
+            if ($('#btnShow').val() == 'Draw') {
+                prevbranch = "";
+                btnstopclick();
+                btnclearclick();
+                stoppedmarkers = [];
+                allstoppedmarkers = [];
+                for (var i = 0; i < stoppedmarkers.length; i++) {
+                    stoppedmarkers[i].setMap(map);
+                }
+                for (i = 0; i < OSMSTPSmarkersArray.length; i++) {
+                    openstreetmap.removeLayer(OSMSTPSmarkersArray[i]);
+                }
+                OSMSTPSmarkersArray = [];
+                x = document.getElementById('example');
+                $(function () {
+                    var data = { 'op': 'getdata' };
+                    var s = function (msg) {
+                        if (msg) {
+                            BindResults(msg);
+                        }
+                        else {
+                        }
+                    };
+                    var e = function (x, h, e) {
+                        // $('#BookingDetails').html(x);
+                    };
+                    callHandler(data, s, e);
+                });
+
+                function BindResults(logdata) {
+                    data = logdata;
+                    interval = setInterval(function () { liveupdate() }, 1000);
+                }
+                $('#btnShow').val('Pause');
+            }
+            else if ($('#btnShow').val() == 'Pause') {
+                clearInterval(interval);
+                $('#btnShow').val('Resume');
+            }
+            else if ($('#btnShow').val() == 'Resume') {
+                clearInterval(interval);
+                var speed = $("#speedval").val();
+                if (speed == "speed") {
+                    speed = 3;
+                }
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1500);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1000);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 500);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 200);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 100);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 50);
+                }
+                $('#btnShow').val('Pause');
+            }
+        }
+        // Add a Locations control that returns the user to London
+        function LocationsControl(locationcontrolDiv, map) {
+            locationcontrolDiv.style.padding = '5px 0px 0px 0px';
+            var locationcontrolUI = document.createElement('div');
+            locationcontrolUI.style.backgroundColor = 'rgb(255, 255, 255)';
+            locationcontrolUI.style.border = '1px solid rgb(113, 123, 135)';
+            locationcontrolUI.style.cursor = 'pointer';
+            locationcontrolUI.style.textAlign = 'center';
+            locationcontrolUI.style.width = '110px';
+            locationcontrolUI.title = 'Hide Locations';
+            locationcontrolUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+            locationcontrolDiv.appendChild(locationcontrolUI);
+            var locationcontrolText = document.createElement('div');
+            locationcontrolText.style.fontFamily = 'Arial,sans-serif';
+            locationcontrolText.style.fontSize = '12px';
+            locationcontrolText.style.paddingLeft = '4px';
+            locationcontrolText.style.paddingRight = '4px';
+            locationcontrolText.style.height = '20px';
+            locationcontrolText.style.paddingTop = '1px';
+            locationcontrolText.innerHTML = '<b>Hide Locations<b>'
+            locationcontrolUI.appendChild(locationcontrolText);
+
+            // Setup click-event listener: simply set the map to London
+            google.maps.event.addDomListener(locationcontrolUI, 'click', function () {
+                if (!showlocations) {
+                    showlocations = true;
+                    locationcontrolText.innerHTML = '<b>Hide Locations<b>'
+                    locationcontrolUI.title = "Hide Locations";
+                    if (Locationsdata.length > 0) {
+                        for (var vehicledata in addedlocations) {
+                            var myCenter = new google.maps.LatLng(addedlocations[vehicledata].latitude, addedlocations[vehicledata].longitude);
+                            placeMarkerlocations(myCenter, addedlocations[vehicledata].locacationname, addedlocations[vehicledata].mrkrcnt, addedlocations[vehicledata].radius);
+                        }
+                        $(this).val("Show Locations");
+                    }
+                }
+                else {
+                    showlocations = false;
+                    locationcontrolText.innerHTML = '<b>Show Locations<b>'
+                    locationcontrolUI.title = "Hide Locations";
+                    deletelocationOverlays();
+                }
+            });
+        }
+
+        var showStoppedmarkers = true;
+        function StoppedmarkerControl(StoppedmarkercontrolDiv, map) {
+            StoppedmarkercontrolDiv.style.padding = '5px 0px 0px 0px';
+            var StoppedmarkercontrolUI = document.createElement('div');
+            StoppedmarkercontrolUI.style.backgroundColor = 'rgb(255, 255, 255)';
+            StoppedmarkercontrolUI.style.border = '1px solid rgb(113, 123, 135)';
+            StoppedmarkercontrolUI.style.cursor = 'pointer';
+            StoppedmarkercontrolUI.style.textAlign = 'center';
+            StoppedmarkercontrolUI.style.width = '110px';
+            StoppedmarkercontrolUI.title = 'Hide Stoppages';
+            StoppedmarkercontrolUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+            StoppedmarkercontrolDiv.appendChild(StoppedmarkercontrolUI);
+            var StoppedmarkercontrolText = document.createElement('div');
+            StoppedmarkercontrolText.style.fontFamily = 'Arial,sans-serif';
+            StoppedmarkercontrolText.style.fontSize = '12px';
+            StoppedmarkercontrolText.style.paddingLeft = '4px';
+            StoppedmarkercontrolText.style.paddingRight = '4px';
+            StoppedmarkercontrolText.style.height = '20px';
+            StoppedmarkercontrolText.style.paddingTop = '1px';
+            StoppedmarkercontrolText.innerHTML = '<b>Hide Stoppages<b>'
+            StoppedmarkercontrolUI.appendChild(StoppedmarkercontrolText);
+
+            // Setup click-event listener: simply set the map to London
+            google.maps.event.addDomListener(StoppedmarkercontrolUI, 'click', function () {
+                if (!showStoppedmarkers) {
+                    showStoppedmarkers = true;
+                    StoppedmarkercontrolText.innerHTML = '<b>Hide Stoppages<b>'
+                    StoppedmarkercontrolUI.title = "Hide Stoppages";
+                    for (var i = 0; i < allstoppedmarkers.length; i++) {
+                        allstoppedmarkers[i].setMap(map);
+                    }
+                }
+                else {
+                    showStoppedmarkers = false;
+                    StoppedmarkercontrolText.innerHTML = '<b>Show Stoppages<b>'
+                    StoppedmarkercontrolUI.title = "Show Stoppages";
+                    deleteStoppedmarkerOverlays();
+                }
+            });
+        }
+        function deleteStoppedmarkerOverlays() {
+            StoppedmarkerclearOverlays();
+            //            allstoppedmarkers = [];
+        }
+
+        // Sets the map on all markers in the array.
+        function StoppedmarkersetAllMap(map) {
+            for (var i = 0; i < allstoppedmarkers.length; i++) {
+                allstoppedmarkers[i].setMap(map);
+            }
+        }
+
+        // Removes the overlays from the map, but keeps them in the array.
+        function StoppedmarkerclearOverlays() {
+            StoppedmarkersetAllMap(null);
+        }
+
+        var LocationsArray = new Array();
+        function placeMarkerlocations(location, BranchName, mrkrcnt, radius) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                center: location,
+                title: BranchName,
+                icon: "Images/greenmarker.png",
+                zoom: 6
+            });
+            LocationsArray.push(marker);
+
+            var rrr = parseInt(radius, rrr);
+            var circle = new google.maps.Circle({
+                map: map,
+                zoom: 16,
+                radius: rrr,    // 10 miles in metres
+                strokeColor: "#FFffff",
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+                strokeWeight: 1,
+                strokeOpacity: 0
+            });
+            circle.bindTo('center', marker, 'position');
+            LocationsArray.push(circle);
+
+            var content = "Location : " + BranchName;
+            var infowindow = new google.maps.InfoWindow({
+                content: content
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+        // Deletes all markers in the array by removing references to them.
+        function deletelocationOverlays() {
+            locationclearOverlays();
+            LocationsArray = [];
+        }
+
+        // Sets the map on all markers in the array.
+        function locationsetAllMap(map) {
+            for (var i = 0; i < LocationsArray.length; i++) {
+                LocationsArray[i].setMap(map);
+            }
+        }
+
+        // Removes the overlays from the map, but keeps them in the array.
+        function locationclearOverlays() {
+            locationsetAllMap(null);
+        }
+        var count = 0;
+        var markersArray = [];
+        var OSMmarkersArray = [];
+        var firstpolyline;
+        var OSMpolilinepath = [];
+        var polilinepath = [];
+        var firstlog = false;
+        var stoppedmarkers = [];
+        var OSMSTPSmarkersArray = [];
+        var flightPath;
+        var marker;
+        var elevpoints = [];
+        var OSMelevpoints = [];
+        var osmaddress;
+        var showpopup = true;
+        var geojson;
+        var el;
+        var gjl;
+        var addedlocations = [];
+        var allstoppedmarkers = [];
+        var prevbranch = "";
+        var imgcnt = 1;
+        function liveupdate() {
+            if (data.length > 0 && data.length > count) {
+                var vehicleno = data[count].vehicleno;
+                var Latitude = data[count].latitude;
+                var Longitude = data[count].longitude;
+                var angle = data[count].direction;
+                var speed = data[count].speed;
+                speed = Math.round(speed);
+                var odometer = data[count].odometer;
+                var status = data[count].Status;
+                var datetime = data[count].datetime;
+                var Altitude = data[count].Altitude;
+                Altitude = parseFloat(Altitude);
+
+                if (selectmap.value == "Openstreet Map") {
+                    point = new google.maps.LatLng(
+              parseFloat(Latitude),
+              parseFloat(Longitude));
+                    elevpoints.push(point);
+                    if (markersArray.length > 0) {
+                        if (!map.getBounds().contains(point)) {
+                            map.panTo(point);
+                        }
+                    }
+                    var locationame = "";
+                    if (typeof Locationsdata === "undefined") {
+                    }
+                    else {
+                        for (var cont = 0; cont < Locationsdata.length; cont++) {
+                            var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                            var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                            var radius = Locationsdata[cont].Radious;
+                            var isinside = pointInCircle(targetLoc, radius, center);
+                            function pointInCircle(point, radius, center) {
+                                return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                            }
+                            if (isinside) {
+                                if (prevbranch != Locationsdata[cont].locacationname) {
+                                    // To add the marker to the map, call setMap();
+                                    if (showlocations) {
+                                        var marker = new google.maps.Marker({
+                                            position: point,
+                                            map: map,
+                                            center: location,
+                                            title: Locationsdata[cont].locacationname,
+                                            icon: "Images/greenmarker.png",
+                                            zoom: 6
+                                        });
+                                        var content = "Location : " + Locationsdata[cont].locacationname;
+                                        var infowindow = new google.maps.InfoWindow({
+                                            content: content
+                                        });
+                                        locationame = Locationsdata[cont].locacationname;
+                                        google.maps.event.addListener(marker, 'click', function () {
+                                            infowindow.open(map, marker);
+                                        });
+                                        LocationsArray.push(marker);
+
+                                        var rrr = parseInt(Locationsdata[cont].Radious, rrr);
+                                        var circle = new google.maps.Circle({
+                                            map: map,
+                                            zoom: 16,
+                                            radius: rrr,    // 10 miles in metres
+                                            strokeColor: "#FFffff",
+                                            fillColor: "#FF0000",
+                                            fillOpacity: 0.35,
+                                            strokeWeight: 1,
+                                            strokeOpacity: 0
+                                        });
+                                        circle.bindTo('center', marker, 'position');
+                                        LocationsArray.push(circle);
+
+                                        prevbranch = Locationsdata[cont].locacationname;
+                                    }
+                                    addedlocations.push({ latitude: Locationsdata[cont].latitude, longitude: Locationsdata[cont].longitude, locacationname: Locationsdata[cont].locacationname, mrkrcnt: imgcnt, radius: Locationsdata[cont].Radious });
+                                    imgcnt = imgcnt + 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    OSMelevpoints.push([Longitude, Latitude, Altitude]);
+                    point = new L.LatLng(
+              parseFloat(Latitude),
+              parseFloat(Longitude));
+                    if (OSMmarkersArray.length > 0) {
+                        if (!openstreetmap.getBounds().contains(point)) {
+                            openstreetmap.panTo(point);
+                        }
+                    }
+                }
+
+                var startmarker;
+                var endmarker;
+                if (firstlog == false) {
+                    $('#example').remove();
+
+                    var divgrid = document.getElementById("divlogsgrid");
+                    divgrid.innerHTML = '<table class="table table-condensed" id="example" summary="Route Details" rules="groups" frame="hsides" border="2"  style="height:195px;cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr><td style="padding: 0px;"><table class="table table-condensed" style="margin-bottom: 0px;cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr style="border-bottom: 1px solid #d5d5d5; background-color: #f39c12; color: #ffffff;font-family: Arial; font-weight: normal; font-size: 12px;">    <th style="width: 150px;text-align: center;">TimeStamp </th> <th style="width: 400px;text-align: center;"> Address </th><th style="width: 100px;text-align: center;"> Speed </th> <th style="width: 100px;text-align: center;"> Status </th><th style="width: 100px;text-align: center;"> Odometer </th>  <th style="width: 150px;text-align: center;"> Stopped Time </th></tr></table class="table table-condensed"></td></tr><tr><td> <div id="divscroll"  style="width: 100%; height: 155px; overflow: auto;"><table class="table table-striped" style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr id="templateRow" style="display: none; cursor: pointer; border-bottom: 1px solid #d5d5d5;"  onclick="onrowclick(this);"><td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td><td style="width: 400px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td><td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td><td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td></tr></table></div></td></tr></table>';
+                    if (selectmap.value == "Openstreet Map") {
+                        var latlngbounds = new google.maps.LatLngBounds();
+                        latlngbounds.extend(point);
+                        map.fitBounds(latlngbounds);
+                        map.setZoom(15);
+                        var image = new google.maps.MarkerImage('Images/pin-icon-start.png', null,
+        new google.maps.Point(0, 0),
+        new google.maps.Point(16, 25));
+                        startmarker = new google.maps.Marker({
+                            position: point,
+                            map: map,
+                            center: location,
+                            icon: image,
+                            zoom: 6
+                        });
+                        stoppedmarkers.push(startmarker);
+                        var Sinfowindow = new google.maps.InfoWindow({
+                            content: "Start Point"
+                        });
+
+                        google.maps.event.addListener(startmarker, 'click', function () {
+                            Sinfowindow.open(map, startmarker);
+                        });
+                        image = new google.maps.MarkerImage('Images/pin-icon-end.png', null,
+        new google.maps.Point(0, 0),
+        new google.maps.Point(16, 25));
+                        endmarker = new google.maps.Marker({
+                            position: new google.maps.LatLng(data[data.length - 1].latitude, data[data.length - 1].longitude),
+                            map: map,
+                            center: location,
+                            icon: image,
+                            zoom: 6
+                        });
+                        stoppedmarkers.push(endmarker);
+                        var Einfowindow = new google.maps.InfoWindow({
+                            content: "End Point"
+                        });
+
+                        google.maps.event.addListener(endmarker, 'click', function () {
+                            Einfowindow.open(map, endmarker);
+                        });
+                    }
+                    else {
+                        openstreetmap.setView(new L.LatLng(parseFloat(Latitude), parseFloat(Longitude)), 15);
+
+                        var RedIcon = L.Icon.Default.extend({
+                            options: {
+                                iconUrl: 'Images/pin-icon-start.png',
+                                iconSize: [33, 50],
+                                iconAnchor: [15, 25],
+                                shadowSize: [0, 0],
+                                shadowAnchor: [0, 0]
+                            }
+                        });
+                        var redIcon = new RedIcon();
+                        startmarker = new L.marker([parseFloat(Latitude), parseFloat(Longitude)], { icon: redIcon }).bindPopup("Start Point").addTo(openstreetmap);
+                        OSMSTPSmarkersArray.push(startmarker);
+                        RedIcon = L.Icon.Default.extend({
+                            options: {
+                                iconUrl: 'Images/pin-icon-end.png',
+                                iconSize: [33, 50],
+                                iconAnchor: [15, 25],
+                                shadowSize: [0, 0],
+                                shadowAnchor: [0, 0]
+                            }
+                        });
+                        redIcon = new RedIcon();
+                        endmarker = new L.marker([data[data.length - 1].latitude, data[data.length - 1].longitude], { icon: redIcon }).bindPopup("End Point").addTo(openstreetmap);
+                        OSMSTPSmarkersArray.push(endmarker);
+                    }
+                    var odometerfrom = data[0].odometer;
+                    startodo = odometerfrom;
+                    var odometerto = data[data.length - 1].odometer;
+                    var TotalDistance = odometerto - odometerfrom;
+
+                    document.getElementById('lbltripinfo').innerHTML = "Report From : " + data[0].datetime + "  To : " + data[data.length - 1].datetime + " and  TotalDistance Travelled : " + Math.round(TotalDistance) + "KMs of Vehicle Number : " + vehicleno + "";
+                }
+                firstlog = true;
+
+                var iconsrc;
+                var VehicleType = data[count].vehicletype;
+                if (VehicleType == 'Escavator') {
+                    iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                }
+                else
+                    if (VehicleType == "Roller") {
+                        if (speed == 0) {
+                            VehicleType = "red" + VehicleType;
+                            iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                        }
+                        else {
+                            VehicleType = "green" + VehicleType;
+                            iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                        }
+                    }
+                    else {
+                        if (VehicleType == "") {
+                            VehicleType = "Car";
+                        }
+                        if (speed == 0) {
+                            VehicleType = "red" + VehicleType;
+                            //                            iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                        }
+                        else {
+                            var imgangle = 0;
+                            VehicleType = "green" + VehicleType;
+                        }
+                        if (angle >= 0 && angle < 22.5) {
+                            imgangle = 0;
+                            //                    document.getElementById("ImgRotate").style.MozTransform = "rotate(" + 22.5 + "deg)";
+                            //                    iconsrc = document.getElementById("ImgRotate").src;
+                            iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                        }
+                        else if (angle >= 22.5 && angle < 45) {
+                            imgangle = 22.5;
+                            //                    document.getElementById("ImgRotate").style.MozTransform = "rotate(" + 45 + "deg)";
+                            //                    iconsrc = document.getElementById("ImgRotate").src;
+                            iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                        }
+                        else if (angle >= 45 && angle < 67.5) {
+                            imgangle = 45.5;
+                            //                    document.getElementById("ImgRotate").style.MozTransform = "rotate(" + 67.5 + "deg)";
+                            //                    iconsrc = document.getElementById("ImgRotate").src;
+                            iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                        }
+                        else if (angle >= 67.5 && angle < 90) {
+                            imgangle = 67.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                        }
+                        else if (angle >= 90 && angle < 112.5) {
+                            imgangle = 90.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                        }
+                        else if (angle >= 112.5 && angle < 135) {
+                            imgangle = 112.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                        }
+                        else if (angle >= 135 && angle < 157.5) {
+                            imgangle = 135.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                        }
+                        else if (angle >= 157.5 && angle < 180) {
+                            imgangle = 157.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                        }
+                        else if (angle >= 180 && angle < 202.5) {
+                            imgangle = 180.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                        }
+                        else if (angle >= 202.5 && angle < 225) {
+                            imgangle = 202.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                        }
+                        else if (angle >= 225 && angle < 247.5) {
+                            imgangle = 225.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                        }
+                        else if (angle >= 247.5 && angle < 270) {
+                            imgangle = 247.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                        }
+                        else if (angle >= 270 && angle < 292.5) {
+                            imgangle = 270.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "17.png";
+                        }
+                        else if (angle >= 292.5 && angle < 315) {
+                            imgangle = 292.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                        }
+                        else if (angle >= 315 && angle < 337.5) {
+                            imgangle = 315.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                        }
+                        else if (angle >= 337.5 && angle < 360) {
+                            imgangle = 337.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+                        else if (angle >= 360) {
+                            imgangle = 360;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+                        //                        }
+                    }
+
+                if (selectmap.value == "Openstreet Map") {
+                    deleteOverlays();
+                    var image = new google.maps.MarkerImage(iconsrc,
+                    // This marker is 20 pixels wide by 32 pixels tall.
+        null,
+                    // The origin for this image is 0,0.
+        new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at 0,32.
+        new google.maps.Point(20, 20)
+    );
+                    marker = new google.maps.Marker({
+                        position: point,
+                        map: map,
+                        center: location,
+                        zoom: 6,
+                        icon: image
+                    });
+                    markersArray.push(marker);
+                }
+                else {
+                    deleteOverlaysOSM();
+                    var RedIcon = L.Icon.Default.extend({
+                        options: {
+                            iconUrl: iconsrc,
+                            iconSize: [43, 43],
+                            iconAnchor: [21, 21],
+                            shadowSize: [0, 0],
+                            shadowAnchor: [0, 0]
+                        }
+                    });
+                    var redIcon = new RedIcon();
+                    var marker;
+                    marker = new L.marker([parseFloat(Latitude), parseFloat(Longitude)], { icon: redIcon }).bindPopup(content).addTo(openstreetmap);
+                    OSMmarkersArray.push(marker);
+                }
+
+                var timestamp = "";
+
+                if (speed == 0) {
+                    if (count < data.length - 1) {
+
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var spantime = 0;
+
+
+                        while (count < data.length - 1 && data[count].speed == 0) {
+                            var prestime;
+                            if (count < 1) {
+                                prestime = data[count].datetime;
+                            }
+                            else {
+                                prestime = data[count].datetime;
+                            }
+                            var upcmngdatetime = data[count + 1].datetime;
+                            var date = prestime.split(" ")[0];
+                            var time = prestime.split(" ")[1];
+                            var AMPM = prestime.split(" ")[2];
+
+                            var datevalues = new Array();
+                            var timevalues = new Array();
+                            if (date.indexOf("-") != -1) {
+                                datevalues = date.split('-');
+                            }
+                            else if (date.indexOf("/") != -1) {
+                                datevalues = date.split('/');
+                            }
+                            timevalues = time.split(':');
+                            var exacthours = timevalues[0];
+                            if (AMPM == "PM") {
+                                exacthours = parseInt(exacthours);
+                                if (exacthours != "12") {
+                                    exacthours = 12 + exacthours;
+                                }
+                            }
+                            var updatetime = new Date(datevalues[2], datevalues[0] - 1, datevalues[1], exacthours, timevalues[1], timevalues[2]);
+
+                            var upcmngdate = upcmngdatetime.split(" ")[0];
+                            var upcmngtime = upcmngdatetime.split(" ")[1];
+                            var upcmngAMPM = upcmngdatetime.split(" ")[2];
+
+                            var upcmngdatevalues = new Array();
+                            var upcmngtimevalues = new Array();
+                            if (upcmngdate.indexOf("-") != -1) {
+                                upcmngdatevalues = upcmngdate.split('-');
+                            }
+                            else if (upcmngdate.indexOf("/") != -1) {
+                                upcmngdatevalues = upcmngdate.split('/');
+                            }
+                            upcmngtimevalues = upcmngtime.split(':');
+                            var upcmngexacthours = upcmngtimevalues[0];
+                            if (upcmngAMPM == "PM") {
+                                upcmngexacthours = parseInt(upcmngexacthours);
+                                if (upcmngexacthours != "12") {
+                                    upcmngexacthours = 12 + upcmngexacthours;
+                                }
+                            }
+                            var upcmngupdatetime = new Date(upcmngdatevalues[2], upcmngdatevalues[0] - 1, upcmngdatevalues[1], upcmngexacthours, upcmngtimevalues[1], upcmngtimevalues[2]);
+                            //                            upcmngupdatetime = upcmngupdatetime.toString('dd-MM-yyyy HH:mm:ss');
+
+                            spantime += (upcmngupdatetime - updatetime);
+                            count++;
+                        }
+                        count--;
+                        var days = Math.floor((spantime) / _MS_PER_DAY);
+                        var hours = Math.floor((spantime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((spantime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((spantime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            timestamp = "Stopped for " + days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours >= 1) {
+                            timestamp = "Stopped for " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (min >= 1) {
+                            timestamp = "Stopped for " + min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1 && min > 1) {
+                            timestamp = "Stopped for " + hours + " Hrs " + min + " Min";
+                        }
+                        if (selectmap.value == "Openstreet Map") {
+                            markersArray.push(marker);
+                            var stoppedmarker = new google.maps.Marker({
+                                position: point,
+                                map: map,
+                                title: timestamp,
+                                icon: "Images/ssmarker.png",
+                                zoom: 6
+                            });
+                            allstoppedmarkers.push(stoppedmarker);
+                        }
+                        else {
+                            OSMmarkersArray.push(marker);
+                        }
+                    }
+                    else {
+                        $('#btnShow').val('Draw');
+                        if (selectmap.value == "Openstreet Map") {
+                            markersArray.push(marker);
+                        }
+                        else {
+                            OSMmarkersArray.push(marker);
+                        }
+                    }
+                }
+                else {
+                    if (selectmap.value == "Openstreet Map") {
+                        markersArray.push(marker);
+                    }
+                    else {
+                        OSMmarkersArray.push(marker);
+                    }
+                }
+
+                function getTemplateRow() {
+                    var x = document.getElementById("templateRow").cloneNode(true);
+                    x.id = Latitude + "_" + Longitude + "_" + count;
+                    x.style.display = "";
+                    //    x.innerHTML = x.innerHTML.replace(/{id}/, ++maxID);
+                    x.cells[0].innerHTML = datetime;
+                    if (selectmap.value == "Openstreet Map") {
+                        x.cells[1].innerHTML = address;
+                    }
+                    else {
+                        //                        x.cells[1].innerHTML = osmaddress;
+                        x.cells[1].innerHTML = "Click here for address.";
+                    }
+                    x.cells[2].innerHTML = speed + " Kms/Hr ";
+                    x.cells[3].innerHTML = status;
+                    odometer = parseFloat(odometer);
+                    startodo = parseFloat(startodo);
+                    var diff = odometer - startodo;
+                    diff = roundToTwo(diff)
+                    x.cells[4].innerHTML = diff;
+                    x.cells[5].innerHTML = timestamp;
+                    if (status == "Stopped") {
+                        x.style.backgroundColor = "#ffcccc";
+                    }
+                    return x;
+                }
+                $("#divscroll").scrollTop($("#divscroll").get(0).scrollHeight);
+
+                if (selectmap.value == "Openstreet Map") {
+                    var polylength = flightPlanCoordinates.length;
+                    flightPlanCoordinates[polylength] = point;
+                    polylength++;
+                    flightPath = new google.maps.Polyline({
+                        path: flightPlanCoordinates,
+                        strokeColor: "#0000CD",
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                    });
+
+                    flightPath.setMap(map);
+
+                    polilinepath.push(flightPath);
+                    var isaddress = false;
+                    var address;
+                    geocoder = new google.maps.Geocoder();
+                    address = geocoder.geocode({ 'latLng': point }, function (results, addstatus) {
+                        isaddress = true;
+                        if (addstatus == google.maps.GeocoderStatus.OK) {
+                            if (results.length > 0) {
+                                if (results[0]) {
+                                    address = results[0].formatted_address;
+                                    var t = document.getElementById("example");
+                                    var rows = t.getElementsByTagName("tr");
+
+                                    var r = rows[rows.length - 1];
+                                    r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                    var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                    createInfoWindow(flightPath, content);
+                                    function createInfoWindow(poly, content) {
+                                        google.maps.event.addListener(poly, 'click', function (event) {
+                                            infoWindow.content = content;
+                                            infoWindow.position = event.latLng;
+                                            infoWindow.open(map);
+                                        });
+                                    }
+                                }
+                                else {
+                                    address = "No results";
+                                    var t = document.getElementById("example");
+                                    var rows = t.getElementsByTagName("tr");
+
+                                    var r = rows[rows.length - 1];
+                                    r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                    var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                    createInfoWindow(flightPath, content);
+                                    function createInfoWindow(poly, content) {
+                                        google.maps.event.addListener(poly, 'click', function (event) {
+                                            infoWindow.content = content;
+                                            infoWindow.position = event.latLng;
+                                            infoWindow.open(map);
+                                        });
+                                    }
+                                }
+                            }
+                            else {
+                                var t = document.getElementById("example");
+                                var rows = t.getElementsByTagName("tr");
+
+                                var r = rows[rows.length - 1];
+                                r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                createInfoWindow(flightPath, content);
+                                function createInfoWindow(poly, content) {
+                                    google.maps.event.addListener(poly, 'click', function (event) {
+                                        infoWindow.content = content;
+                                        infoWindow.position = event.latLng;
+                                        infoWindow.open(map);
+                                    });
+                                }
+                            }
+                        }
+                        else {
+                            var t = document.getElementById("example");
+                            var rows = t.getElementsByTagName("tr");
+
+                            var r = rows[rows.length - 1];
+                            r.parentNode.insertBefore(getTemplateRow(), r);
+
+                            var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                            createInfoWindow(flightPath, content);
+                            function createInfoWindow(poly, content) {
+                                google.maps.event.addListener(poly, 'click', function (event) {
+                                    infoWindow.content = content;
+                                    infoWindow.position = event.latLng;
+                                    infoWindow.open(map);
+                                });
+                            }
+                        }
+                    });
+                    if (!isaddress) {
+                        var t = document.getElementById("example");
+                        var rows = t.getElementsByTagName("tr");
+
+                        var r = rows[rows.length - 1];
+                        r.parentNode.insertBefore(getTemplateRow(), r);
+
+                        var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                        createInfoWindow(flightPath, content);
+                        function createInfoWindow(poly, content) {
+                            google.maps.event.addListener(poly, 'click', function (event) {
+                                infoWindow.content = content;
+                                infoWindow.position = event.latLng;
+                                infoWindow.open(map);
+                            });
+                        }
+                    }
+                    count++;
+                    if (!tabchart) {
+                        if (selectmap.value == "Openstreet Map") {
+                            drawelevPath();
+                        }
+                    }
+                }
+                else {
+                    popupcontent = "";
+                    //                    showpopup = false;
+                    //                    geocoding.geocode(Latitude + ',' + Longitude);
+                    var OSMpolylength = pointList.length;
+                    pointList[OSMpolylength] = point;
+                    OSMpolylength++;
+                    firstpolyline = new L.Polyline(pointList, {
+                        color: 'blue',
+                        weight: 2,
+                        opacity: 1,
+                        smoothFactor: 1
+                    });
+                    firstpolyline.addTo(openstreetmap);
+                    OSMpolilinepath.push(firstpolyline);
+
+                    var t = document.getElementById("example");
+                    var rows = t.getElementsByTagName("tr");
+
+                    var r = rows[rows.length - 1];
+                    r.parentNode.insertBefore(getTemplateRow(), r);
+                    count++;
+                    el.clear();
+                    //                    openstreetmap.removeLayer(el);
+                    //                    OSMelevpoints = [[169.13693, -44.696476, 296], [169.134602, -44.69764, 295], [169.129983, -44.701164, 299], [169.131292, -44.702382, 303], [169.13376, -44.704533, 315], [169.135568, -44.705574, 336], [169.136179, -44.70934, 338], [169.137011, -44.714066, 344], [169.136984, -44.719489, 342], [169.136898, -44.725235, 350], [169.136801, -44.730143, 353], [169.135632, -44.734853, 354], [169.131882, -44.738989, 363], [169.129688, -44.744241, 363], [169.123937, -44.746982, 361], [169.118509, -44.750286, 371], [169.112763, -44.753113, 374], [169.107807, -44.755356, 378], [169.103467, -44.758086, 386], [169.098902, -44.760956, 388], [169.096429, -44.764642, 397], [169.094197, -44.768246, 401], [169.091955, -44.773037, 402], [169.089251, -44.777194, 408], [169.086215, -44.780939, 410], [169.083227, -44.785498, 412], [169.079778, -44.788926, 423], [169.076913, -44.7923, 429], [169.074059, -44.795938, 429], [169.071495, -44.800213, 435], [169.069505, -44.804263, 442], [169.067574, -44.809322, 436], [169.065508, -44.812728, 450], [169.063277, -44.817299, 451], [169.062, -44.822073, 447], [169.06023, -44.826622, 464], [169.058905, -44.831729, 459], [169.05553, -44.835645, 460], [169.051888, -44.83933, 467], [169.048626, -44.842817, 476], [169.045467, -44.846106, 480], [169.042028, -44.849287, 485], [169.037672, -44.851776, 493], [169.033477, -44.854367, 495], [169.029974, -44.856373, 502], [169.027324, -44.857559, 514], [169.023832, -44.859275, 518], [169.020587, -44.861743, 524], [169.017615, -44.864414, 526], [169.015748, -44.868888, 520], [169.013119, -44.872059, 529], [169.009879, -44.874521, 536], [169.00798, -44.87598, 553], [169.005073, -44.878158, 556], [169.00452, -44.878609, 557], [169.004488, -44.878619, 554], [169.004477, -44.878619, 553], [169.004483, -44.878619, 552], [169.004477, -44.878619, 551], [169.004477, -44.878619, 550], [169.004477, -44.878619, 551], [169.004483, -44.878614, 551], [169.004488, -44.878614, 551], [169.004488, -44.878614, 552], [169.004558, -44.878598, 556], [169.004011, -44.880808, 556], [169.002584, -44.884032, 570], [169.001033, -44.886172, 583], [168.999703, -44.887546, 600], [168.998732, -44.889235, 606], [168.996801, -44.890893, 609], [168.992279, -44.893452, 608], [168.988915, -44.895941, 613], [168.987783, -44.899117, 616], [168.985283, -44.901563, 625], [168.9834, -44.904835, 629], [168.981164, -44.90755, 639], [168.978138, -44.910441, 647], [168.976008, -44.913166, 649], [168.973165, -44.915371, 656], [168.973358, -44.918332, 657], [168.971502, -44.921905, 670], [168.971454, -44.925504, 676], [168.970628, -44.929104, 687], [168.969887, -44.931856, 701], [168.969448, -44.934672, 710], [168.968155, -44.938567, 713], [168.967575, -44.939463, 731], [168.963912, -44.941855, 726], [168.962141, -44.944918, 738], [168.960376, -44.948287, 746], [168.959813, -44.951527, 757], [168.956793, -44.954156, 766], [168.957008, -44.957117, 782], [168.957351, -44.960684, 791], [168.959025, -44.963624, 805], [168.958794, -44.966269, 815], [168.957614, -44.968683, 832], [168.957571, -44.968801, 833], [168.955221, -44.971097, 839], [168.953274, -44.972958, 863], [168.949771, -44.974363, 877], [168.946869, -44.975699, 888], [168.944911, -44.977614, 911], [168.944825, -44.978489, 928], [168.943709, -44.979846, 951], [168.942373, -44.980634, 964], [168.942277, -44.982217, 978], [168.942153, -44.98329, 993], [168.941799, -44.984363, 1002], [168.941145, -44.985479, 1021], [168.94115, -44.986535, 1037], [168.940818, -44.987656, 1054], [168.940104, -44.98889, 1064], [168.939959, -44.990816, 1082], [168.938634, -44.992345, 1093], [168.938618, -44.992361, 1087], [168.938608, -44.992361, 1088], [168.938608, -44.992356, 1090], [168.938608, -44.992345, 1091], [168.938602, -44.992345, 1091], [168.938608, -44.99235, 1090], [168.938608, -44.992345, 1090], [168.938742, -44.992179, 1085], [168.920138, -44.995102, 931], [168.908068, -44.99175, 765], [168.903127, -44.985961, 734], [168.903149, -44.985945, 740], [168.903143, -44.98594, 741], [168.903224, -44.985666, 739], [168.899914, -44.981938, 735], [168.892221, -44.976783, 722], [168.876933, -44.976574, 638], [168.869138, -44.976069, 643], [168.865807, -44.975469, 636], [168.864428, -44.975587, 609], [168.860834, -44.977625, 500], [168.85555, -44.981305, 397], [168.853887, -44.978537, 385], [168.84899, -44.976853, 391], [168.848882, -44.972261, 393], [168.850347, -44.96791, 399], [168.851135, -44.962733, 396], [168.848512, -44.959386, 407], [168.845739, -44.956039, 408], [168.843641, -44.952756, 413], [168.841109, -44.948915, 420], [168.840503, -44.947439, 422], [168.839752, -44.944929, 418], [168.835986, -44.939516, 415], [168.833127, -44.938626, 415], [168.832639, -44.938856, 421], [168.832628, -44.93884, 423], [168.832639, -44.938835, 425], [168.832639, -44.93883, 424], [168.832644, -44.938819, 424], [168.832644, -44.938813, 424], [168.832644, -44.938808, 424], [168.832644, -44.938797, 424], [168.832644, -44.938792, 424], [168.832655, -44.938808, 424], [168.83265, -44.938797, 424], [168.832655, -44.938803, 424], [168.83265, -44.938803, 424], [168.83265, -44.938797, 424], [168.83265, -44.938803, 424], [168.83265, -44.938797, 425], [168.833336, -44.93832, 414], [168.833132, -44.93854, 409], [168.834484, -44.938481, 414], [168.834554, -44.93847, 414], [168.83457, -44.938513, 420], [168.834473, -44.938449, 420], [168.834479, -44.938449, 419], [168.83449, -44.938454, 419], [168.834495, -44.938459, 418], [168.834495, -44.938465, 417], [168.834495, -44.938459, 417]];
+                    geojson = {
+                        "name": "NewFeatureType", "type": "FeatureCollection",
+                        "features": [{
+                            "type": "Feature", "geometry": { "type": "LineString", "coordinates": OSMelevpoints },
+                            "properties": null
+                        }
+                        ]
+                    };
+
+                    gjl = L.geoJson(geojson, {
+                        style: {
+                            color: '#ff0000',
+                            weight: 0,
+                            opacity: 1
+                        },
+                        onEachFeature: el.addData.bind(el)
+                    }).addTo(openstreetmap);
+                }
+            }
+            else {
+                $('#btnShow').val('Draw');
+                clearInterval(interval);
+                if (selectmap.value == "Openstreet Map") {
+                    if (data.length > 0) {
+                        var startpoint = new google.maps.LatLng(data[0].latitude, data[0].longitude);
+                        var endpoint = new google.maps.LatLng(data[data.length - 1].latitude, data[data.length - 1].longitude);
+                        var latlngbounds = new google.maps.LatLngBounds();
+                        latlngbounds.extend(startpoint);
+                        latlngbounds.extend(endpoint);
+                        map.fitBounds(latlngbounds);
+                    }
+                }
+                else {
+                    var bounds = [];
+                    bounds.push([data[0].latitude, data[0].longitude]);
+                    bounds.push([data[data.length - 1].latitude, data[data.length - 1].longitude]);
+                    openstreetmap.fitBounds(bounds);
+                }
+            }
+
+            function deleteOverlays() {
+                clearOverlays();
+                markersArray = [];
+                polilinepath = [];
+                if (flightPath) {
+                    flightPath.setMap(null);
+                }
+            }
+
+            // Sets the map on all markers in the array.
+            function setAllMap(map) {
+                for (var i = 0; i < markersArray.length; i++) {
+                    markersArray[i].setMap(map);
+                }
+                for (i = 0; i < polilinepath.length; i++) {
+                    polilinepath[i].setMap(map); //or line[i].setVisible(false);
+                }
+            }
+
+            // Removes the overlays from the map, but keeps them in the array.
+            function clearOverlays() {
+                setAllMap(null);
+            }
+        }
+
+        function addlocations(lat, lng) {
+            var mytext = lat + "," + lng;
+            window.open('Locations.html?lat=' + lat + "&long=" + lng);
+        }
+
+        function speedrange(speed) {
+            if (speed == 1) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 1500);
+            }
+            else if (speed == 2) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 1000);
+            }
+            else if (speed == 3) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 500);
+            }
+            else if (speed == 4) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 200);
+            }
+            else if (speed == 5) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 100);
+            }
+            else if (speed == 6) {
+                clearInterval(interval);
+                interval = setInterval(function () { liveupdate() }, 50);
+            }
+        }
+
+        function btnstopclick() {
+            clearInterval(interval);
+            $("#speedval").val("speed");
+            //            deletestoppedOverlays();
+            firstlog = false;
+            $('#btnShow').val('Draw');
+            count = 0;
+        }
+
+        function deleteOverlaysOSM() {
+            for (i = 0; i < OSMmarkersArray.length; i++) {
+                openstreetmap.removeLayer(OSMmarkersArray[i]);
+            }
+            OSMmarkersArray = [];
+            for (i = 0; i < OSMpolilinepath.length; i++) {
+                openstreetmap.removeLayer(OSMpolilinepath[i]);
+            }
+        }
+
+        function btnclearclick() {
+            if (selectmap.value == "Openstreet Map") {
+                deleteallOverlays();
+                deletelocationOverlays();
+                deleteStoppedmarkerOverlays();
+            }
+            else {
+                deleteOverlaysOSM();
+
+                for (i = 0; i < OSMpolilinepath.length; i++) {
+                    openstreetmap.removeLayer(OSMpolilinepath[i]);
+                }
+                OSMpolilinepath = [];
+                pointList = [];
+                for (i = 0; i < OSMelevpoints.length; i++) {
+                    openstreetmap.removeLayer(OSMelevpoints[i]);
+                }
+                OSMelevpoints = [];
+                openstreetmap.removeLayer(el);
+                if (typeof gjl === "undefined") {
+                }
+                else {
+                    openstreetmap.removeLayer(gjl);
+                }
+            }
+            function deleteallOverlays() {
+                clearallOverlays();
+                markersArray = [];
+                polilinepath = [];
+                elevpoints = [];
+                flightPlanCoordinates = [];
+                if (flightPath) {
+                    flightPath.setMap(null);
+                }
+            }
+
+            // Sets the map on all markers in the array.
+            function allsetAllMap(map) {
+                for (var i = 0; i < markersArray.length; i++) {
+                    markersArray[i].setMap(map);
+                }
+                for (i = 0; i < polilinepath.length; i++) {
+                    polilinepath[i].setMap(map); //or line[i].setVisible(false);
+                }
+            }
+
+            // Removes the overlays from the map, but keeps them in the array.
+            function clearallOverlays() {
+                allsetAllMap(null);
+            }
+        }
+
+        var hidden = false;
+        function clicked() {
+            if (hidden) {
+                $(".togglediv").stop().animate({ bottom: 0 }, 500);
+                hidden = false;
+                $("#btnshowhide").val("Hide");
+            }
+            else {
+                $("#btnshowhide").val("Show");
+                $(".togglediv").css('margin-left', 0);
+                $(".togglediv").css('margin-right', 0);
+                $(".togglediv").animate({ bottom: '-196px' }, 500);
+                hidden = true;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        var geocoding;
+        var popupcontent = "";
+        function onrowclick(idval) {
+            var positionarray = idval.id.split('_');
+            var table = $('#example');
+            var tr = $('#example').find('tr');
+            var timestamp;
+            var speed;
+            var vehstatus;
+            var stoppedtime;
+            var rowCellValue;
+
+            for (var i = 3; i < tr.length; i++) {
+                var rowid = tr[i].id;
+                if (rowid == idval.id) {
+                    timestamp = tr[i].cells[0].innerHTML;
+                    speed = tr[i].cells[2].innerHTML;
+                    vehstatus = tr[i].cells[3].innerHTML;
+                    stoppedtime = tr[i].cells[5].innerHTML;
+                }
+            }
+
+
+            if (selectmap.value == "Openstreet Map") {
+                var point = new google.maps.LatLng(positionarray[0], positionarray[1]);
+                map.panTo(point);
+
+                var address;
+                geocoder = new google.maps.Geocoder();
+                address = geocoder.geocode({ 'latLng': point }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[0]) {
+                            address = results[0].formatted_address;
+                            infoWindow.close();
+                            infoWindow.setOptions({
+                                content: "<div>Time : " + timestamp + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + vehstatus + "<br/>" + "Stopped Time : " + stoppedtime + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;' onclick='addlocations(" + positionarray[0] + "," + positionarray[1] + ")'>Add to My Locations</a>",
+                                position: point
+                            });
+                            infoWindow.open(map);
+                        }
+                        else {
+                            address = "No results";
+                            infoWindow.close();
+                            infoWindow.setOptions({
+                                content: "<div>Time : " + timestamp + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + vehstatus + "<br/>" + "Stopped Time : " + stoppedtime + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;' onclick='addlocations(" + positionarray[0] + "," + positionarray[1] + ")'>Add to My Locations</a>",
+                                position: point
+                            });
+                            infoWindow.open(map);
+                        }
+                    }
+                });
+            }
+            else {
+                showpopup = true;
+                //                popupcontent = "<div>Time : " + timestamp + "<br/>" + "Speed : " + speed + "<br/>" + "Status : " + vehstatus + "<br/>" + "Stopped Time : " + stoppedtime;
+                popupcontent = "<div>Time : " + timestamp + "<br/>" + "Speed : " + speed + "<br/>" + "Status : " + vehstatus + "<br/>" + "Stopped Time : " + stoppedtime + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;' onclick='addlocations(" + positionarray[0] + "," + positionarray[1] + ")'>Add to My Locations</a>";
+                geocoding.geocode(positionarray[0] + ',' + positionarray[1]);
+                myCenter = [[positionarray[0], positionarray[1]]];
+                openstreetmap.panTo(new L.LatLng(positionarray[0], positionarray[1]));
+            }
+        }
+
+        function PrevValidating() {
+            var speed = $("#speedval").val();
+            if (speed == "speed") {
+                speed = 3;
+            }
+            if (speed > 1) {
+                speed--;
+            }
+            $("#speedval").val(speed);
+            if ($('#btnShow').val() == 'Pause') {
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1500);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1000);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 500);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 200);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 100);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 50);
+                }
+            }
+            return false;
+        }
+
+        function NextValidating() {
+            var speed = $("#speedval").val();
+            if (speed == "speed") {
+                speed = 3;
+            }
+            if (speed < 6) {
+                speed++;
+            }
+            $("#speedval").val(speed);
+            if ($('#btnShow').val() == 'Pause') {
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1500);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 1000);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 500);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 200);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 100);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { liveupdate() }, 50);
+                }
+            }
+            return false;
+        }
+    </script>
+    <script type="text/javascript">
+        var tableToExcel = (function () {
+            var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+            return function (table, name) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+                window.location.href = uri + base64(format(template, ctx))
+            }
+        })()
+    </script>
+    <script type="text/javascript">
+        function previewroute() {
+            clearInterval(interval);
+            $("#speedval").val("speed");
+            //            deletestoppedOverlays();
+            firstlog = false;
+            $('#btnShow').val('Draw');
+            count = 0;
+            deleteallOverlays();
+            function deleteallOverlays() {
+                clearallOverlays();
+                markersArray = [];
+                polilinepath = [];
+                //if (flightPath) {
+                //    flightPath.setMap(null);
+                //}
+                flightPlanCoordinates = [];
+            }
+
+            // Sets the map on all markers in the array.
+            function allsetAllMap(map) {
+                for (var i = 0; i < markersArray.length; i++) {
+                    markersArray[i].setMap(map);
+                }
+                for (i = 0; i < polilinepath.length; i++) {
+                    polilinepath[i].setMap(map); //or line[i].setVisible(false);
+                }
+            }
+
+            // Removes the overlays from the map, but keeps them in the array.
+            function clearallOverlays() {
+                allsetAllMap(null);
+            }
+
+
+            $(function () {
+                var data = { 'op': 'getdata' };
+                var s = function (msg) {
+                    if (msg) {
+                        BindResults(msg);
+                    }
+                    else {
+                    }
+                };
+                var e = function (x, h, e) {
+                    // $('#BookingDetails').html(x);
+                };
+                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+                callHandler(data, s, e);
+            });
+
+            function callHandler(d, s, e) {
+                $.ajax({
+                    url: 'Client.axd',
+                    data: d,
+                    type: 'GET',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    async: true,
+                    cache: true,
+                    success: s,
+                    error: e
+                });
+            }
+
+            var startodo = 0;
+            function BindResults(logdata) {
+                data = logdata;
+                x = document.getElementById('example');
+
+                $('#example').remove();
+
+                var divgrid = document.getElementById("divlogsgrid");
+                // divgrid.innerHTML = '<table id="example" summary="Route Details" rules="groups" frame="hsides" border="2"  style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><caption>HERITAGE FOODS (INDIA) LTD</caption> <tr><td><table style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><caption>Route Map Summary</caption><colgroup align="center"></colgroup><colgroup align="center"></colgroup><colgroup align="center"></colgroup><colgroup align="center"></colgroup><colgroup align="center"></colgroup> <tr style="border-bottom: 1px solid #d5d5d5; background-color: #d5d5d5; height: 30px;font-family: Arial; font-weight: normal; font-size: 12px;">    <th style="width: 150px;">TimeStamp </th> <th style="width: 400px;"> Address </th><th style="width: 100px;"> Speed </th> <th style="width: 100px;"> Status </th> <th style="width: 100px;"> Odometer </th><th style="width: 150px;"> Stopped Time </th></tr></table></td></tr><tr><td> <div id="divscroll"  style="width: 950px; height: 123px; overflow: auto;"><table style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr id="templateRow" style="display: none; cursor: pointer; border-bottom: 1px solid #d5d5d5;"  onclick="onrowclick(this);"><td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td><td style="width: 400px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td><td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td></tr></table></div></td></tr></table>';
+                divgrid.innerHTML = '<table class="table table-condensed" id="example" summary="Route Details" rules="groups" frame="hsides" border="2"  style="height:195px;cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr><td style="padding: 0px;"><table class="table table-condensed" style="margin-bottom: 0px;cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr style="border-bottom: 1px solid #d5d5d5; background-color: #f39c12; color: #ffffff;font-family: Arial; font-weight: normal; font-size: 12px;">    <th style="width: 150px;">TimeStamp </th> <th style="width: 400px;"> Address </th><th style="width: 100px;"> Speed </th> <th style="width: 100px;"> Status </th> <th style="width: 150px;"> Stopped Time </th></tr></table class="table table-condensed"></td></tr><tr><td> <div id="divscroll"  style="width: 950px; height: 155px; overflow: auto;"><table class="table table-striped" style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;font-family:Arial; font-weight:normal;font-size:12px;" cellpadding="2px" cellspacing="0px"><tr id="templateRow" style="display: none; cursor: pointer; border-bottom: 1px solid #d5d5d5;"  onclick="onrowclick(this);"><td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td><td style="width: 400px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td><td style="width: 100px; text-align: center;border-bottom: 1px solid #d5d5d5;"> </td> <td style="width: 150px; text-align: center;border-bottom: 1px solid #d5d5d5;"></td></tr></table></div></td></tr></table>';
+
+                var startmarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(data[0].latitude, data[0].longitude),
+                    map: map,
+                    center: location,
+                    zoom: 6
+                });
+                stoppedmarkers.push(startmarker);
+                var Sinfowindow = new google.maps.InfoWindow({
+                    content: "Start Point"
+                });
+
+                google.maps.event.addListener(startmarker, 'click', function () {
+                    Sinfowindow.open(map, startmarker);
+                });
+                var endmarker = new google.maps.Marker({
+                    position: new google.maps.LatLng(data[data.length - 1].latitude, data[data.length - 1].longitude),
+                    map: map,
+                    center: location,
+                    zoom: 6
+                });
+                stoppedmarkers.push(endmarker);
+                var Einfowindow = new google.maps.InfoWindow({
+                    content: "End Point"
+                });
+
+                google.maps.event.addListener(endmarker, 'click', function () {
+                    Einfowindow.open(map, endmarker);
+                });
+
+                var odometerfrom = data[0].odometer;
+                startodo = odometerfrom;
+                var odometerto = data[data.length - 1].odometer;
+                var TotalDistance = odometerto - odometerfrom;
+
+                document.getElementById('lbltripinfo').innerHTML = "Report From : " + data[0].datetime + "  To : " + data[data.length - 1].datetime + " and  TotalDistance Travelled : " + Math.round(TotalDistance) + "KMs ";
+
+                var startpoint = new google.maps.LatLng(data[0].latitude, data[0].longitude);
+                var endpoint = new google.maps.LatLng(data[data.length - 1].latitude, data[data.length - 1].longitude);
+                var latlngbounds = new google.maps.LatLngBounds();
+                latlngbounds.extend(startpoint);
+                latlngbounds.extend(endpoint);
+                map.fitBounds(latlngbounds);
+                for (var count = 0; count < data.length; count++) {
+                    var Latitude = data[count].latitude;
+                    var Longitude = data[count].longitude;
+                    var speed = data[count].speed;
+                    speed = Math.round(speed);
+                    var odometer = data[count].odometer;
+                    var timestamp = "";
+                    var point = new google.maps.LatLng(
+            parseFloat(Latitude),
+            parseFloat(Longitude));
+
+                    var locationame = "";
+                    if (typeof Locationsdata === "undefined") {
+                    }
+                    else {
+                        for (var cont = 0; cont < Locationsdata.length; cont++) {
+                            var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                            var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                            var radius = Locationsdata[cont].Radious;
+                            var isinside = pointInCircle(targetLoc, radius, center);
+                            function pointInCircle(point, radius, center) {
+                                return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                            }
+                            if (isinside) {
+                                if (prevbranch != Locationsdata[cont].locacationname) {
+                                    // To add the marker to the map, call setMap();
+                                    if (showlocations) {
+                                        var marker = new google.maps.Marker({
+                                            position: point,
+                                            map: map,
+                                            center: location,
+                                            title: Locationsdata[cont].locacationname,
+                                            icon: "Images/greenmarker.png",
+                                            zoom: 6
+                                        });
+                                        locationame = Locationsdata[cont].locacationname;
+                                        LocationsArray.push(marker);
+                                        var rrr = parseInt(Locationsdata[cont].Radious, rrr);
+                                        var circle = new google.maps.Circle({
+                                            map: map,
+                                            zoom: 16,
+                                            radius: rrr,    // 10 miles in metres
+                                            strokeColor: "#FFffff",
+                                            fillColor: "#FF0000",
+                                            fillOpacity: 0.35,
+                                            strokeWeight: 1,
+                                            strokeOpacity: 0
+                                        });
+                                        circle.bindTo('center', marker, 'position');
+                                        LocationsArray.push(circle);
+
+                                        prevbranch = Locationsdata[cont].locacationname;
+                                    }
+                                    addedlocations.push({ latitude: Locationsdata[cont].latitude, longitude: Locationsdata[cont].longitude, locacationname: Locationsdata[cont].locacationname, mrkrcnt: imgcnt, radius: Locationsdata[cont].Radious });
+                                    imgcnt = imgcnt + 1;
+                                }
+                            }
+                        }
+                    }
+                    if (speed == 0) {
+                        if (count < data.length) {
+
+                            var _MS_PER_DAY = 86400000;
+                            var _MS_PER_aaa = 3600000;
+                            var _MS_PER_sss = 60000;
+                            var _MS_PER_ddd = 1000;
+                            var spantime = 0;
+
+
+                            while (count < data.length && data[count].speed == 0) {
+                                var prestime;
+                                if (count < 1) {
+                                    prestime = data[count].datetime;
+                                }
+                                else {
+                                    prestime = data[count].datetime;
+                                }
+                                var upcmngdatetime = data[count + 1].datetime;
+                                var date = prestime.split(" ")[0];
+                                var time = prestime.split(" ")[1];
+                                var AMPM = prestime.split(" ")[2];
+
+                                var datevalues = new Array();
+                                var timevalues = new Array();
+                                if (date.indexOf("-") != -1) {
+                                    datevalues = date.split('-');
+                                }
+                                else if (date.indexOf("/") != -1) {
+                                    datevalues = date.split('/');
+                                }
+                                timevalues = time.split(':');
+                                var exacthours = timevalues[0];
+                                if (AMPM == "PM") {
+                                    exacthours = parseInt(exacthours);
+                                    if (exacthours != "12") {
+                                        exacthours = 12 + exacthours;
+                                    }
+                                }
+                                var updatetime = new Date(datevalues[2], datevalues[0] - 1, datevalues[1], exacthours, timevalues[1], timevalues[2]);
+
+                                var upcmngdate = upcmngdatetime.split(" ")[0];
+                                var upcmngtime = upcmngdatetime.split(" ")[1];
+                                var upcmngAMPM = upcmngdatetime.split(" ")[2];
+
+                                var upcmngdatevalues = new Array();
+                                var upcmngtimevalues = new Array();
+                                if (upcmngdate.indexOf("-") != -1) {
+                                    upcmngdatevalues = upcmngdate.split('-');
+                                }
+                                else if (upcmngdate.indexOf("/") != -1) {
+                                    upcmngdatevalues = upcmngdate.split('/');
+                                }
+                                upcmngtimevalues = upcmngtime.split(':');
+                                var upcmngexacthours = upcmngtimevalues[0];
+                                if (upcmngAMPM == "PM") {
+                                    upcmngexacthours = parseInt(upcmngexacthours);
+                                    if (upcmngexacthours != "12") {
+                                        upcmngexacthours = 12 + upcmngexacthours;
+                                    }
+                                }
+                                var upcmngupdatetime = new Date(upcmngdatevalues[2], upcmngdatevalues[0] - 1, upcmngdatevalues[1], upcmngexacthours, upcmngtimevalues[1], upcmngtimevalues[2]);
+                                //                            upcmngupdatetime = upcmngupdatetime.toString('dd-MM-yyyy HH:mm:ss');
+
+                                spantime += (upcmngupdatetime - updatetime);
+                                count++;
+                            }
+                            count--;
+                            var days = Math.floor((spantime) / _MS_PER_DAY);
+                            var hours = Math.floor((spantime) / _MS_PER_aaa);
+                            if (hours > 24) {
+                                hours = hours % 24;
+                            }
+                            var min = Math.floor((spantime) / _MS_PER_sss);
+                            if (min > 60) {
+                                min = min % 60;
+                            }
+                            var sec = Math.floor((spantime) / _MS_PER_ddd);
+                            if (sec > 60) {
+                                sec = sec % 60;
+                            }
+                            if (days >= 1) {
+                                timestamp = "Stopped for " + days + " days " + hours + " Hrs " + min + " Min";
+                            }
+                            else if (hours >= 1) {
+                                timestamp = "Stopped for " + hours + " Hrs " + min + " Min";
+                            }
+                            else if (min >= 1) {
+                                timestamp = "Stopped for " + min + " Min " + sec + " Sec";
+                            }
+                            else if (days < 1 && min > 1) {
+                                timestamp = "Stopped for " + hours + " Hrs " + min + " Min";
+                            }
+                            var stoppedmarker = new google.maps.Marker({
+                                position: point,
+                                map: map,
+                                title: timestamp,
+                                icon: "Images/ssmarker.png",
+                                zoom: 6
+                            });
+                            allstoppedmarkers.push(stoppedmarker);
+                        }
+                    }
+                    var status = data[count].Status;
+                    var datetime = data[count].datetime;
+
+                    flightPlanCoordinates[count] = new google.maps.LatLng(Latitude, Longitude);
+                    var flightPath = new google.maps.Polyline({
+                        path: flightPlanCoordinates,
+                        strokeColor: "#0000CD",
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                    });
+                    flightPath.setMap(map);
+                    polilinepath.push(flightPath);
+                    var address;
+                    geocoder = new google.maps.Geocoder();
+                    address = geocoder.geocode({ 'latLng': point }, function (results, addstatus) {
+                        if (addstatus == google.maps.GeocoderStatus.OK) {
+                            if (results.length > 0) {
+                                if (results[0]) {
+                                    address = results[0].formatted_address;
+                                    var t = document.getElementById("example");
+                                    var rows = t.getElementsByTagName("tr");
+
+                                    var r = rows[rows.length - 1];
+                                    r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                    var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                    createInfoWindow(flightPath, content);
+                                    function createInfoWindow(poly, content) {
+                                        google.maps.event.addListener(poly, 'click', function (event) {
+                                            infoWindow.content = content;
+                                            infoWindow.position = event.latLng;
+                                            infoWindow.open(map);
+                                        });
+                                    }
+                                }
+                                else {
+                                    address = "No results";
+                                    var t = document.getElementById("example");
+                                    var rows = t.getElementsByTagName("tr");
+
+                                    var r = rows[rows.length - 1];
+                                    r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                    var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                    createInfoWindow(flightPath, content);
+                                    function createInfoWindow(poly, content) {
+                                        google.maps.event.addListener(poly, 'click', function (event) {
+                                            infoWindow.content = content;
+                                            infoWindow.position = event.latLng;
+                                            infoWindow.open(map);
+                                        });
+                                    }
+                                }
+                            }
+                            else {
+                                var t = document.getElementById("example");
+                                var rows = t.getElementsByTagName("tr");
+
+                                var r = rows[rows.length - 1];
+                                r.parentNode.insertBefore(getTemplateRow(), r);
+
+                                var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                                createInfoWindow(flightPath, content);
+                                function createInfoWindow(poly, content) {
+                                    google.maps.event.addListener(poly, 'click', function (event) {
+                                        infoWindow.content = content;
+                                        infoWindow.position = event.latLng;
+                                        infoWindow.open(map);
+                                    });
+                                }
+                            }
+                        }
+                        else {
+                            var t = document.getElementById("example");
+                            var rows = t.getElementsByTagName("tr");
+
+                            var r = rows[rows.length - 1];
+                            r.parentNode.insertBefore(getTemplateRow(), r);
+
+                            var content = "<div>Time : " + datetime + "<br/>" + "Speed : " + speed + "<br/>" + "Address : " + address + "<br/>" + "Status : " + status + "<br/><a style='text-decoration: underline;color:blue; cursor:pointer;'  onclick='addlocations(" + Latitude + "," + Longitude + ")'>Add to My Locations</a>";
+                            createInfoWindow(flightPath, content);
+                            function createInfoWindow(poly, content) {
+                                google.maps.event.addListener(poly, 'click', function (event) {
+                                    infoWindow.content = content;
+                                    infoWindow.position = event.latLng;
+                                    infoWindow.open(map);
+                                });
+                            }
+                        }
+                    });
+                    if (typeof address === "undefined") {
+                        var t = document.getElementById("example");
+                        var rows = t.getElementsByTagName("tr");
+
+                        var r = rows[rows.length - 1];
+                        r.parentNode.insertBefore(getTemplateRow(), r);
+                    }
+
+                    function getTemplateRow() {
+                        var x = document.getElementById("templateRow").cloneNode(true);
+                        x.id = Latitude + "_" + Longitude + "_" + count;
+                        x.style.display = "";
+                        //    x.innerHTML = x.innerHTML.replace(/{id}/, ++maxID);
+                        x.cells[0].innerHTML = datetime;
+                        x.cells[1].innerHTML = address;
+                        x.cells[2].innerHTML = speed + " Kms/Hr ";
+                        x.cells[3].innerHTML = status;
+                        odometer = parseFloat(odometer);
+                        startodo = parseFloat(startodo);
+                        var diff = odometer - startodo;
+                        diff = roundToTwo(diff)
+                        x.cells[4].innerHTML = diff;
+                        x.cells[5].innerHTML = timestamp;
+                        if (status == "Stopped") {
+                            x.style.backgroundColor = "#ffcccc";
+                        }
+                        return x;
+                    }
+                    $("#divscroll").scrollTop($("#divscroll").get(0).scrollHeight);
+                }
+
+            }
+        }
+        function roundToTwo(num) {
+            return +(Math.round(num + "e+2") + "e-2");
+        }
+        var mousemarker = null;
+        function drawelevPath() {
+            // Create a new chart in the elevation_chart DIV.
+            chart = new google.visualization.ColumnChart(document.getElementById('elevation_chart'));
+
+            // Create a PathElevationRequest object using this array.
+            // Ask for 256 samples along that path.
+            var pathRequest = {
+                'path': elevpoints,
+                'samples': 256
+            }
+
+            // Initiate the path request.
+            elevator.getElevationAlongPath(pathRequest, plotElevation);
+        }
+
+        // Takes an array of ElevationResult objects, draws the path on the map
+        // and plots the elevation profile on a Visualization API ColumnChart.
+        function plotElevation(results, status) {
+            if (status != google.maps.ElevationStatus.OK) {
+                return;
+            }
+            var elevations = results;
+
+            // Extract the elevation samples from the returned results
+            // and store them in an array of LatLngs.
+            var elevationPath = [];
+            for (var i = 0; i < results.length; i++) {
+                elevationPath.push(elevations[i].location);
+            }
+
+            //            // Display a polyline of the elevation path.
+            //            var pathOptions = {
+            //                path: elevationPath,
+            //                strokeColor: '#0000CC',
+            //                opacity: 0.4,
+            //                map: map
+            //            }
+            //            polyline = new google.maps.Polyline(pathOptions);
+
+            google.visualization.events.addListener(chart, 'onmouseover', function (e) {
+                if (mousemarker == null) {
+                    mousemarker = new google.maps.Marker({
+                        position: elevations[e.row].location,
+                        map: map,
+                        icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                    });
+                } else {
+                    mousemarker.setPosition(elevations[e.row].location);
+                }
+            });
+
+
+            // Extract the data from which to populate the chart.
+            // Because the samples are equidistant, the 'Sample'
+            // column here does double duty as distance along the
+            // X axis.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Sample');
+            data.addColumn('number', 'Elevation');
+            for (var i = 0; i < results.length; i++) {
+                data.addRow(['', elevations[i].elevation]);
+            }
+
+            // Draw the chart using the data within its DIV.
+            document.getElementById('elevation_chart').style.display = 'block';
+            chart.draw(data, {
+                height: 150,
+                legend: 'none',
+                titleY: 'Elevation (m)'
+            });
+        }
+
+        var tabchart = true;
+        function btntabsclick() {
+            if (tabchart) {
+                tabchart = false;
+                $("#btntabs").val("Hide Graph");
+                if (selectmap.value == "Openstreet Map") {
+                    document.getElementById('elevation_chart').style.display = 'block';
+                }
+                else {
+                    $(".elevation").css("display", "block");
+                }
+            }
+            else {
+                $("#btntabs").val("Show Graph");
+                tabchart = true;
+                if (selectmap.value == "Openstreet Map") {
+                    document.getElementById('elevation_chart').style.display = 'none';
+                } else {
+                    $(".elevation").css("display", "none");
+                }
+            }
+        }
+
+        var map;
+        var elevator;
+        var chart;
+        var infoWindow;
+        function initialize() {
+            // Add a Home control that returns the user to London
+            function HomeControl(controlDiv, googlemap) {
+                controlDiv.style.padding = '5px 1px 0px 0px';
+                var controlUI = document.createElement('div');
+                controlUI.style.textAlign = 'center';
+                controlUI.style.width = '600px';
+                controlUI.style.opacity = '0.7';
+                controlUI.title = 'Elevation Graph';
+                controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+                controlDiv.appendChild(controlUI);
+                var controlText = document.createElement('div');
+                controlText.innerHTML = '<div id="elevation_chart"  style="width: 600px;height: 125px;display:none;"></div>';
+                controlUI.appendChild(controlText);
+            }
+
+            var myCenter = new google.maps.LatLng(17.497535, 78.408622);
+            var mapProp = {
+                center: myCenter,
+                zoom: 5,
+                panControl: true,
+                panControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_TOP
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE,
+                    position: google.maps.ControlPosition.RIGHT_CENTER
+                },
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            elevator = new google.maps.ElevationService();
+            google.load('visualization', '1', { packages: ['columnchart'] });
+            infoWindow = new google.maps.InfoWindow();
+            map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            var homeControlDiv = document.createElement('div');
+            var homeControl = new HomeControl(homeControlDiv, map);
+            map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(homeControlDiv);
+
+            var locationControlDiv = document.createElement('div');
+            var locationControl = new LocationsControl(locationControlDiv, map);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locationControlDiv);
+
+            var StpdmarkerControlDiv = document.createElement('div');
+            var StpdmarkerControl = new StoppedmarkerControl(StpdmarkerControlDiv, map);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(StpdmarkerControlDiv);
+        }
+    </script>
+   
+</head>
+<body id="bodyid">
+    <form id="form1">
+        <div class="wrapper">
+            <div class="box box-primary" style="height: 100%; width: 100%; overflow: hidden; position: absolute;">
+                <div class="box-header" style="padding: 0px;">
+                    <!-- Date range -->
+                    <div class="col-md-12">
+                        <h4>
+                            <i class="fa fa-cab"></i> TrackMyAsset | 
+                            <span id="lbltripinfo" style="font-family: 'Trebuchet MS', arial, sans-serif; font-size: 12px;
+                    width: 100%;"></span>
+                        </h4>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-12">
+                        <div id="mapcontent">
+                            <div id="googleMap" style="width: 100%; height: 100%; position: relative; background-color: rgb(229, 227, 223);
+                     display: none;">
+                            </div>
+                            <div id="openstreetmap" style="width: 100%; height: 100%; position: relative; background-color: rgb(229, 227, 223);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="togglediv">
+                <div class="inner">
+                    <input type="button" class="btntogglecls" value="Hide" id="btnshowhide" style="float: right;
+                    background-color: Black; color: White;" onclick="clicked();" />
+                    <div id="divlogsgrid" style="height:195px; cursor: auto; border: 1px solid #d5d5d5;
+                    position: absolute; font-family: Arial; font-weight: normal; font-size: 12px;
+                    float: left;width:100%;bottom:0px;">
+                        <table id="example" class="table table-condensed" style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff;height:195px;
+                        font-family: Arial; font-weight: normal; font-size: 12px;" cellpadding="2px"
+                               cellspacing="0px" summary="Route Details" rules="groups" frame="hsides" border="2">
+                            <tr>
+                                <td style="padding:0px;">
+                                    <table class="table table-condensed" style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff; font-family: Arial;
+                                    font-weight: normal; font-size: 12px;" cellpadding="2px" cellspacing="0px">
+                                        <tr style="border-bottom: 1px solid #d5d5d5; background-color: #f39c12; color: #ffffff;
+                                        font-family: Arial; font-weight: normal; font-size: 12px;">
+                                            <th style="width: 150px;">
+                                                TimeStamp
+                                            </th>
+                                            <th style="width: 400px;">
+                                                Address
+                                            </th>
+                                            <th style="width: 100px;">
+                                                Speed
+                                            </th>
+                                            <th style="width: 100px;">
+                                                Odometer
+                                            </th>
+                                            <th style="width: 100px;">
+                                                Status
+                                            </th>
+                                            <th style="width: 150px;">
+                                                Stopped Time
+                                            </th>
+                                        </tr>
+                                   </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="divscroll" style="width: 100%; height: 155px; overflow: auto;">
+                                        <table class="table table-striped" style="cursor: pointer; overflow: scroll; border: 1px solid #ffffff; font-family: Arial;
+                                        font-weight: normal; font-size: 12px;" cellpadding="2px" cellspacing="0px">
+                                            <tr id="templateRow" style="display: none; cursor: pointer; border-bottom: 1px solid #d5d5d5;"
+                                                onclick="onrowclick(this);">
+                                                <td style="width: 150px; text-align: center; border-bottom: 1px solid #d5d5d5;"></td>
+                                                <td style="width: 400px; text-align: center; border-bottom: 1px solid #d5d5d5;"></td>
+                                                <td style="width: 100px; text-align: center; border-bottom: 1px solid #d5d5d5;"></td>
+                                                <td style="width: 100px; text-align: center; border-bottom: 1px solid #d5d5d5;"></td>
+                                                <td style="width: 150px; text-align: center; border-bottom: 1px solid #d5d5d5;"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div style="float: right; position: absolute; top: -3px; left: 50px; width: 280px;">
+                        <table class="table table-condensed">
+                            <tr>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-primary btn-sm" value="Show Graph" id="btntabs"
+                                           style="width: 120px; height: 28px;" onclick="btntabsclick();" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-warning btn-sm" value="Preview Route" id="btnprevroute"
+                                           style="width: 100px; height: 28px; display:none;" onclick="previewroute();" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-success btn-sm" value="Draw" id="btnShow" style="width: 90px; height: 28px;"
+                                           onclick="load();" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-danger btn-sm" value="Stop" id="btnstop" style="width: 90px; height: 28px;"
+                                           onclick="btnstopclick();" />
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-default btn-sm" value="Clear" id="btnclear" style="width: 90px; height: 28px;"
+                                           onclick="btnclearclick();" />
+                                </td>
+                                <td>
+                                    <table cellpadding="0" cellspacing="0" style="border: 1px solid #d5d5d5; width: 55px;
+                                    height: 22px; border-radius: 3px 3px 3px 3px;">
+                                        <tr>
+                                            <td>
+                                                <button id="precday" class="datebuttonsleft btn btn-block btn-primary btn-sm" onclick="return PrevValidating();">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <input type="text" style="width: 40px; padding: .2em .0em; height: 26px; border-top: 0px solid #ffffff;
+                                                text-align: center; border-bottom: 0px solid #ffffff; border-left: 1px solid #d5d5d5;
+                                                border-right: 1px solid #d5d5d5; font-size: 13px;" readonly="readonly" id="speedval"
+                                                       value="speed" />
+                                            </td>
+                                            <td>
+                                                <button id="nextday" class="datebuttonsright btn btn-block btn-primary btn-sm" onclick="return NextValidating();">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-block btn-info btn-sm" style="height: 28px; opacity: 1.0; width: 100px;" onclick="tableToExcel('example', 'W3C Example Table')" value="Export to Excel">
+                                </td>
+                                <td>
+                                    <input type="button" id="btn_maptype" class="btn btn-block btn-primary btn-sm" style="height: 28px; opacity: 1.0; width: 100px;" value="Google Map" onclick="maptypeclick();">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+

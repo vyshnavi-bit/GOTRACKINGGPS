@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang=''>
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="styles.css">
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="script.js"></script>
+   <title>CSS MenuMaker</title>
+</head>
+<body>
+
+<div id='cssmenu'>
+<ul>
+   <li><a href="Default3.aspx"><b>Liveview</b></a></li>
+   <li class='active has-sub'><a href='#'><span>Manage</span></a>
+    <ul>
+                                                        <li><a href="Mylocation.aspx" style="width: 150px;">My Location</a></li>
+                                                        <li><a href="MovingLocations.aspx" style="width: 150px;">Moving Locations</a></li>
+                                                        <li><a href="Geofence.aspx" style="width: 150px;">Geofence</a></li>
+                                                        <li><a href="AssignGeofense.aspx" style="width: 150px;">Assign Geofence </a></li>
+                                                        <li><a href="VehicleGroups.aspx" style="width: 150px;">Vehicle Groups</a></li>
+                                                        <li><a href="VehicleExpences.aspx" style="width: 150px;">Vehicle Expences</a></li>
+                                                        <li class='last'><a href="AssignTrip.aspx" style="width: 150px;">Assign Trip</a></li>
+                                                    </ul>
+   </li>
+   <li class='active has-sub'><a href="javascript:void(0);"><span>Reports</span></a>
+     <ul>
+                                                        <li><a href="Reports.aspx?Report=General Report" style="width: 180px;">General Reports</a></li>
+                                                        <li><a href="Reports.aspx?Report=Charts" style="width: 180px;">Charts</a></li>
+                                                        <li><a href="Reports.aspx?Report=Stopage Report" style="width: 180px;">Stopage Report</a></li>
+                                                        <li><a href="Reports.aspx?Report=OverSpeed Report" style="width: 180px;">OverSpeed Report</a></li>
+                                                        <li><a href="Reports.aspx?Report=Daily Report" style="width: 180px;">Daily Report</a></li>
+                                                        <li><a href="Reports.aspx?Report=UnAuthorised Report" style="width: 180px;">UnAuthorised
+                                                            Report</a></li>
+                                                        <li><a href="Reports.aspx?Report=Location HaltingHours Report" style="width: 180px;">
+                                                            Location HaltingHours Report</a></li>
+                                                        <li><a href="Reports.aspx?Report=Location to Location Report" style="width: 180px;">
+                                                            Location to Location Report</a></li>
+                                                        <li class='last'><a href="ExpensesReports.aspx" style="width: 180px;">Expenses Report</a></li>
+                                                    </ul>
+   </li>
+   <li><a href='Tools.aspx'><span>Tools</span></a></li>
+   <li class='last'><a href='LogOut.aspx'><span>Log Out</span></a></li>
+</ul>
+</div>
+
+</body>
+<html>

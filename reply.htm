@@ -1,0 +1,2697 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="Images/TitleLogo.png" type="image/x-icon" title="trackmyasset.in" />
+    <title>TrackMyAsset | Replay Routes</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="../../CustomCSS/font-awesome.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <link href="../../plugins/iCheck/all.css" rel="stylesheet" />
+    <link href="../../plugins/iCheck/minimal/_all.css" rel="stylesheet" />
+    <link href="../../js/jquery-ui.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .revcaret {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-bottom: 4px dashed;
+            border-bottom: 4px solid \9;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+
+        .dropdownckecklist {
+            top: 0%;
+            margin-bottom: 0px;
+        }
+
+            .dropdownckecklist dd,
+            .dropdownckecklist dt {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .dropdownckecklist ul {
+                margin: -1px 0 0 0;
+            }
+
+            .dropdownckecklist dd {
+                position: relative;
+            }
+
+            .dropdownckecklist a,
+            .dropdownckecklist a:visited {
+                color: #fff;
+                text-decoration: none;
+                outline: none;
+                font-size: 12px;
+            }
+
+            .dropdownckecklist dt a {
+                background-color: #4F6877;
+                display: block;
+                padding: 8px 20px 5px 10px;
+                height: 35px;
+                line-height: 24px;
+                overflow: hidden;
+                border: 0;
+            }
+
+                .dropdownckecklist dt a span,
+                .multiSel span {
+                    cursor: pointer;
+                    display: inline-block;
+                    padding: 0 3px 2px 0;
+                }
+
+            .dropdownckecklist dd ul {
+                background-color: #3c8dbc;
+                border: 0;
+                color: #fff;
+                display: none;
+                left: 0px;
+                padding: 2px 15px 2px 5px;
+                position: absolute;
+                top: 2px;
+                width: 100%;
+                list-style: none;
+                max-height: 200px;
+                overflow: auto;
+                z-index: 99999;
+            }
+
+            .dropdownckecklist dd li {
+                padding: 2px;
+            }
+
+            .dropdownckecklist span.value {
+                display: none;
+            }
+
+            .dropdownckecklist dd ul li a {
+                padding: 5px;
+                display: block;
+            }
+
+                .dropdownckecklist dd ul li a:hover {
+                    background-color: #fff;
+                }
+
+        .loader,
+        .loader:before,
+        .loader:after {
+            border-radius: 50%;
+        }
+
+            .loader:before,
+            .loader:after {
+                position: absolute;
+                content: '';
+            }
+
+            .loader:before {
+                width: 5.2em;
+                height: 10.2em;
+                background: #0dc5c1;
+                border-radius: 10.2em 0 0 10.2em;
+                top: -0.1em;
+                left: -0.1em;
+                -webkit-transform-origin: 5.2em 5.1em;
+                transform-origin: 5.2em 5.1em;
+                -webkit-animation: load2 2s infinite ease 1.5s;
+                animation: load2 2s infinite ease 1.5s;
+            }
+
+        .loader {
+            font-size: 5px;
+            text-indent: -99999em;
+            margin: 255px auto;
+            position: relative;
+            width: 10em;
+            height: 10em;
+            box-shadow: inset 0 0 0 1em #ffffff;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+            .loader:after {
+                width: 5.2em;
+                height: 10.2em;
+                background: #0dc5c1;
+                border-radius: 0 10.2em 10.2em 0;
+                top: -0.1em;
+                left: 5.1em;
+                -webkit-transform-origin: 0px 5.1em;
+                transform-origin: 0px 5.1em;
+                -webkit-animation: load2 2s infinite ease;
+                animation: load2 2s infinite ease;
+            }
+
+        @-webkit-keyframes load2 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes load2 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        .bpmouseover {
+            height: 280px;
+            width: 250px;
+            display: none;
+            position: absolute;
+            z-index: 99999;
+            padding: 10px 5px 5px 15px;
+            background-color: #fffffc;
+            border: 1px solid #c0c0c0;
+            border-radius: 3px 3px 3px 3px;
+            box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+            font-size: 12px;
+            opacity: 1.0;
+        }
+
+        .filter-toggle {
+            float: left;
+            background-color: transparent;
+            background-image: none;
+            padding: 15px 15px;
+            color: #fff;
+            cursor: pointer;
+            font-family: fontAwesome;
+        }
+
+            .filter-toggle:before {
+                content: "\f0b0";
+            }
+
+        .skin-blue .main-header .navbar .filter-toggle:hover {
+            color: #f6f6f6;
+            background: rgba(0,0,0,0.1);
+        }
+
+    </style>
+    <style type="text/css">
+        .wrapper {
+            overflow: hidden;
+            top: 0px;
+        }
+
+        html, body {
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            height: 99.5%; /* needed for container min-height */
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            background: url(CustomCSS/cream_dust.png) repeat left top;
+        }
+
+        .inner {
+            width: 100%;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            color: Black;
+            z-index: 99999;
+            height: 225px;
+            overflow: hidden;
+        }
+
+        .togglediv {
+            position: absolute;
+            width: 100%;
+            left: 0px;
+            bottom: 0px;
+            right: 0px;
+            color: Black;
+            z-index: 99999;
+            border: 1px solid #d5d5d5;
+            height: 196px;
+            background-color: #ffffff;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .allbtncls {
+            display: inline-block;
+            min-width: 54px;
+            border: 1px solid #dcdcdc;
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            color: #444;
+            font-size: 12px;
+            font-weight: bold;
+            height: 23px;
+            padding: 0 8px;
+            line-height: 27px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-transition: all 0.218s;
+            -moz-transition: all 0.218s;
+            -o-transition: all 0.218s;
+            transition: all 0.218s;
+            background-color: #f5f5f5;
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
+            background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+            width: 10px;
+            opacity: 1.9;
+        }
+
+        .btntogglecls:hover {
+            cursor: pointer;
+            -moz-box-shadow: 0px 0px 10px 0px #000000;
+            -webkit-box-shadow: 0px 0px 10px 0px #000000;
+            box-shadow: 0px 0px 10px 0px #000000;
+        }
+
+        .btntogglecls {
+            display: inline-block;
+            min-width: 80px;
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            color: #444;
+            font-size: 12px;
+            font-weight: bold;
+            height: 30px;
+            border-radius: 2px 2px 0px 0px;
+            width: 10px;
+            cursor: pointer;
+            opacity: 2.0;
+        }
+
+        div#historymapcontent {
+            bottom: 0px;
+            top: 40px;
+            left: 0px;
+            right: 0px;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .datebuttonsleft {
+            border-radius: 3px 0px 0px 3px;
+            width: 45px;
+            height: 26px;
+        }
+
+        .datebuttonsright {
+            border-radius: 0px 3px 3px 0px;
+            width: 45px;
+            height: 26px;
+        }
+
+        #slider_preview .ui-slider-range {
+            background: #ef2929;
+        }
+
+        #slider_preview .ui-slider-handle {
+            border-color: #ef2929;
+        }
+    </style>
+</head><!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav" style="position: fixed; top: 0; bottom: 0; left: 0; right: 0;">
+    <div class="wrapper">
+        <header class="main-header">
+            <nav class="navbar navbar-static-top">
+                <div class="container" style="width: 100%;">
+                    <div class="navbar-header">
+                        <a id="a_vehtoggle" style="cursor:pointer;" class="sidebar-toggle" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                        <a class="navbar-brand"><b>TrackMyAsset</b></a>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a id="a_filtertoggle" style="cursor:pointer;" title="Filters" class="filter-toggle" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav" id="ul_navigation_mainmenu"></ul>
+                    </div><!-- /.navbar-collapse -->
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown messages-menu">
+                                <!-- Menu toggle button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-taxi"></i>
+                                    <span class="label label-warning" id="lblvehscount">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Total Vehicles <span class="label label-success" id="lblvehscount1"></span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_showallvehs"></ul><!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li><!-- /.messages-menu -->
+                            <!-- Alerts Menu -->
+                            <li class="dropdown messages-menu">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor:pointer;" class="dropdown" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-danger" id="icon_alertcount">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Today Alerts <span class="label label-danger" id="icon_alertcount1"></span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_alerts"></ul><!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Notifications Menu -->
+                            <li class="dropdown messages-menu" style="display:none;">
+                                <!-- Menu toggle button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-check-square-o"></i>
+                                    <span class="label label-default" id="icon_workingvehicles">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Working Vehicles <span class="label label-default" id="icon_workingvehicles1"></span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_showworkingvehs"></ul><!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Tasks Menu -->
+                            <li class="dropdown messages-menu" style="display:none;">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-ban"></i>
+                                    <span class="label label-danger" id="icon_notworkingvehicles">0</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">Not Working Vehicles <span class="label label-danger" id="icon_notworkingvehicles1"></span></li>
+                                    <li>
+                                        <!-- inner menu: contains the messages -->
+                                        <ul class="menu" id="ul_shownonworkingvehs"></ul><!-- /.menu -->
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- User Account Menu -->
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a style="cursor:pointer;" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="../../dist/img/avatar5.png" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs" id="lbl_username">Guest</span>
+                                </a>
+                            </li>
+                            <li id="logout_click" style="cursor:pointer;"><a>Sign out</a></li>
+                        </ul>
+                    </div><!-- /.navbar-custom-menu -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </header>
+        <!-- Control Sidebar -->
+        <aside id="vehicles-sidebar" class="control-sidebar control-sidebar-dark control-sidebar-open" style="height:100%; opacity:0.9; width: 300px; background-color: #f9fafc; color: black; border-right:1px solid #d5d5d5; z-index: 999;">
+            <!-- Tab panes -->
+            <div class="tab-content" style="padding:0px;">
+                <!-- Home tab content -->
+                <!--<dl class="dropdownckecklist">
+                    <dt>
+                        <a style="cursor:pointer;">
+                            <p class="multiSel" id="div_vehmutliSel">
+                                <span class="hida">All Vehicles</span>
+                            </p>
+                        </a>
+                    </dt>
+                    <dd>
+                        <div class="mutliSelect" id="div_vehmutliSelect">
+                        </div>
+                    </dd>
+                </dl>-->
+                <div class="loader" id="veh_loader">Loading...</div>
+                <div>
+                    <div id="divvehicles" style="top: 65px; bottom: 0px; overflow: auto; position: absolute; width: 100%;">
+                        <div class="col-md-12" style="padding-top: 10px;">
+                            <div class="form-group">
+                                <label>From Date</label>
+                                <input id="txtFromDate" type="datetime-local" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>To Date</label>
+                                <input id="txtToDate" type="datetime-local" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="button" class="btn btn-primary" value="Preview Routes" id="btnprevroute" style="width: 120px;"
+                                   onclick="btn_generate_Click();" />
+                            <table cellpadding="0" cellspacing="0" style="margin-top: 5px;float:right;">
+                                <tr>
+                                    <td>
+                                        <button id="precday" class="datebuttonsleft btn btn-block btn-primary btn-sm" onclick="return PrevValidating();">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <input type="text" style="width: 40px; padding: .2em .0em; height: 26px; border-top: 0px solid #ffffff;
+                                                text-align: center; border-bottom: 0px solid #ffffff; border-left: 1px solid #d5d5d5;
+                                                border-right: 1px solid #d5d5d5; font-size: 13px;" readonly="readonly" id="speedval"
+                                               value="speed" />
+                                    </td>
+                                    <td>
+                                        <button id="nextday" class="datebuttonsright btn btn-block btn-primary btn-sm" onclick="return NextValidating();">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <table style="margin-top:10px;width:100%;">
+                                <tr>
+                                    <td>
+                                        <div title="Pause" onclick="load();" style="border: 1px solid rgb(113, 123, 135); cursor: pointer; text-align: center; width: 40px; height: 30px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; background-color: rgb(255, 255, 255);"><div class="fa fa-play" id="btnShow" style="font-size: 20px; color: green; padding-left: 4px; padding-right: 4px; padding-top: 4px; height: 20px; width: 20px;"></div></div>
+                                    </td>
+                                    <td>
+                                        <div title="Stop" onclick="btnstopclick();" style="border: 1px solid rgb(113, 123, 135); cursor: pointer; text-align: center; width: 40px; height: 30px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; background-color: rgb(255, 255, 255);"><div class="fa fa-stop" id="btnstop" style="font-size: 20px; color: red; padding-left: 2px; padding-right: 4px; padding-top: 4px; height: 20px; width: 20px;"></div></div>
+                                    </td>
+                                    <td>
+                                        <div title="Clear" onclick="btnclearclick();" style="border: 1px solid rgb(113, 123, 135); cursor: pointer; text-align: center; width: 60px; height: 30px; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px; background-color: rgb(255, 255, 255);"><div id="btnclear" style="font-size: 20px; color: green; padding-left: 4px; padding-right: 4px; height: 20px; width: 20px;">Clear</div></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="divAllvehicles" class="slimScrollDiv">
+                        </div>
+                        </div>
+                </div><!-- /.tab-pane -->
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Control Filter -->
+        <aside id="filters-sidebar" class="" style="position: absolute;left:-300px; top: 50px; bottom: 0px; opacity: 1.0; width: 300px; background-color: #f9fafc; color: black; z-index: 99999;">
+            <div class="box box-default" style="height: 100%;">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Filters</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12" style="overflow: auto; position: absolute; bottom: 0px; top: 40px; width: 100%;">
+                            <div id="div_filters">
+                                <div id="divAllfilters" class="slimScrollDiv">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside><!-- /.control-Filter -->
+        <!-- Full Width Column -->
+        <div class="content-wrapper">
+            <div class="container" style="width: 100%;padding:0;">
+                <div style="width: 100%; height: 100%;">
+                    <div style="width: 100%;">
+                        <div id="mapcontent">
+                            <div id="div_liveview">
+                                <div style="width: 100%; height: 22px; position: absolute; z-index: 999; background-color: #607D8B; padding-top: 0px;">
+                                    <div style="width: 97%; margin: 5px 3px 7px 10px; position: relative; z-index: 999;" id="slider_preview"></div>
+                                </div>
+                                <div id="googleMap" style="top: 50px; bottom: 0px; left: 0px; right: 0px; position: absolute; background-color: rgb(229, 227, 223);">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="displaydiv" class="bpmouseover">
+                        </div>
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.content-wrapper -->
+        </div>
+    </div> <!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/app.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <script src="../../plugins/iCheck/icheck.js"></script>
+
+    <script src="../../js/JTemplate.js?v=1002" type="text/javascript"></script>
+    <!--<script src="customapp.js?v=3" type="text/javascript"></script>-->
+    <script src="../../Newjs/markerclusterer_GZ.js?v=1002" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="../../Newjs/markerclusterer_GZ.js" type="text/javascript"></script>
+    <script src="../../Newjs/infobox.js" type="text/javascript"></script>
+    <script src="js/ClientCustomjs.js"></script>
+    <script src="js/Clientmodulers.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../Data_tables/jquery.blockUI.js"></script>
+
+    <script src="../Data_tables/bootbox.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            var hrs = today.getHours();
+            if (hrs < 10) {
+                hrs = '0' + hrs
+            }
+            var mnts = today.getMinutes();
+            if (mnts < 10) {
+                mnts = '0' + mnts
+            }
+            $('#txtToDate').val(yyyy + '-' + mm + '-' + dd + 'T' + hrs + ':' + mnts);
+            dd = dd - 1;
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            $('#txtFromDate').val(yyyy + '-' + mm + '-' + dd + 'T' + hrs + ':' + mnts);
+            var data = { 'op': 'get_locations' };
+            var s = function (msg) {
+                if (msg) {
+                    Locationsdata = msg;
+                    fillfilters();
+                }
+                else {
+                    fillfilters();
+                }
+            };
+            var e = function (x, h, e) {
+                // $('#BookingDetails').html(x);
+            };
+            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            callHandler(data, s, e);
+        });
+        var hidden = true;
+        var vehpnlhidden = false;
+        function fillfilters() {
+            $("#a_filtertoggle").click(function () {
+                if (hidden) {
+                    $("#vehicles-sidebar").stop().animate({ left: 300 }, 100);
+                    $("#filters-sidebar").stop().animate({ left: 0 }, 300);
+                    vehpnlhidden = false;
+                    hidden = false;
+                }
+                else {
+                    $("#vehicles-sidebar").animate({ left: 0 }, 100);
+                    $("#filters-sidebar").css('margin-left', 0);
+                    $("#filters-sidebar").css('margin-right', 0);
+                    $("#filters-sidebar").animate({ left: '-300px' }, 300);
+                    hidden = true;
+                }
+            });
+            $("#a_vehtoggle").click(function () {
+                if (vehpnlhidden) {
+                    $("#vehicles-sidebar").stop().animate({ left: 0 }, 100);
+                    vehpnlhidden = false;
+                }
+                else {
+                    $("#vehicles-sidebar").css('margin-left', 0);
+                    $("#vehicles-sidebar").css('margin-right', 0);
+                    $("#vehicles-sidebar").animate({ left: '-300px' }, 100);
+                    vehpnlhidden = true;
+
+                    $("#filters-sidebar").css('margin-left', 0);
+                    $("#filters-sidebar").css('margin-right', 0);
+                    $("#filters-sidebar").animate({ left: '-300px' }, 100);
+                    hidden = true;
+                }
+            });
+            var ddl_vehstatus = '<div class="tab-content" style="padding:0px;"><div class="form-group"><label>Select Vehicle Status</label>';
+            ddl_vehstatus += '<dl class="dropdownckecklist"><dt><a style="cursor:pointer;"><p class="multiSel"><span id="ddl_vehiclestatus" class="hida" title="Vehicle Status">Vehicle Status</span></p></a></dt><dd><div class="mutliSelect">';
+            ddl_vehstatus += "<ul>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='Stopped Vehicles' /><span style='vertical-align: top;padding:2px;'>Stopped Vehicles</span></li>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='Running Vehicles' /><span style='vertical-align: top;padding:2px;'>Running Vehicles</span></li>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='Inside POI Vehicles' /><span style='vertical-align: top;padding:2px;'>Inside POI Vehicles</span></li>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='Outside POI Vehicles' /><span style='vertical-align: top;padding:2px;'>Outside POI Vehicles</span></li>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='MainPower Off Vehicles' /><span style='vertical-align: top;padding:2px;'>MainPower Off Vehicles</span></li>";
+            ddl_vehstatus += "<li><input type='checkbox' class='ckb_filter' value='Delay in Update Vehicles' /><span style='vertical-align: top;padding:2px;'>Delay in Update Vehicles</span></li>";
+            ddl_vehstatus += "</ul>";
+            ddl_vehstatus += '</div></dd></dl></div></div>';
+            $('#divAllfilters').append(ddl_vehstatus);
+
+            var data = { 'op': 'get_minimasters' };
+            var s = function (msg) {
+                if (msg) {
+                    if (msg && msg != "Error") {
+                        var minimastertypeclslist = msg.minimastertypeclslist;
+                        var minimastersclslist = msg.minimastersclslist;
+                        for (var i = 0; i < minimastertypeclslist.length; i++) {
+                            //Locationsdata
+                            if (minimastertypeclslist[i].isfilter == '1') {
+                                var ddl_multislct = '<div class="tab-content" style="padding:0px;"><div class="form-group"><label>Select ' + minimastertypeclslist[i].minimaster_name + '</label>';
+                                ddl_multislct += '<dl class="dropdownckecklist"><dt><a style="cursor:pointer;"><p class="multiSel"><span class="hida" title=' + minimastertypeclslist[i].idminimaster + '>' + minimastertypeclslist[i].minimaster_name + '</span></p></a></dt><dd><div class="mutliSelect">';
+
+                                //ddl_multislct += "<ul><li><input type='checkbox' value='Select All' onclick='filterslctallclick(this);' /><span style='vertical-align: top;padding:2px;'>Select All</span></li>";
+                                ddl_multislct += "<ul>";
+                                if (minimastertypeclslist[i].islocation != '1') {
+                                    for (var j = 0; j < minimastersclslist.length; j++) {
+                                        if (minimastersclslist[j].idminimaster == minimastertypeclslist[i].idminimaster) {
+                                            ddl_multislct += "<li><input type='checkbox' class='ckb_filter' value=" + minimastersclslist[j].idminimaster_data + " /><span style='vertical-align: top;padding:2px;'>" + minimastersclslist[j].minimaster_value + "</span></li>";
+                                        }
+                                    }
+                                }
+                                else {
+                                    for (var l = 0; l < Locationsdata.length; l++) {
+                                        if (Locationsdata[l].Ismain_location == "True") {
+                                            ddl_multislct += "<li><input type='checkbox' class='ckb_filter' value=" + Locationsdata[l].Sno + " /><span style='vertical-align: top;padding:2px;'>" + Locationsdata[l].locacationname + "</span></li>";
+                                        }
+                                    }
+                                }
+                                ddl_multislct += "</ul>";
+                                ddl_multislct += '</div></dd></dl></div></div>';
+                                $('#divAllfilters').append(ddl_multislct);
+                            }
+                        }
+
+
+                        $(".dropdownckecklist dt a").on('click', function () {
+                            $(this).closest('.dropdownckecklist').find('ul').slideToggle('fast');
+                        });
+
+                        $(".dropdownckecklist dd ul li a").on('click', function () {
+                            $(this).closest('.dropdownckecklist').find('ul').hide();
+                        });
+                        $(document).bind('click', function (e) {
+                            var $clicked = $(e.target);
+                            if (!$clicked.parents().hasClass("dropdownckecklist")) $(".dropdownckecklist dd ul").hide();
+                        });
+                        $('.ckb_filter').click(function () {
+                            var statuses = $(this).val();
+                            deleteOverlays();
+                            var j = 0;
+                            latlng_pos = [];
+                            vehicletypes = [];
+                            vehiclenos = [];
+                            var checkedcnt = 0;
+                            var minimasterfilterclslist = [];
+                            $('.dropdownckecklist').each(function () {
+                                var idminimaster = $(this).find('.hida').html();
+                                if (idminimaster != "Vehicle Status") {
+                                    var minimastersclslist = [];
+                                    $(this).find('li').each(function () {
+                                        if ($(this).find('input').prop('checked') == true) {
+                                            var idminimaster_data = $(this).find('input').val();
+                                            minimastersclslist.push({ idminimaster_data: idminimaster_data });
+                                            checkedcnt++;
+                                        }
+                                    });
+                                    if (minimastersclslist.length > 0)
+                                        minimasterfilterclslist.push({ 'idminimaster': idminimaster, 'minimastersclslist': minimastersclslist });
+                                }
+                            });
+                            if (statuses == "Stopped Vehicles" || statuses == "Running Vehicles" || statuses == "Inside POI Vehicles" || statuses == "Outside POI Vehicles" || statuses == "MainPower Off Vehicles" || statuses == "Delay in Update Vehicles") {
+                                $('#ddl_vehiclestatus').closest('.dropdownckecklist').find('li').each(function () {
+                                    if ($(this).find('input').val() == statuses) {
+                                    }
+                                    else {
+                                        $(this).find('input').prop('checked', false);
+                                    }
+                                });
+                            }
+                            statuses = "Vehicle Status";
+                            $('#ddl_vehiclestatus').closest('.dropdownckecklist').find('li').each(function () {
+                                if ($(this).find('input').prop('checked') == true) {
+                                    statuses = $(this).find('input').val();
+                                    checkedcnt++;
+                                    return false;
+                                }
+                            });
+
+                            if (minimasterfilterclslist.length == 0) {
+                                for (var i = 0; i < allvehsdata.length; i++) {
+                                    if (vehiclenos.indexOf(allvehsdata[i].idvehicle_properties) == -1) {
+                                        if (statuses == "Vehicle Status") {
+                                            vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                            vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                        }
+                                        else if (statuses == "Stopped Vehicles") {
+                                            for (var veh in livedata) {
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].Speed == 0) {
+                                                    vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                }
+                                            }
+                                        }
+                                        else if (statuses == "Running Vehicles") {
+                                            for (var veh in livedata) {
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].Speed > 0) {
+                                                    vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                }
+                                            }
+                                        }
+                                        else if (statuses == "Inside POI Vehicles") {
+                                            for (var veh in livedata) {
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties) {
+                                                    var Latitude = livedata[veh].latitude;
+                                                    var Longitude = livedata[veh].longitude;
+                                                    for (var cont = 0; cont < Locationsdata.length; cont++) {
+                                                        var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                                                        var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                                                        var radius = Locationsdata[cont].radius;
+                                                        var isinside = pointInCircle(targetLoc, radius, center);
+                                                        function pointInCircle(point, radius, center) {
+                                                            return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                                                        }
+                                                        if (isinside) {
+                                                            vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else if (statuses == "Outside POI Vehicles") {
+                                            var insidevehiclenos = [];
+                                            for (var veh in livedata) {
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties) {
+                                                    var Latitude = livedata[veh].latitude;
+                                                    var Longitude = livedata[veh].longitude;
+                                                    for (var cont = 0; cont < Locationsdata.length; cont++) {
+                                                        var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                                                        var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                                                        var radius = Locationsdata[cont].radius;
+                                                        var isinside = pointInCircle(targetLoc, radius, center);
+                                                        function pointInCircle(point, radius, center) {
+                                                            return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                                                        }
+                                                        if (isinside) {
+                                                            insidevehiclenos.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            for (var vehicleid in allvehsdata) {
+                                                var existed = false;
+                                                for (var veh in insidevehiclenos) {
+                                                    if (allvehsdata[vehicleid].idvehicle_properties == insidevehiclenos[veh].idvehicle_properties) {
+                                                        existed = true;
+                                                        break;
+                                                    }
+                                                }
+                                                if (!existed) {
+                                                    existed = false;
+                                                    vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                }
+                                            }
+                                        }
+                                        else if (statuses == "MainPower Off Vehicles") {
+                                            for (var veh in livedata) {
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].mainpower == "OFF") {
+                                                    vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                }
+                                            }
+                                        }
+                                        else if (statuses == "Delay in Update Vehicles") {
+                                            for (var veh in livedata) {
+                                                var updatedata = livedata[veh].Datetime;
+                                                var date = updatedata.split(" ")[0];
+                                                var time = updatedata.split(" ")[1];
+                                                var datevalues = new Array();
+                                                var timevalues = new Array();
+                                                datevalues = date.split('/');
+                                                timevalues = time.split(':');
+                                                var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                                                var todaydate = new Date();
+                                                var _MS_PER_DAY = 86400000;
+                                                var _MS_PER_aaa = 3600000;
+                                                var _MS_PER_sss = 60000;
+                                                var _MS_PER_ddd = 1000;
+                                                var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                                                var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                                                if (hours > 24) {
+                                                    hours = hours % 24;
+                                                }
+                                                var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                                                if (min > 60) {
+                                                    min = min % 60;
+                                                }
+                                                var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                                                if (sec > 60) {
+                                                    sec = sec % 60;
+                                                }
+                                                if (allvehsdata[i].idvehicle_properties == livedata[veh].idvehicle_properties && (min > 30 || hours >= 1 || days >= 1)) {
+                                                    vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                                }
+                                            }
+                                        }
+                                        //vehiclenos.push(msg[i].idvehicle_properties);
+                                        //vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                    }
+                                }
+                                $('#divAllvehicles').css('display', 'block');
+                                $('#divAllvehicles').setTemplateURL('Liveview.htm');
+                                $('#divAllvehicles').processTemplate(vehicletypes);
+                                //iCheck for checkbox and radio inputs
+                                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                                    checkboxClass: 'icheckbox_minimal-blue',
+                                    radioClass: 'iradio_minimal-blue'
+                                });
+                                $('#ckballveh').on('ifChanged', function (event) {
+                                    onallcheck(this);
+                                });
+                                $('.ckblvvehscls').on('ifChanged', function (event) {
+                                    var ckdval = $(this);
+                                    oncheck(this, ckdval[0].id);
+                                });
+                                $('#btn_selectmap').css('display', 'none');
+                            }
+                            else {
+                                var data = { 'op': 'get_vehicle_filters_data', 'minimasterfilterclslist': minimasterfilterclslist };
+                                var s = function (msg) {
+                                    if (msg) {
+                                        for (var i = 0; i < msg.length; i++) {
+                                            if (vehiclenos.indexOf(msg[i].idvehicle_properties) == -1) {
+                                                if (statuses == "Vehicle Status") {
+                                                    vehiclenos.push(msg[i].idvehicle_properties);
+                                                    vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                }
+                                                else if (statuses == "Stopped Vehicles") {
+                                                    for (var veh in livedata) {
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].Speed == 0) {
+                                                            vehiclenos.push(msg[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                        }
+                                                    }
+                                                }
+                                                else if (statuses == "Running Vehicles") {
+                                                    for (var veh in livedata) {
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].Speed > 0) {
+                                                            vehiclenos.push(msg[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                        }
+                                                    }
+                                                }
+                                                else if (statuses == "Inside POI Vehicles") {
+                                                    for (var veh in livedata) {
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties) {
+                                                            var Latitude = livedata[veh].latitude;
+                                                            var Longitude = livedata[veh].longitude;
+                                                            for (var cont = 0; cont < Locationsdata.length; cont++) {
+                                                                var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                                                                var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                                                                var radius = Locationsdata[cont].radius;
+                                                                var isinside = pointInCircle(targetLoc, radius, center);
+                                                                function pointInCircle(point, radius, center) {
+                                                                    return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                                                                }
+                                                                if (isinside) {
+                                                                    vehiclenos.push(msg[i].idvehicle_properties);
+                                                                    vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else if (statuses == "Outside POI Vehicles") {
+                                                    var insidevehiclenos = [];
+                                                    for (var veh in livedata) {
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties) {
+                                                            var Latitude = livedata[veh].latitude;
+                                                            var Longitude = livedata[veh].longitude;
+                                                            for (var cont = 0; cont < Locationsdata.length; cont++) {
+                                                                var targetLoc = new google.maps.LatLng(Latitude, Longitude);
+                                                                var center = new google.maps.LatLng(Locationsdata[cont].latitude, Locationsdata[cont].longitude);
+                                                                var radius = Locationsdata[cont].radius;
+                                                                var isinside = pointInCircle(targetLoc, radius, center);
+                                                                function pointInCircle(point, radius, center) {
+                                                                    return (google.maps.geometry.spherical.computeDistanceBetween(point, center) <= radius)
+                                                                }
+                                                                if (isinside) {
+                                                                    insidevehiclenos.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    for (var vehicleid in msg) {
+                                                        var existed = false;
+                                                        for (var veh in insidevehiclenos) {
+                                                            if (msg[vehicleid].idvehicle_properties == insidevehiclenos[veh].idvehicle_properties) {
+                                                                existed = true;
+                                                                break;
+                                                            }
+                                                        }
+                                                        if (!existed) {
+                                                            existed = false;
+                                                            vehiclenos.push(msg[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                        }
+                                                    }
+                                                }
+                                                else if (statuses == "MainPower Off Vehicles") {
+                                                    for (var veh in livedata) {
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties && livedata[veh].mainpower == "OFF") {
+                                                            vehiclenos.push(msg[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                        }
+                                                    }
+                                                }
+                                                else if (statuses == "Delay in Update Vehicles") {
+                                                    for (var veh in livedata) {
+                                                        var updatedata = livedata[veh].Datetime;
+                                                        var date = updatedata.split(" ")[0];
+                                                        var time = updatedata.split(" ")[1];
+                                                        var datevalues = new Array();
+                                                        var timevalues = new Array();
+                                                        datevalues = date.split('/');
+                                                        timevalues = time.split(':');
+                                                        var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                                                        var todaydate = new Date();
+                                                        var _MS_PER_DAY = 86400000;
+                                                        var _MS_PER_aaa = 3600000;
+                                                        var _MS_PER_sss = 60000;
+                                                        var _MS_PER_ddd = 1000;
+                                                        var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                                                        var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                                                        if (hours > 24) {
+                                                            hours = hours % 24;
+                                                        }
+                                                        var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                                                        if (min > 60) {
+                                                            min = min % 60;
+                                                        }
+                                                        var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                                                        if (sec > 60) {
+                                                            sec = sec % 60;
+                                                        }
+                                                        if (msg[i].idvehicle_properties == livedata[veh].idvehicle_properties && (min > 30 || hours >= 1 || days >= 1)) {
+                                                            vehiclenos.push(msg[i].idvehicle_properties);
+                                                            vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                                        }
+                                                    }
+                                                }
+                                                //vehiclenos.push(msg[i].idvehicle_properties);
+                                                //vehicletypes.push({ idvehicle_properties: msg[i].idvehicle_properties, vehicleno: msg[i].vehicleno, vehicletype: msg[i].vehicletype, vehicletag: msg[i].vehicletag });
+                                            }
+                                        }
+                                        $('#divAllvehicles').css('display', 'block');
+                                        $('#divAllvehicles').setTemplateURL('Liveview.htm');
+                                        $('#divAllvehicles').processTemplate(vehicletypes);
+                                        //iCheck for checkbox and radio inputs
+                                        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                                            checkboxClass: 'icheckbox_minimal-blue',
+                                            radioClass: 'iradio_minimal-blue'
+                                        });
+                                        $('#ckballveh').on('ifChanged', function (event) {
+                                            onallcheck(this);
+                                        });
+                                        $('.ckblvvehscls').on('ifChanged', function (event) {
+                                            var ckdval = $(this);
+                                            oncheck(this, ckdval[0].id);
+                                        });
+                                        $('#btn_selectmap').css('display', 'none');
+                                    }
+                                }
+                                var e = function (x, h, e) { };
+                                $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+                                CallHandlerUsingJson_POST(data, s, e);
+                            }
+                            if (checkedcnt > 0) {
+                            }
+                            else {
+                                for (var i = 0; i < allvehsdata.length; i++) {
+                                    if (vehiclenos.indexOf(allvehsdata[i].idvehicle_properties) == -1) {
+                                        vehiclenos.push(allvehsdata[i].idvehicle_properties);
+                                        vehicletypes.push({ idvehicle_properties: allvehsdata[i].idvehicle_properties, vehicleno: allvehsdata[i].vehicleno, vehicletype: allvehsdata[i].vehicletype, vehicletag: allvehsdata[i].vehicletag });
+                                    }
+                                }
+                                $('#divAllvehicles').css('display', 'block');
+                                $('#divAllvehicles').setTemplateURL('Liveview.htm');
+                                $('#divAllvehicles').processTemplate(vehicletypes);
+                                //iCheck for checkbox and radio inputs
+                                $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                                    checkboxClass: 'icheckbox_minimal-blue',
+                                    radioClass: 'iradio_minimal-blue'
+                                });
+                                $('#ckballveh').on('ifChanged', function (event) {
+                                    onallcheck(this);
+                                });
+                                $('.ckblvvehscls').on('ifChanged', function (event) {
+                                    var ckdval = $(this);
+                                    oncheck(this, ckdval[0].id);
+                                });
+                                $('#btn_selectmap').css('display', 'none');
+                            }
+                            checkedvehicles = [];
+                            liveupdate();
+                        });
+                    }
+                    else {
+                        window.location = '../Dealer/Dealer_login.html';
+                        //window.location = "login.html";
+                    }
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+            };
+            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            callHandler(data, s, e);
+        }
+
+        function onallcheck(id) {
+            checkedvehicles = [];
+            for (var vehicledata in vehicletypes) {
+                var vehicleno = vehicletypes[vehicledata].idvehicle_properties;
+                var vehicle = $('#VehiclesTable').find("#" + vehicletypes[vehicledata].idvehicle_properties + "");
+                if (id.checked == true) {
+                    if (typeof vehicle[0] === "undefined") {
+                    }
+                    else {
+                        $(vehicle[0]).iCheck('check');
+                    }
+                }
+                else {
+                    if (typeof vehicle[0] === "undefined") {
+                    }
+                    else {
+                        $(vehicle[0]).iCheck('uncheck');
+                        //vehicle[0].checked = false;
+                    }
+                }
+            }
+        }
+        function CallHandlerUsingJson_POST(d, s, e) {
+            d = JSON.stringify(d);
+            d = encodeURIComponent(d);
+            $.ajax({
+                type: 'POST',
+                url: 'Client.axd',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: d,
+                async: true,
+                cache: true,
+                success: s,
+                error: e
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        var ServerDate;
+        $(function () {
+            $('#veh_loader').show();
+            var data = { 'op': 'InitilizeVehicles' };
+            var s = function (msg) {
+                if (msg) {
+                    if (msg == "Error login") {
+                        $('#veh_loader').hide();
+                        window.location = '../Dealer/Dealer_login.html';
+                        //window.location = "login.html";
+                    }
+                    else {
+                        $('#veh_loader').hide();
+                        BindResults(msg);
+                    }
+                }
+                else {
+                    $('#veh_loader').hide();
+                }
+            };
+            var e = function (x, h, e) {
+                $('#veh_loader').hide();
+            };
+            callHandler(data, s, e);
+        });
+
+        function callHandler(d, s, e) {
+            $.ajax({
+                url: 'Client.axd',
+                data: d,
+                type: 'GET',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: true,
+                cache: true,
+                success: s,
+                error: e
+            });
+        }
+
+        var vehiclenos = [];
+        var vehicletypes = [];
+        var distinctvehs = [];
+        var allvehsdata = [];
+        function BindResults(data) {
+            distinctvehs = [];
+            allvehsdata = data;
+            for (var i = 0; i < data.length; i++) {
+                if (vehiclenos.indexOf(data[i].idvehicle_properties) == -1) {
+                    vehiclenos.push(data[i].idvehicle_properties);
+                    vehicletypes.push({ idvehicle_properties: data[i].idvehicle_properties, vehicleno: data[i].vehicleno, vehicletype: data[i].vehicletype, vehicletag: data[i].vehicletag });
+                }
+            }
+            $('#divAllvehicles').css('display', 'block');
+            $('#divAllvehicles').setTemplateURL('Liveview.htm');
+            $('#divAllvehicles').processTemplate(vehicletypes);
+            document.getElementById('lblvehscount').innerHTML = vehicletypes.length;
+            document.getElementById('lblvehscount1').innerHTML = vehicletypes.length;
+            $('#ul_showallvehs').html('');
+            for (var i = 0; i < vehicletypes.length; i++) {
+                $('#ul_showallvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-taxi"></i></div><h4><span>' + data[i].vehicleno + '</span></h4></a></li>');
+            }
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            $('#ckballveh').on('ifChanged', function (event) {
+                onallcheck(this);
+            });
+            $('.ckblvvehscls').on('ifChanged', function (event) {
+                var ckdval = $(this);
+                oncheck(this, ckdval[0].id);
+            });
+            $('#btn_selectmap').css('display', 'none');
+
+            liveupdate();
+        }
+
+
+        function liveupdate() {
+            var data = { 'op': 'LiveUpdate' };
+            var s = function (msg) {
+                if (msg) {
+                    var date = msg.ServerDt.split(" ")[0];
+                    var time = msg.ServerDt.split(" ")[1];
+                    var datevalues = new Array();
+                    var timevalues = new Array();
+                    datevalues = date.split('/');
+                    timevalues = time.split(':');
+                    ServerDate = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                    BindUpdate(msg.vehiclesupdatelist, ServerDate);
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+                // $('#BookingDetails').html(x);
+            };
+            callHandler(data, s, e);
+        }
+
+        var livedata = null;
+        var nonworkingvehicles = [];
+        function BindUpdate(data, ServerDt) {
+            nonworkingvehicles = [];
+            livedata = data;
+            var j = 0;
+            latlng_pos = [];
+            deleteOverlays();
+            for (var vehicledata in data) {
+                var vehicleid = data[vehicledata].idvehicle_properties;
+                var vehicleno = data[vehicledata].vehiclenum;
+                var vehicle = $('#VehiclesTable').find("#" + data[vehicledata].idvehicle_properties + "");
+                var mainpower = data[vehicledata].mainpower;
+                var latitude = data[vehicledata].latitude;
+                var longitude = data[vehicledata].longitude;
+                var angle = data[vehicledata].direction;
+                var updatedata = data[vehicledata].Datetime;
+                var ignation = data[vehicledata].Ignation;
+                var acstatus = data[vehicledata].ACStatus;
+                var speed = data[vehicledata].Speed;
+                var odometervalue = data[vehicledata].odometervalue;
+                var gps = data[vehicledata].GPSSignal;
+                var geofence = data[vehicledata].Geofence;
+                var todaymileage = data[vehicledata].todaymileage;
+                var dieselstring = data[vehicledata].dieselvalue;
+                var fulltankval = data[vehicledata].fulltankval;
+                if (mainpower == "ON") {
+                    var mainpowericon = vehicle.closest('tr').find('#imgpower');
+                    mainpowericon.attr("src", "../LiveIcons/Green%20Power.png");
+                    mainpowericon.attr('title', 'Power On');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgpower');
+                    mainpowericon.attr("src", "../LiveIcons/Red%20Power.png");
+                    mainpowericon.attr('title', 'Power Off');
+                }
+                if (speed > 0) {
+                    var mainpowericon = vehicle.closest('tr').find('#imgspeed');
+                    mainpowericon.attr("src", "../LiveIcons/State1.png");
+                    mainpowericon.attr('title', "Speed : " + speed + " Kms/Hr");
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imgspeed');
+                    mainpowericon.attr("src", "../LiveIcons/State3.png");
+                    mainpowericon.attr('title', "Speed : " + speed + " Kms/Hr");
+                }
+                if (gps == "V") {
+                    var mainpowericon = vehicle.closest('tr').find('#imggps');
+                    mainpowericon.attr("src", "../LiveIcons/GPSV.png");
+                    mainpowericon.attr('title', 'GPS Void');
+                }
+                else {
+                    var mainpowericon = vehicle.closest('tr').find('#imggps');
+                    mainpowericon.attr("src", "../LiveIcons/gpsA.png");
+                    mainpowericon.attr('title', 'GPS Active');
+                }
+
+                try {
+                    var date = updatedata.split(" ")[0];
+                    var time = updatedata.split(" ")[1];
+                    var datevalues = new Array();
+                    var timevalues = new Array();
+                    datevalues = date.split('/');
+                    timevalues = time.split(':');
+                    var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                    todaydate = ServerDt;
+                    var _MS_PER_DAY = 86400000;
+                    var _MS_PER_aaa = 3600000;
+                    var _MS_PER_sss = 60000;
+                    var _MS_PER_ddd = 1000;
+                    var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                    var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                    if (hours > 24) {
+                        hours = hours % 24;
+                    }
+                    var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                    if (min > 60) {
+                        min = min % 60;
+                    }
+                    var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                    if (sec > 60) {
+                        sec = sec % 60;
+                    }
+                    var timestamp;
+                    if (days >= 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "../LiveIcons/nodataavail.png");
+                        updateicon.attr('title', "There was no Update form " + days + " days " + hours + " Hrs " + min + " Min");
+                        timestamp = "No Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (hours > 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "../LiveIcons/MoreDelay.png");
+                        updateicon.attr('title', "There was no Update form " + hours + " Hrs " + min + " Min");
+                        timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                    }
+                    else if (min < 10) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "../LiveIcons/nodelay.png");
+                        updateicon.attr('title', min + " Min " + sec + " Sec Back ");
+                        timestamp = min + " Min " + sec + " Sec Back Update";
+                    }
+                    else if (days < 1) {
+                        var updateicon = vehicle.closest('tr').find('#imgdata');
+                        updateicon.attr("src", "../LiveIcons/halfdelay.png");
+                        updateicon.attr('title', "No Update form " + hours + " Hrs " + min + " Min");
+                        timestamp = "There is no Update form " + hours + " Hrs " + min + " Min";
+                    }
+                    if (min > 30 || hours >= 1 || days >= 1) {
+                        nonworkingvehicles.push({ vehicleno: vehicleno, timestamp: timestamp });
+                    }
+                }
+                catch (Error) {
+                }
+                document.getElementById('icon_notworkingvehicles').innerHTML = nonworkingvehicles.length;
+                document.getElementById('icon_notworkingvehicles1').innerHTML = nonworkingvehicles.length;
+                $('#ul_shownonworkingvehs').html('');
+                for (var i = 0; i < nonworkingvehicles.length; i++) {
+                    $('#ul_shownonworkingvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-2x fa-taxi"></i></div><h4><span>' + nonworkingvehicles[i].vehicleno + '</span></h4><p><i class="fa fa-clock-o"></i> ' + nonworkingvehicles[i].timestamp + '</p></a></li>');
+                }
+                document.getElementById('icon_workingvehicles').innerHTML = vehicletypes.length - nonworkingvehicles.length;
+                document.getElementById('icon_workingvehicles1').innerHTML = vehicletypes.length - nonworkingvehicles.length;
+                $('#ul_showworkingvehs').html('');
+                for (var i = 0; i < vehicletypes.length; i++) {
+                    var existd = false;
+                    for (var j = 0; j < nonworkingvehicles.length; j++) {
+                        if (vehicletypes[i].vehicleno == nonworkingvehicles[j].vehicleno) {
+                            existd = true;
+                        }
+                    }
+                    if (!existd)
+                        $('#ul_showworkingvehs').append('<li><a style="cursor:pointer;"><div class="pull-left"><i class="fa fa-taxi"></i></div><h4><span>' + vehicletypes[i].vehicleno + '</span></h4></a></li>');
+                }
+                var stpdtimestamp = "0 Min";
+                var stoppeddate = data[vehicledata].stoppedfor;
+                if (speed == 0 && stoppeddate != "") {
+                    try {
+                        var stpddate = stoppeddate.split(" ")[0];
+                        var stpdtime = stoppeddate.split(" ")[1];
+                        var stpddatevalues = new Array();
+                        var stpdtimevalues = new Array();
+                        stpddatevalues = stpddate.split('/');
+                        stpdtimevalues = stpdtime.split(':');
+                        var stpdupdatetime = new Date(stpddatevalues[2], stpddatevalues[1] - 1, stpddatevalues[0], stpdtimevalues[0], stpdtimevalues[1], stpdtimevalues[2]);
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((updatetime - stpdupdatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((updatetime - stpdupdatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((updatetime - stpdupdatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((updatetime - stpdupdatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            stpdtimestamp = days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 10) {
+                            stpdtimestamp = min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                    }
+                    catch (Error) {
+                    }
+                }
+
+                if (checkedvehicles.indexOf(vehicleid) > -1) {
+                    var myCenter;
+                    myCenter = new google.maps.LatLng(livedata[vehicledata].latitude, livedata[vehicledata].longitude);
+                    var iconsrc;
+                    for (var vehicletype in vehicletypes) {
+                        if (vehicletypes[vehicletype].idvehicle_properties == vehicleid) {
+                            var VehicleType = vehicletypes[vehicletype].vehicletype;
+                        }
+                    }
+                    if (VehicleType == 'Escavator') {
+                        iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                    }
+                    else
+                        if (VehicleType == "Roller") {
+                            if (speed == 0) {
+                                VehicleType = "red" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                            else {
+                                VehicleType = "green" + VehicleType;
+                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                        }
+                        else {
+                            if (VehicleType == "") {
+                                VehicleType = "Car";
+                            }
+                            if (speed == 0) {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "red" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "red" + VehicleType;
+                                }
+                                //                                iconsrc = "VehicleTypes/" + VehicleType + ".png";
+                            }
+                            else {
+                                if (VehicleType == "Truck") {
+                                    VehicleType = "Tanker";
+                                    VehicleType = "green" + VehicleType;
+                                }
+                                else {
+                                    VehicleType = "green" + VehicleType;
+                                }
+
+                            }
+                            if (angle >= 0 && angle < 22.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                            }
+                            else if (angle >= 22.5 && angle < 45) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                            }
+                            else if (angle >= 45 && angle < 67.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                            }
+                            else if (angle >= 67.5 && angle < 90) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                            }
+                            else if (angle >= 90 && angle < 112.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                            }
+                            else if (angle >= 112.5 && angle < 135) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                            }
+                            else if (angle >= 135 && angle < 157.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                            }
+                            else if (angle >= 157.5 && angle < 180) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                            }
+                            else if (angle >= 180 && angle < 202.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                            }
+                            else if (angle >= 202.5 && angle < 225) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                            }
+                            else if (angle >= 225 && angle < 247.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                            }
+                            else if (angle >= 247.5 && angle < 270) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                            }
+                            else if (angle >= 270 && angle < 292.5) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "16.png";
+                            }
+                            else if (angle >= 292.5 && angle < 315) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                            }
+                            else if (angle >= 315 && angle < 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                            }
+                            else if (angle >= 360) {
+                                iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                            }
+                        }
+
+
+                    placeMarker(myCenter, iconsrc, vehicleid, speed, timestamp, todaymileage, stpdtimestamp, vehicleno);
+                    latlng_pos[j] = myCenter;
+
+                    if (showtags == true) {
+                        var vehtag = "";
+                        for (var veh = 0; veh < vehicletypes.length; veh++) {
+                            if (vehicletypes[veh].idvehicle_properties == vehicleid) {
+                                vehtag = vehicletypes[veh].vehicletag;
+                                break;
+                            }
+                        }
+                        for (var i = 0; i < infowindows.length; i++) {
+                            if (infowindows[i].content == vehtag) {
+                                infowindows[i].close();
+                                infowindows.splice(i, 1);
+                                break;
+                            }
+                        }
+                        var infotag = new google.maps.InfoWindow();
+                        infotag.setOptions({
+                            content: vehtag,
+                            position: myCenter
+                        });
+                        infotag.open(googlemap);
+                        infowindows.push(infotag);
+                    }
+                    j++;
+                }
+            }
+        }
+
+        function addlocations(lat, lng) {
+            var mytext = lat + "," + lng;
+            window.open('Locations.html?lat=' + lat + "&long=" + lng);
+        }
+
+        var infowindows = [];
+        var popupcontent = "";
+        var showpopup = true;
+        function placeMarker(location, iconsrc, vehicleid, speed, timestamp, Odometer, stpdtimestamp, vehicleno) {
+            var image = new google.maps.MarkerImage(iconsrc,
+            // This marker is 20 pixels wide by 32 pixels tall.
+    null,
+            // The origin for this image is 0,0.
+    new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at 0,32.
+    new google.maps.Point(20, 20)
+);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: googlemap,
+                center: location,
+                zoom: 10,
+                icon: image,
+                title: vehicleno
+            });
+
+            markersArray.push(marker);
+            if (clusteredview) {
+                markerClusterer.addMarker(marker);
+            }
+            var address;
+            geocoder = new google.maps.Geocoder();
+            infoWindow.close();
+            address = geocoder.geocode({ 'latLng': location }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results.length > 0) {
+                        if (results[0]) {
+                            address = results[0].formatted_address;
+
+                            var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a style='cursor: pointer;' onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;cursor: pointer;' onclick='viewtodayhistory(" + vehicleid + ")' data-toggle='modal' data-target='#myModal'>View today's history</a>";
+                            var infowindow = new google.maps.InfoWindow({
+                                content: content
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infowindow.open(googlemap, marker);
+                            });
+                            attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp);
+                        }
+                        else {
+                            address = "No results";
+
+                            var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp;
+                            var infowindow = new google.maps.InfoWindow({
+                                content: content
+                            });
+
+                            google.maps.event.addListener(marker, 'click', function () {
+                                infowindow.open(googlemap, marker);
+                            });
+                            attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp);
+                        }
+                    }
+                    else {
+                        address = "No results";
+
+                        var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a style='cursor: pointer;' onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;cursor: pointer;' onclick='viewtodayhistory(" + vehicleid + ")' data-toggle='modal' data-target='#myModal'>View today's history</a>";
+                        var infowindow = new google.maps.InfoWindow({
+                            content: content
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(googlemap, marker);
+                        });
+                        attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp);
+                    }
+                }
+                else {
+                    address = "No results";
+
+                    var content = "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp + "<br/><a style='cursor: pointer;' onclick='addlocations(" + location.lat() + "," + location.lng() + ")'>Add to My Locations</a><a style='padding-left: 20px;cursor: pointer;' onclick='viewtodayhistory(" + vehicleid + ")' data-toggle='modal' data-target='#myModal'>View today's history</a>";
+
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(googlemap, marker);
+                    });
+                    attachInfowindow(marker, location, "VehicleID : " + vehicleno + "<br/>" + "Address : " + address + "<br/>" + "Speed : " + speed + " KMPH" + "<br/>" + "Update Status : " + timestamp + "<br/>" + "Today Mileage : " + Odometer + " KMs<br/>" + "Stopped From : " + stpdtimestamp);
+                }
+            });
+        }
+
+        function onvehicleclick(thisid) {
+
+        }
+        function trhover(id) {
+            var newColor = '#d5d5d5';
+            id.style.backgroundColor = (newColor == id.style.backgroundColor) ? origColor : newColor;
+        }
+        function trmouseout(id) {
+            var newColor = 'transparent';
+            id.style.backgroundColor = (newColor == id.style.backgroundColor) ? origColor : newColor;
+        }
+        var todaydate;
+        function bphover(me, vehicleid, vehicleno) {
+            var valu = $('#displaydiv');
+            $('#displaydiv').css("display", "block");
+            var pos = $(me).offset();
+            var content = "";
+            var timestamp;
+            var myCenterZoom;
+            for (var vehicledata in livedata) {
+                var vehicleno = livedata[vehicledata].vehiclenum;
+                var speed = livedata[vehicledata].Speed;
+                var Odometer = livedata[vehicledata].todaymileage;
+
+                var updatedata = livedata[vehicledata].Datetime;
+                var date = updatedata.split(" ")[0];
+                var time = updatedata.split(" ")[1];
+                var datevalues = new Array();
+                var timevalues = new Array();
+                datevalues = date.split('/');
+                timevalues = time.split(':');
+                var updatetime = new Date(datevalues[2], datevalues[1] - 1, datevalues[0], timevalues[0], timevalues[1], timevalues[2]);
+                todaydate = ServerDate;
+                var _MS_PER_DAY = 86400000;
+                var _MS_PER_aaa = 3600000;
+                var _MS_PER_sss = 60000;
+                var _MS_PER_ddd = 1000;
+                var days = Math.floor((todaydate - updatetime) / _MS_PER_DAY);
+                var hours = Math.floor((todaydate - updatetime) / _MS_PER_aaa);
+                if (hours > 24) {
+                    hours = hours % 24;
+                }
+                var min = Math.floor((todaydate - updatetime) / _MS_PER_sss);
+                if (min > 60) {
+                    min = min % 60;
+                }
+                var sec = Math.floor((todaydate - updatetime) / _MS_PER_ddd);
+                if (sec > 60) {
+                    sec = sec % 60;
+                }
+
+                if (days >= 1) {
+                    timestamp = "No Update form " + days + " days " + hours + " Hrs " + min + " Min";
+                }
+                else if (hours > 1) {
+                    timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                }
+                else if (min < 5) {
+                    timestamp = min + " Min " + sec + " Sec Back";
+                }
+                else if (days < 1) {
+                    timestamp = "No Update form " + hours + " Hrs " + min + " Min";
+                }
+
+                var stpdtimestamp = "0 Min";
+                var stoppeddate = livedata[vehicledata].stoppedfor;
+                if (speed == 0 && stoppeddate != "") {
+                    try {
+                        var stpddate = stoppeddate.split(" ")[0];
+                        var stpdtime = stoppeddate.split(" ")[1];
+                        var stpddatevalues = new Array();
+                        var stpdtimevalues = new Array();
+                        stpddatevalues = stpddate.split('/');
+                        stpdtimevalues = stpdtime.split(':');
+                        var stpdupdatetime = new Date(stpddatevalues[2], stpddatevalues[1] - 1, stpddatevalues[0], stpdtimevalues[0], stpdtimevalues[1], stpdtimevalues[2]);
+                        var _MS_PER_DAY = 86400000;
+                        var _MS_PER_aaa = 3600000;
+                        var _MS_PER_sss = 60000;
+                        var _MS_PER_ddd = 1000;
+                        var days = Math.floor((updatetime - stpdupdatetime) / _MS_PER_DAY);
+                        var hours = Math.floor((updatetime - stpdupdatetime) / _MS_PER_aaa);
+                        if (hours > 24) {
+                            hours = hours % 24;
+                        }
+                        var min = Math.floor((updatetime - stpdupdatetime) / _MS_PER_sss);
+                        if (min > 60) {
+                            min = min % 60;
+                        }
+                        var sec = Math.floor((updatetime - stpdupdatetime) / _MS_PER_ddd);
+                        if (sec > 60) {
+                            sec = sec % 60;
+                        }
+                        if (days >= 1) {
+                            stpdtimestamp = days + " days " + hours + " Hrs " + min + " Min";
+                        }
+                        else if (hours > 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                        else if (min < 10) {
+                            stpdtimestamp = min + " Min " + sec + " Sec";
+                        }
+                        else if (days < 1) {
+                            stpdtimestamp = hours + " Hrs " + min + " Min";
+                        }
+                    }
+                    catch (Error) {
+                    }
+                }
+
+                var vehicle = $('#VehiclesTable').find("#" + livedata[vehicledata].idvehicle_properties + "");
+                if (vehicleid == livedata[vehicledata].idvehicle_properties) {
+                    content = "Vehicle ID : " + vehicleno + "<br/><br/>" + "Speed : " + livedata[vehicledata].Speed + " Kms/Hr<br/><br/>" + "Ignition : " + livedata[vehicledata].Ignation + "<br/><br/>" + "A\C Status : " + livedata[vehicledata].ACStatus + "<br/><br/>" + "Update Status : " + timestamp + "<br/><br/>" + "Today Mileage : " + Odometer + " KMs<br/><br/>" + "Stopped From : " + stpdtimestamp;
+                }
+            }
+
+            $("#displaydiv").html(content);
+
+            var top = $(document).scrollTop();
+            var tothei = $(document).height();
+            var xx = window.screen.availHeight;
+            var aa = pos.top;
+            var zz = aa + 40;
+            if ((top + xx) >= (pos.top + $('#displaydiv').height() + 30 + ($('#displaydiv').height() * 0.5))) {
+                $('#displaydiv').css("top", zz).css("left", pos.left + 30);
+            }
+            else {
+                if ((pos.top - $('#displaydiv').height()) < 0) {
+                    $('#displaydiv').css("top", "0").css("left", pos.left + 30);
+                }
+                else {
+                    $('#displaydiv').css("top", pos.top - $('#displaydiv').height() - 30).css("left", pos.left + 30);
+                }
+            }
+        }
+
+        function bpmouseout() {
+            $("#displaydiv").css("display", "none"); $("#displaydiv").html("");
+        }
+        var checkedvehicles = [];
+        var latlng_pos = [];
+        function oncheck(id, onckvehicleid) {
+            var vehtag = "";
+            for (var veh = 0; veh < vehicletypes.length; veh++) {
+                if (vehicletypes[veh].idvehicle_properties == onckvehicleid) {
+                    vehtag = vehicletypes[veh].vehicletag;
+                    break;
+                }
+            }
+            for (var i = checkedvehicles.length - 1; i >= 0; i--) {
+                if (checkedvehicles[i] === onckvehicleid) {
+                    checkedvehicles.splice(i, 1);
+                }
+            }
+            if (id.checked == true) {
+                checkedvehicles.push(onckvehicleid);
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        function Draw_lines_check(controlDiv, map) {
+            controlDiv.style.padding = '22px 1px 0px 0px';
+            var controlUI1 = document.createElement('div');
+            controlUI1.style.backgroundColor = 'rgb(255, 255, 255)';
+            controlUI1.style.border = '1px solid rgb(113, 123, 135)';
+            controlUI1.style.cursor = 'pointer';
+            // controlUI1.style.float = 'left';
+            //  controlUI1.style.textAlign = 'center';
+            controlUI1.style.width = '150px';
+            controlUI1.title = 'With Lines';
+            controlUI1.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+            controlDiv.appendChild(controlUI1);
+
+            var checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.name = "name";
+            checkbox.value = "value";
+            checkbox.style.marginLeft = '20px';
+            //checkbox.style.paddingRight = '20px';
+            //checkbox.style.paddingTop = '4px';
+            checkbox.style.height = '20px';
+            //checkbox.style.paddingTop = '15px';
+            checkbox.style.float = "left";
+            checkbox.id = "with_lines";
+            controlUI1.appendChild(checkbox);
+            var controlText1 = document.createElement('div');
+            controlText1.style.fontSize = '20px';
+            controlText1.style.color = 'Green';
+            controlText1.style.paddingLeft = '20px';
+            controlText1.style.paddingRight = '20px';
+            controlText1.style.height = '28px';
+            controlText1.id = 'with_lines_lbl';
+            controlText1.innerHTML = "With Lines";
+            controlUI1.appendChild(controlText1);
+
+            google.maps.event.addDomListener(controlUI1, 'click', function () {
+                btnclearclick();
+            });
+        }
+
+        // Add a Home control that returns the user to London
+        function HomeControl(controlDiv, map) {
+            controlDiv.style.padding = '22px 1px 0px 0px';
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = 'rgb(255, 255, 255)';
+            controlUI.style.border = '1px solid rgb(113, 123, 135)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.textAlign = 'center';
+            controlUI.style.width = '180px';
+            controlUI.title = 'Update Time';
+            controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+            controlDiv.appendChild(controlUI);
+            var controlText = document.createElement('div');
+            controlText.style.fontSize = '20px';
+            controlText.style.color = 'Green';
+            controlText.style.paddingLeft = '4px';
+            controlText.style.paddingRight = '4px';
+            controlText.style.height = '28px';
+            controlText.innerHTML = 'Update Time';
+            controlText.id = 'lbl_logtime';
+            controlUI.appendChild(controlText);
+        }
+
+        //function DrawControl(controlDiv, map) {
+        //    controlDiv.style.padding = '22px 1px 0px 0px';
+        //    var controlUI = document.createElement('div');
+        //    controlUI.style.backgroundColor = 'rgb(255, 255, 255)';
+        //    controlUI.style.border = '1px solid rgb(113, 123, 135)';
+        //    controlUI.style.cursor = 'pointer';
+        //    controlUI.style.textAlign = 'center';
+        //    controlUI.style.width = '40px';
+        //    controlUI.style.height = '30px';
+        //    controlUI.title = 'Pause';
+        //    controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+        //    controlDiv.appendChild(controlUI);
+        //    var controlText = document.createElement('div');
+        //    controlText.className = "fa fa-play";
+        //    controlText.style.fontSize = '20px';
+        //    controlText.style.color = 'Green';
+        //    controlText.style.paddingLeft = '4px';
+        //    controlText.style.paddingRight = '4px';
+        //    controlText.style.paddingTop = '4px';
+        //    controlText.style.height = '20px';
+        //    controlText.style.width = '20px';
+        //    controlText.style.paddingTop = '4px';
+        //    //controlText.innerHTML = 'Pause';
+        //    controlText.id = 'btnShow';
+        //    controlUI.appendChild(controlText);
+
+        //    // Setup click-event listener: simply set the map to London
+        //    google.maps.event.addDomListener(controlUI, 'click', function () {
+        //        load();
+        //    });
+        //}
+        //function StopControl(controlDiv, map) {
+        //    controlDiv.style.padding = '22px 1px 0px 0px';
+        //    var controlUI = document.createElement('div');
+        //    controlUI.style.backgroundColor = 'rgb(255, 255, 255)';
+        //    controlUI.style.border = '1px solid rgb(113, 123, 135)';
+        //    controlUI.style.cursor = 'pointer';
+        //    controlUI.style.textAlign = 'center';
+        //    controlUI.style.width = '40px';
+        //    controlUI.style.height = '30px';
+        //    controlUI.title = 'Stop';
+        //    controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+        //    controlDiv.appendChild(controlUI);
+        //    var controlText = document.createElement('div');
+        //    controlText.style.fontSize = '20px';
+        //    controlText.style.color = 'red';
+        //    controlText.style.paddingLeft = '4px';
+        //    controlText.style.paddingRight = '4px';
+        //    controlText.style.paddingTop = '4px';
+        //    controlText.style.height = '20px';
+        //    controlText.style.width = '20px';
+        //    controlText.style.paddingTop = '4px';
+        //    // controlText.innerHTML = 'Stop';
+        //    controlText.className = "fa fa-stop";
+        //    controlText.id = 'btnstop';
+        //    controlUI.appendChild(controlText);
+
+        //    // Setup click-event listener: simply set the map to London
+        //    google.maps.event.addDomListener(controlUI, 'click', function () {
+        //        btnstopclick();
+        //    });
+        //}
+        //function ClearControl(controlDiv, map) {
+        //    controlDiv.style.padding = '22px 1px 0px 0px';
+        //    var controlUI = document.createElement('div');
+        //    controlUI.style.backgroundColor = 'rgb(255, 255, 255)';
+        //    controlUI.style.border = '1px solid rgb(113, 123, 135)';
+        //    controlUI.style.cursor = 'pointer';
+        //    controlUI.style.textAlign = 'center';
+        //    controlUI.style.width = '60px';
+        //    controlUI.style.height = '30px';
+        //    controlUI.title = 'Clear';
+        //    controlUI.style.boxShadow = "rgba(0, 0, 0, 0.4) 0px 2px 4px";
+        //    controlDiv.appendChild(controlUI);
+        //    var controlText = document.createElement('div');
+        //    controlText.style.fontSize = '20px';
+        //    controlText.style.color = 'Green';
+        //    controlText.style.paddingLeft = '4px';
+        //    controlText.style.paddingRight = '4px';
+        //    controlText.style.height = '20px';
+        //    controlText.style.width = '20px';
+        //    controlText.innerHTML = 'Clear';
+        //    controlText.id = 'btnclear';
+        //    controlUI.appendChild(controlText);
+
+        //    // Setup click-event listener: simply set the map to London
+        //    google.maps.event.addDomListener(controlUI, 'click', function () {
+        //        btnclearclick();
+        //    });
+        //}
+
+        function checkclick(checkedvalue) {
+            var checkinputs = $('#divtrips').find('.checkinput');
+            if (checkedvalue.title == "SelectAll") {
+                if (checkedvalue.checked == true) {
+                    checkinputs.each(function (list) {
+                        var checkbox = checkinputs[list];
+                        checkbox.checked = true;
+                    });
+                }
+                else {
+                    checkinputs.each(function (list) {
+                        var checkbox = checkinputs[list];
+                        checkbox.checked = false;
+                    });
+                }
+            }
+            else {
+                if (checkedvalue.checked == false) {
+                    checkinputs.each(function (list) {
+                        var checkbox = checkinputs[list];
+                        if (checkbox.title == "SelectAll") {
+                            checkbox.checked = false;
+                        }
+                    });
+                }
+            }
+        }
+        $(function () {
+            $("#slider_preview").slider();
+            var hidden = false;
+            $("#btnClose").click(function () {
+                if (hidden) {
+                    $(".togglediv").stop().animate({ left: 0 }, 500);
+                    hidden = false;
+                    $("#btnClose").attr('title', "Hide");
+                    $("#btnClose").attr('src', "Images/bigleft.png");
+                }
+                else {
+                    $(".togglediv").css('margin-left', 0);
+                    $(".togglediv").css('margin-right', 0);
+                    $(".togglediv").animate({ left: '-320px' }, 500);
+                    $("#btnClose").attr('title', "Show");
+                    $("#btnClose").attr('src', "Images/bigright.png");
+                    hidden = true;
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        var map;
+        function initialize() {
+            var mapOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(17.445974, 80.150965),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+            };
+
+
+            map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+            var Draw_lineControlDiv = document.createElement('div');
+            var Draw_lineControl = new Draw_lines_check(Draw_lineControlDiv, map);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(Draw_lineControlDiv);
+
+            //    map = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+            var homeControlDiv = document.createElement('div');
+            var homeControl = new HomeControl(homeControlDiv, map);
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+            //var ClearControlDiv = document.createElement('div');
+            //var clearcontrol = new ClearControl(ClearControlDiv, map);
+            //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(ClearControlDiv);
+
+            //var StopControlDiv = document.createElement('div');
+            //var stopcontrol = new StopControl(StopControlDiv, map);
+            //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(StopControlDiv);
+
+            //var DrawControlDiv = document.createElement('div');
+            //var drawcontrol = new DrawControl(DrawControlDiv, map);
+            //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(DrawControlDiv);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script type="text/javascript">
+        function btn_generate_Click() {
+            isfirstlocation = false;
+            initialize();
+            clearInterval(interval);
+            var startdt = document.getElementById('txtFromDate').value;
+            var enddt = document.getElementById('txtToDate').value;
+            var checkedvehicle = "";
+            for (var i = 0; i < checkedvehicles.length; i++) {
+                if (checkedvehicles[i] != "SelectAll") {
+                    checkedvehicle += checkedvehicles[i] + "@";
+                }
+                else {
+                    checkedvehicle = "";
+                    return false;
+                }
+            }
+            if (checkedvehicle.length > 0) {
+                checkedvehicle = checkedvehicle.slice(0, checkedvehicle.length - 1);
+            }
+            else {
+                bootbox.alert("Please select vehicles to get report!");
+                return;
+            }
+            var data = { 'op': 'plantvehiclesdata_gen', 'startdt': startdt, 'enddt': enddt, 'checkedvehicle': checkedvehicle };
+            var s = function (msg) {
+                if (msg) {
+                    //document.getElementById('btnShow').innerHTML = 'Pause';
+                    document.getElementById('btnShow').className = 'fa fa-pause';
+
+                    polyroute(msg);
+                }
+                else {
+                }
+            };
+            var e = function (x, h, e) {
+            };
+            $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+            callHandler(data, s, e);
+        }
+
+        function load() {
+            // var btnshow = document.getElementById('btnShow').innerHTML;
+            var btn_Showobj = document.getElementById('btnShow');
+            var btnshow = btn_Showobj.className;
+            // if (btnshow == 'Draw') {
+
+            if (btnshow == 'fa fa-play') {
+                //                btn_Showobj.className = 'fa fa-pause';
+                //                btn_Showobj.title = 'Paused'
+                btnclearclick();
+                deleteOverlays();
+                //initialize();
+                polyroute(triproutedata);
+                document.getElementById('btnShow').className = 'fa fa-pause';
+                document.getElementById('btnShow').title = 'Paused'
+
+
+            }
+            else if (btnshow == 'fa fa-pause')//'Pause') {
+            {
+                clearInterval(interval);
+                // document.getElementById('btnShow').innerHTML = 'Resume';
+                document.getElementById('btnShow').className = 'fa fa-play-circle-o';
+                document.getElementById('btnShow').title = 'Resume';
+
+            }
+            else if (btnshow == 'fa fa-play-circle-o') {//'Resume') {
+                clearInterval(interval);
+                var speed = $("#speedval").val();
+                if (speed == "speed") {
+                    speed = 3;
+                }
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 2000);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1500);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1000);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 500);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 300);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 100);
+                }
+                //   document.getElementById('btnShow').innerHTML = 'Pause';
+                document.getElementById('btnShow').className = 'fa fa-pause';
+                document.getElementById('btnShow').title = 'Pause'
+            }
+        }
+
+        var triproutedata;
+        var interval;
+        var colors = new Array();
+        var markersArray = [];
+        var polilinepath = [];
+        var firstlog = false;
+        var stoppedmarkers = [];
+        var flightPath = null;
+        var maxcount = 0;
+        var vehiclesarray = [];
+        var allflightPlanCoordinates = [];
+        var globellooper;
+        var vehcolors = [];
+        var isfirstlocation = false;
+        function polyroute(msg) {
+            logcount = 0;
+            remcount = 0;
+            $("#speedval").val("speed");
+            polilinepath = [];
+            allflightPlanCoordinates = [];
+            if (flightPath) {
+                flightPath.setMap(null);
+            }
+            colors = new Array("red", "blue", "black", "gray", "maroon", "Alabama Crimson", "Amber", "Bangladesh green", "Heart Gold", "Camouflage green", "Cadmium red", "Burgundy", "Bright green");
+
+            triproutedata = msg;
+            globellooper = triproutedata.GlobelLooper;
+            maxcount = triproutedata.GlobelLooper.length;
+
+            $('#slider_preview').slider({
+                min: 1,
+                max: maxcount,
+                range: "min",
+                value: 0,
+                slide: function (event, ui) {
+
+                    // var btnshow = document.getElementById('btnShow').innerHTML;
+                    var btnshow = document.getElementById('btnShow').className;
+                    if (btnshow == 'fa fa-pause') {
+                        load();
+                        btnclearclick();
+                    }
+                    $('#with_lines').removeAttr('checked'); //.attr('checked', 'unchecked');
+
+                    logcount = ui.value - 1;
+                    slider_timerlogs();
+
+
+                    //  select[ 0 ].selectedIndex = ui.value - 1;
+                }
+            });
+
+            for (var cnt = 0; cnt < triproutedata.vehicleslist.length; cnt++) {
+                var flightPlanCoordinates = [];
+                vehiclesarray[triproutedata.vehicleslist[cnt].vehicleno] = flightPlanCoordinates;
+                vehlogscount[triproutedata.vehicleslist[cnt].vehicleno] = 0;
+                vehcolors[triproutedata.vehicleslist[cnt].vehicleno] = colors[cnt % colors.length];
+                allflightPlanCoordinates.push(flightPlanCoordinates);
+            }
+            clearInterval(interval);
+            interval = setInterval(function () { timerlogs() }, 2000);
+        }
+
+        var logcount = 0;
+        var remcount = 0;
+        var grpvehicles = [];
+        function timerlogs() {
+            //            deleteOverlays();
+            if (logcount < maxcount) {
+                var searchlbl = globellooper[logcount];
+                for (var cnt = 0; cnt < triproutedata.vehicleslist.length; cnt++) {
+                    document.getElementById('lbl_logtime').innerHTML = searchlbl;
+                    var getinfo = triproutedata.vehicleslist[cnt].logslist[searchlbl];
+                    $('#slider_preview').slider("value", logcount);
+                    // if (triproutedata.vehicleslist[cnt].logslist.contans(.length > logcount) {
+                    if (typeof getinfo !== "undefined") {
+                        var flightPlanCoordinates1 = [];
+                        flightPlanCoordinates1 = vehiclesarray[triproutedata.vehicleslist[cnt].vehicleno];
+                        var Latitude = getinfo.latitude;
+                        var Longitude = getinfo.longitude;
+                        var point = new google.maps.LatLng(
+              parseFloat(Latitude),
+              parseFloat(Longitude));
+                        var angle = getinfo.direction;
+                        var iconsrc;
+                        var VehicleType = "Car";
+                        var imgangle;
+                        VehicleType = "green" + VehicleType;
+                        if (angle >= 0 && angle < 22.5) {
+                            imgangle = 0;
+                            iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                        }
+                        else if (angle >= 22.5 && angle < 45) {
+                            imgangle = 22.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                        }
+                        else if (angle >= 45 && angle < 67.5) {
+                            imgangle = 45.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                        }
+                        else if (angle >= 67.5 && angle < 90) {
+                            imgangle = 67.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                        }
+                        else if (angle >= 90 && angle < 112.5) {
+                            imgangle = 90.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                        }
+                        else if (angle >= 112.5 && angle < 135) {
+                            imgangle = 112.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                        }
+                        else if (angle >= 135 && angle < 157.5) {
+                            imgangle = 135.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                        }
+                        else if (angle >= 157.5 && angle < 180) {
+                            imgangle = 157.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                        }
+                        else if (angle >= 180 && angle < 202.5) {
+                            imgangle = 180.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                        }
+                        else if (angle >= 202.5 && angle < 225) {
+                            imgangle = 202.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                        }
+                        else if (angle >= 225 && angle < 247.5) {
+                            imgangle = 225.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                        }
+                        else if (angle >= 247.5 && angle < 270) {
+                            imgangle = 247.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                        }
+                        else if (angle >= 270 && angle < 292.5) {
+                            imgangle = 270.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "17.png";
+                        }
+                        else if (angle >= 292.5 && angle < 315) {
+                            imgangle = 292.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                        }
+                        else if (angle >= 315 && angle < 337.5) {
+                            imgangle = 315.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                        }
+                        else if (angle >= 337.5 && angle < 360) {
+                            imgangle = 337.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+                        else if (angle >= 360) {
+                            imgangle = 360;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+
+                        for (var i = 0; i < markersArray.length; i++) {
+                            var vehmarker = markersArray[i];
+                            if (markersArray[i].id == triproutedata.vehicleslist[cnt].vehicleno) {
+                                markersArray[i].setMap(null);
+                                markersArray.splice(i, 1);
+                            }
+                        }
+                        var image = new google.maps.MarkerImage(iconsrc, null, new google.maps.Point(0, 0), new google.maps.Point(20, 20));
+                        var marker = new google.maps.Marker({
+                            position: point,
+                            map: map,
+                            center: location,
+                            zoom: 12,
+                            icon: image,
+                            id: triproutedata.vehicleslist[cnt].vehicleno
+                        });
+
+                        markersArray.push(marker);
+                        attachInfowindow(marker, location, "VehicleID : " + triproutedata.vehicleslist[cnt].vehicleno);
+
+                        var infowindow = new google.maps.InfoWindow();
+                        var Routename = "";
+                        var vehiclemodeltype = "";
+                        var vehicleno = "";
+                        for (var v = 0; v < grpvehicles.length; v++) {
+                            if (triproutedata.vehicleslist[cnt].vehicleno == grpvehicles[v].vehicleno) {
+                                Routename = grpvehicles[v].Routename;
+                                vehiclemodeltype = grpvehicles[v].vehiclemodeltype;
+                                vehicleno = grpvehicles[v].vehicleno;
+                            }
+                        }
+
+                        infowindow.setContent("VehicleID : <label style='font-size:15px;font-weight:bold;'>" + triproutedata.vehicleslist[cnt].vehicleno + "</label>");
+                        infowindow.open(map, marker);
+
+
+                        var point = new google.maps.LatLng(
+                          parseFloat(Latitude),
+                          parseFloat(Longitude));
+                        remcount = vehlogscount[triproutedata.vehicleslist[cnt].vehicleno];
+                        flightPlanCoordinates1[getinfo.sno - remcount] = new google.maps.LatLng(Latitude, Longitude);
+                        var clr = vehcolors[triproutedata.vehicleslist[cnt].vehicleno];
+
+                        if ($('#with_lines').is(":checked")) {
+                            // it is checked
+                            var polyOptions = {
+                                path: flightPlanCoordinates1,
+                                strokeColor: clr,
+                                strokeOpacity: 1.0,
+                                strokeWeight: 2
+                            }
+                            flightPath = new google.maps.Polyline(polyOptions);
+                            flightPath.setMap(map);
+                            polilinepath.push(flightPath);
+                        }
+                        if (!isfirstlocation) {
+                            var latlngbounds = new google.maps.LatLngBounds();
+                            latlngbounds.extend(point);
+                            map.fitBounds(latlngbounds);
+                            map.setZoom(13);
+                            isfirstlocation = true;
+                        }
+                    }
+                }
+                logcount++;
+            }
+            else {
+                clearInterval(interval);
+            }
+        }
+
+
+        function slider_timerlogs() {
+            if (logcount < maxcount) {
+                var searchlbl = globellooper[logcount];
+                for (var cnt = 0; cnt < triproutedata.vehicleslist.length; cnt++) {
+                    document.getElementById('lbl_logtime').innerHTML = searchlbl;
+                    var getinfo = triproutedata.vehicleslist[cnt].logslist[searchlbl];
+                    $('#slider_preview').slider("value", logcount);
+                    // if (triproutedata.vehicleslist[cnt].logslist.contans(.length > logcount) {
+                    if (typeof getinfo !== "undefined") {
+                        var flightPlanCoordinates1 = [];
+                        flightPlanCoordinates1 = vehiclesarray[triproutedata.vehicleslist[cnt].vehicleno];
+                        var Latitude = getinfo.latitude;
+                        var Longitude = getinfo.longitude;
+                        var point = new google.maps.LatLng(
+              parseFloat(Latitude),
+              parseFloat(Longitude));
+                        var angle = getinfo.direction;
+                        var iconsrc;
+                        var VehicleType = "Car";
+                        var imgangle;
+                        VehicleType = "green" + VehicleType;
+                        if (angle >= 0 && angle < 22.5) {
+                            imgangle = 0;
+                            iconsrc = "VehicleTypes/" + VehicleType + "4.png";
+                        }
+                        else if (angle >= 22.5 && angle < 45) {
+                            imgangle = 22.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "5.png";
+                        }
+                        else if (angle >= 45 && angle < 67.5) {
+                            imgangle = 45.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "6.png";
+                        }
+                        else if (angle >= 67.5 && angle < 90) {
+                            imgangle = 67.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "7.png";
+                        }
+                        else if (angle >= 90 && angle < 112.5) {
+                            imgangle = 90.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "8.png";
+                        }
+                        else if (angle >= 112.5 && angle < 135) {
+                            imgangle = 112.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "9.png";
+                        }
+                        else if (angle >= 135 && angle < 157.5) {
+                            imgangle = 135.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "10.png";
+                        }
+                        else if (angle >= 157.5 && angle < 180) {
+                            imgangle = 157.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "11.png";
+                        }
+                        else if (angle >= 180 && angle < 202.5) {
+                            imgangle = 180.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "12.png";
+                        }
+                        else if (angle >= 202.5 && angle < 225) {
+                            imgangle = 202.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "13.png";
+                        }
+                        else if (angle >= 225 && angle < 247.5) {
+                            imgangle = 225.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "14.png";
+                        }
+                        else if (angle >= 247.5 && angle < 270) {
+                            imgangle = 247.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "15.png";
+                        }
+                        else if (angle >= 270 && angle < 292.5) {
+                            imgangle = 270.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "17.png";
+                        }
+                        else if (angle >= 292.5 && angle < 315) {
+                            imgangle = 292.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "1.png";
+                        }
+                        else if (angle >= 315 && angle < 337.5) {
+                            imgangle = 315.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "2.png";
+                        }
+                        else if (angle >= 337.5 && angle < 360) {
+                            imgangle = 337.5;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+                        else if (angle >= 360) {
+                            imgangle = 360;
+                            iconsrc = "VehicleTypes/" + VehicleType + "3.png";
+                        }
+
+                        for (var i = 0; i < markersArray.length; i++) {
+                            var vehmarker = markersArray[i];
+                            if (markersArray[i].id == triproutedata.vehicleslist[cnt].vehicleno) {
+                                markersArray[i].setMap(null);
+                                markersArray.splice(i, 1);
+                            }
+                        }
+                        var image = new google.maps.MarkerImage(iconsrc, null, new google.maps.Point(0, 0), new google.maps.Point(20, 20));
+                        var marker = new google.maps.Marker({
+                            position: point,
+                            map: map,
+                            center: location,
+                            zoom: 12,
+                            icon: image,
+                            id: triproutedata.vehicleslist[cnt].vehicleno
+                        });
+
+                        markersArray.push(marker);
+                        attachInfowindow(marker, location, "VehicleID : " + triproutedata.vehicleslist[cnt].vehicleno);
+
+
+                        var point = new google.maps.LatLng(
+                          parseFloat(Latitude),
+                          parseFloat(Longitude));
+                        remcount = vehlogscount[triproutedata.vehicleslist[cnt].vehicleno];
+                        flightPlanCoordinates1[getinfo.sno - remcount] = new google.maps.LatLng(Latitude, Longitude);
+                        var clr = vehcolors[triproutedata.vehicleslist[cnt].vehicleno];
+                    }
+                }
+                // logcount++;
+            }
+            else {
+                clearInterval(interval);
+            }
+        }
+        function attachInfowindow(marker, latlng, country) {
+            var location = latlng;
+            var boxText = document.createElement("div");
+            boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: white; padding: 5px;";
+            boxText.innerHTML = '<b>' + country + '</b><br />';
+
+            var myOptions = {
+                content: boxText
+				, disableAutoPan: false
+				, maxWidth: 0
+				, pixelOffset: new google.maps.Size(-140, 0)
+				, zIndex: null
+				, boxStyle: {
+				    background: "url('Images/tipbox.gif') no-repeat"
+				  , opacity: 0.9
+				  , width: "350px"
+				}
+				, closeBoxMargin: "10px 5px 0px 2px"
+                , closeBoxURL: ""
+				, infoBoxClearance: new google.maps.Size(1, 1)
+				, isHidden: false
+				, pane: "floatPane"
+				, enableEventPropagation: false
+            };
+
+
+            var ib = new InfoBox(myOptions);
+            //var infowindow = new google.maps.InfoWindow({ content: '<b>' + description + '</b><br />' + location });
+            google.maps.event.addListener(marker, 'mouseover', function () {
+                //infowindow.open(map,marker);
+                ib.open(map, marker);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function () {
+                //infowindow.close();
+                ib.close();
+            });
+        }
+        function deleteOverlays() {
+            clearOverlays();
+            markersArray = [];
+        }
+
+        // Sets the map on all markers in the array.
+        function setAllMap(map) {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(map);
+            }
+        }
+
+        // Removes the overlays from the map, but keeps them in the array.
+        function clearOverlays() {
+            setAllMap(null);
+        }
+
+        function PrevValidating() {
+            var speed = $("#speedval").val();
+            if (speed == "speed") {
+                speed = 3;
+            }
+            if (speed > 1) {
+                speed--;
+            }
+            $("#speedval").val(speed);
+            // var btnshow = document.getElementById('btnShow').innerHTML;
+            var btnshow = document.getElementById('btnShow').className;
+            if (btnshow == 'fa fa-pause') {
+
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 2000);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1500);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1000);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 500);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 300);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 100);
+                }
+            }
+            return false;
+        }
+
+        function NextValidating() {
+            var speed = $("#speedval").val();
+            if (speed == "speed") {
+                speed = 3;
+            }
+            if (speed < 6) {
+                speed++;
+            }
+            $("#speedval").val(speed);
+            // var btnshow = document.getElementById('btnShow').innerHTML;
+            var btnshow = document.getElementById('btnShow').className;
+            if (btnshow == 'fa fa-pause') {
+                if (speed == 1) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 2000);
+                }
+                else if (speed == 2) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1500);
+                }
+                else if (speed == 3) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 1000);
+                }
+                else if (speed == 4) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 500);
+                }
+                else if (speed == 5) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 300);
+                }
+                else if (speed == 6) {
+                    clearInterval(interval);
+                    interval = setInterval(function () { timerlogs() }, 100);
+                }
+            }
+            return false;
+        }
+        function btnstopclick() {
+            clearInterval(interval);
+            $("#speedval").val("speed");
+            firstlog = false;
+            document.getElementById('btnShow').className = 'fa fa-play';
+            document.getElementById('btnShow').title = 'Play';
+            logcount = 0;
+            remcount = 0;
+        }
+        var vehlogscount = [];
+        function btnclearclick() {
+            deleteallOverlays();
+            function deleteallOverlays() {
+                clearallOverlays();
+                polilinepath = [];
+                for (var cnt = 0; cnt < triproutedata.vehicleslist.length; cnt++) {
+                    var flightPlanCoordinates = [];
+                    flightPlanCoordinates = vehiclesarray[triproutedata.vehicleslist[cnt].vehicleno];
+                    var prevcnt = vehlogscount[triproutedata.vehicleslist[cnt].vehicleno];
+                    remcount = flightPlanCoordinates.length;
+                    var tot = remcount + prevcnt;
+                    vehlogscount[triproutedata.vehicleslist[cnt].vehicleno] = tot;
+                    flightPlanCoordinates.length = 0;
+                    vehiclesarray[triproutedata.vehicleslist[cnt].vehicleno] = flightPlanCoordinates;
+                    //allflightPlanCoordinates.push(flightPlanCoordinates);
+                }
+            }
+
+            // Sets the map on all markers in the array.
+            function allsetAllMap(map) {
+                for (i = 0; i < polilinepath.length; i++) {
+                    polilinepath[i].setMap(map); //or line[i].setVisible(false);
+                }
+            }
+
+            // Removes the overlays from the map, but keeps them in the array.
+            function clearallOverlays() {
+                allsetAllMap(null);
+            }
+        }
+    </script>
+</body>
+</html>
